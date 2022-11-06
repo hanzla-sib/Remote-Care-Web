@@ -1,0 +1,159 @@
+import { Button, Card, CardContent, CardMedia, Divider, Grid, List, ListItem, ListItemText, Typography } from "@mui/material";
+import { Box, Container, Stack } from "@mui/system";
+import React from "react";
+import SimpleAreaChart from "../Chart";
+import DoctorSidebar from "./DoctorSidebar";
+import StaticTimePickerDemo from "../Time";
+function DoctorHome(){
+return(
+    <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
+    <Box sx={{ backgroundColor: "#293148", height: { sx: "auto", md: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
+      <DoctorSidebar />
+    </Box>
+    {/* HOMEPAGE STARTING */}
+    <Box pl={"20px"} sx={{ overflowY: "auto", height: "90vh", flex: 2 }}>
+      <Container>
+        <Grid columnSpacing={{ lg: 0, sm: 1, md: 3, xs: 2 }} columnGap={{ lg: 1, md: 2, sm: 1, xs: 1 }} sx={{ margin: "auto" }} rowSpacing={4} container alignItems="center"
+          justifyContent="center" direction={"row"} >
+
+          <Grid marginRight={"20px"} maxWidth={"500px"} justifyContent="center" alignItems="center" container item sm={6} md={3} lg={3}>
+            <Card style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
+              <CardContent sx={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
+                <Typography variant="h6" component="div">
+                  Hi, MR Doctor
+                </Typography>
+                <Typography variant="body2" component="div">
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid justifyContent="center" alignItems="center" item sm={12} md={6} lg={6}>
+            <Container sx={{ border: "1px solid black", backgroundColor: "white" }} maxWidth={false} >
+              <Typography variant="body2">Graph</Typography>
+              <SimpleAreaChart />
+            </Container>
+          </Grid>
+
+          {/* set appointmnets */}
+
+
+{/* --------------------- */}
+          <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={5}>
+            <Card style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
+              <CardContent>
+                <Typography variant="h6" marginLeft={"40px"} >
+                Appointment Requests
+                </Typography>
+                <List >
+                  <ListItem  >
+                    <ListItemText sx={{marginLeft:"60px"}}>p1</ListItemText>
+                    <Button sx={{marginRight:"10px"}} variant="contained">Accept</Button>
+                    <Button variant="contained">Reject</Button>
+                    
+
+                  </ListItem>
+                  <ListItem  >
+                    <ListItemText sx={{marginLeft:"60px"}}>p2</ListItemText>
+                    <Button sx={{marginRight:"10px"}} variant="contained">Accept</Button>
+                    <Button variant="contained">Reject</Button>
+
+                  </ListItem>
+                  <ListItem  >
+                    <ListItemText sx={{marginLeft:"60px"}}>p3</ListItemText>
+                    <Button sx={{marginRight:"10px"}} variant="contained">Accept</Button>
+                    <Button variant="contained">Reject</Button>
+
+                  </ListItem>
+                  <ListItem  >
+                    <ListItemText sx={{marginLeft:"60px"}}>p4</ListItemText>
+                    <Button sx={{marginRight:"10px"}} variant="contained">Accept</Button>
+                    <Button variant="contained">Reject</Button>
+
+                  </ListItem>
+                </List>
+              </CardContent>
+            </Card>
+          </Grid>
+{/* --------------------------- */}
+          <Grid maxWidth={"500px"} justifyContent="center" alignItems="center" container item sm={5} md={5} lg={5}>
+            <Card style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
+              <CardContent >
+
+                <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+                  <Typography variant="h6">Appointments</Typography>
+                  <ListItem alignItems="flex-start">
+
+                    <ListItemText
+                      primary="P.1"
+                      secondary={
+                        <React.Fragment>
+                          <Typography
+                            sx={{ display: 'inline' }}
+                            component="span"
+                            variant="body2"
+                            color="text.primary"
+                          >
+                            " Tonight 6pm"
+                          </Typography>
+
+                        </React.Fragment>
+                      }
+                    />
+                  </ListItem>
+                  <Divider variant="inset" component="li" />
+                  <ListItem alignItems="flex-start">
+
+                    <ListItemText
+                      primary="P.2"
+                      secondary={
+                        <React.Fragment>
+                          <Typography
+                            sx={{ display: 'inline' }}
+                            component="span"
+                            variant="body2"
+                            color="text.primary"
+                          >
+
+                          </Typography>
+                          {" Tonight 6pm"}
+                        </React.Fragment>
+                      }
+                    />
+                  </ListItem>
+                  <Divider variant="inset" component="li" />
+                  <ListItem alignItems="flex-start">
+
+                    <ListItemText
+                      primary="P.3"
+                      secondary={
+                        <React.Fragment>
+                          <Typography
+                            sx={{ display: 'inline' }}
+                            component="span"
+                            variant="body2"
+                            color="text.primary"
+                          >
+
+                          </Typography>
+                          {"Tonight 6pm"}
+                        </React.Fragment>
+                      }
+                    />
+                  </ListItem>
+                </List>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* ----------- */}
+       
+        </Grid>
+      </Container>
+    </Box>
+  </Stack>
+)
+}
+
+
+export default DoctorHome;
