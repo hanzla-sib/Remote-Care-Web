@@ -69,30 +69,28 @@ function Home() {
 
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
-      <Box sx={{ backgroundColor: "#293148", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
+      <Box sx={{ background: "linear-gradient(#16222A, #3A6073);", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
         <Sidebar />
       </Box>
       {/* HOMEPAGE STARTING */}
-      <Box pl={"20px"} sx={{ overflowY: "auto", height: "93.5vh", flex: 2, backgroundColor: "#ffffff" }}>
+      <Box pl={"20px"} sx={{ overflowY: "auto", height: "93.5vh", flex: 2, backgroundColor: "#EEEEEE" }}>
         <Container >
           <Grid columnSpacing={{ lg: 0, sm: 1, md: 3, xs: 2 }} columnGap={{ lg: 2, md: 2, sm: 1, xs: 1 }} sx={{ margin: "auto" }} rowSpacing={4} container alignItems="center"
             justifyContent="center" direction={"row"} >
 
 
-            <Grid marginRight={"20px"} maxWidth={"500px"} justifyContent="left" alignItems="center" container item sm={12} md={12} lg={12}>
+            <Grid  marginRight={"20px"} maxWidth={"500px"} justifyContent="left" alignItems="center" container item sm={12} md={12} lg={12}>
 
               {/* showing the Dashboard */}
 
-              <Card style={{ fontWeight: "bold", border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
+              <Card  style={{ color: '#4AA54E', backgroundColor: '#EEEEEE', fontWeight: "bold", border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
                 <CardContent sx={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
-                  <Typography variant="h4" component="div" color={"#000000"}>
+                  <Typography variant="h4" component="div" >
                     Patient Overview
                 
 
                   </Typography>
-                  <Typography variant="body2" component="div">
-                    {/* {post.typeofuser} */}
-                  </Typography>
+                
                 </CardContent>
               </Card>
             </Grid>
@@ -102,9 +100,9 @@ function Home() {
 
               {/* showing the name of the user */}
 
-              <Card style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
+              <Card style={{color: '#4AA54E', backgroundColor: '#EEEEEE', border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
                 <CardContent sx={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
-                  <Typography variant="h4" component="div" color={"#000000"}>
+                  <Typography variant="h5" component="div" >
                     Hi,
                     {checktrue == true? post.Name: "null"}
                     
@@ -129,7 +127,7 @@ function Home() {
             {/* showing Cards */}
             {/* Step Count Card */}
             <Grid justifyContent="center" alignItems="center" container item sm={5} md={3} lg={3}>
-              <Card sx={{ maxWidth: 180, border: "0px solid black", borderRadius: "30px", boxShadow: 20 }} elevation={2}>
+              <Card style={{color: '#ffff', backgroundColor: '#E73E3B' }} sx={{ maxWidth: 180, border: "0px solid black", borderRadius: "30px", boxShadow: 20 }} elevation={2}>
                 <CardMedia
                   component="img"
                   height="auto"
@@ -140,7 +138,7 @@ function Home() {
                   <Typography gutterBottom variant="h5" component="div">
                     Step Counts
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" >
                     count
                   </Typography>
                 </CardContent>
@@ -151,7 +149,7 @@ function Home() {
 
             {/* Calorie Card */}
             <Grid justifyContent="center" alignItems="center" container item sm={5} md={3} lg={3}>
-              <Card sx={{ maxWidth: 180, border: "0px solid black", borderRadius: "30px", boxShadow: 20 }}>
+              <Card   sx={{ maxWidth: 180, border: "0px solid black", borderRadius: "30px", boxShadow: 20 }}>
                 <CardMedia
                   component="img"
                   height="auto"
@@ -174,7 +172,7 @@ function Home() {
 
             {/* Heart Beat Card */}
             <Grid justifyContent="center" alignItems="center" container item sm={12} md={3} lg={3}>
-              <Card sx={{ maxWidth: 180, border: "0px solid black", borderRadius: "30px", boxShadow: 20 }}>
+              <Card style={{color: '#ffff', backgroundColor: '#00ACC1' }}  sx={{ maxWidth: 180, border: "0px solid black", borderRadius: "30px", boxShadow: 20 }}>
                 <CardMedia
                   component="img"
                   height="auto"
@@ -185,7 +183,7 @@ function Home() {
                   <Typography gutterBottom variant="h5" component="div">
                     heart beat
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2">
 
                     count
                   </Typography>

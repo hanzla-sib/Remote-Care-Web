@@ -51,10 +51,10 @@ function Health_record() {
   return (
 
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
-    <Box sx={{ backgroundColor: "#293148", height: { sx: "auto", md: "93.5vh",lg:"93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
+     <Box sx={{ background: "linear-gradient(#304352, #3498db);", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
       <Sidebar />
     </Box>
-    <Box pl={"20px"} sx={{ overflowY: "auto", height: "93.5vh", flex: 2 }}>
+    <Box pl={"20px"} sx={{ overflowY: "auto", height: "93.5vh", flex: 2 ,backgroundColor: "#EEEEEE" }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
           <Tab label="Steps Count" {...a11yProps(0)} />

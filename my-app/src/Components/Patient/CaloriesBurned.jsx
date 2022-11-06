@@ -57,8 +57,8 @@ function CaloriesBurned() {
 
             <Grid maxWidth={"500px"} justifyContent="flex-start" alignItems="center" container item sm={6} md={3} lg={12}>
               <Card style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
-                <CardContent>
-                  <Typography variant="h4" component="div">
+                <CardContent sx={{background:"#EEEEEE"}}>
+                  <Typography variant="h4" component="div" color={"#4AA54E"}>
                     Hi, MR {checktrue == true? post.Name: "null"}
                   </Typography>
                   <Typography variant="h6" component="div">
@@ -70,7 +70,7 @@ function CaloriesBurned() {
             {/*  */}
             <Grid margin={"40px 0px"} container justifyContent="flex-start" alignItems="center" item sm={6} md={3} lg={3}>
               <Card style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
-                <CardContent>
+                <CardContent sx={{background:"#EEEEEE"}}>
                   <Typography variant="h6" component="div">
                     DAILY
                   </Typography>
@@ -89,7 +89,7 @@ function CaloriesBurned() {
 
             <Grid margin={"40px 0px"} container justifyContent="flex-start" alignItems="center" item sm={6} md={3} lg={3}>
               <Card style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
-                <CardContent>
+                <CardContent sx={{background:"#EEEEEE"}}>
                   <Typography variant="h6" component="div">
                     Weekly
                   </Typography>
@@ -109,7 +109,7 @@ function CaloriesBurned() {
             {/*  */}
             <Grid container justifyContent="flex-start" alignItems="center" item sm={6} md={3} lg={3}>
               <Card style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
-                <CardContent>
+                <CardContent sx={{background:"#EEEEEE"}}>
                   <Typography variant="h6" component="div">
                     Monthly
                   </Typography>

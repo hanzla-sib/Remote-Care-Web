@@ -49,15 +49,15 @@ function Steps() {
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
       
-      <Box pl={"20px"} sx={{ overflowY: "auto", height: "93.5vh", flex: 2 }}>
+      <Box pl={"20px"} sx={{  overflowY: "auto", height: "93.5vh", flex: 2 }}>
         <Container>
           <Grid columnSpacing={{ lg: 0, sm: 1, md: 3, xs: 2 }} columnGap={{ lg: 1, md: 2, sm: 1, xs: 1 }} sx={{ margin: "auto" }} rowSpacing={4} container alignItems="center"
             justifyContent="center" direction={"row"} >
 
             <Grid maxWidth={"500px"} justifyContent="flex-start" alignItems="center" container item sm={6} md={3} lg={12}>
-              <Card style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
-                <CardContent>
-                  <Typography variant="h4" component="div">
+              <Card style={{ border: "5", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
+                <CardContent sx={{background:"#EEEEEE"}}>
+                  <Typography variant="h4" color={"#4AA54E"} component="div">
                     Hi, MR  {checktrue == true? post.Name: "null"}
                   </Typography>
                   <Typography variant="h6" component="div">
@@ -69,7 +69,7 @@ function Steps() {
             {/*  */}
             <Grid margin={"40px 0px"} container justifyContent="flex-start" alignItems="center" item sm={6} md={3} lg={3}>
               <Card style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
-                <CardContent>
+                <CardContent sx={{background:"#EEEEEE"}}>
                   <Typography variant="h6" component="div">
                     DAILY
                   </Typography>
@@ -88,7 +88,7 @@ function Steps() {
 
             <Grid margin={"40px 0px"} container justifyContent="flex-start" alignItems="center" item sm={6} md={3} lg={3}>
               <Card style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
-                <CardContent>
+                <CardContent sx={{background:"#EEEEEE"}}>
                   <Typography variant="h6" component="div">
                     Weekly
                   </Typography>
@@ -108,7 +108,7 @@ function Steps() {
             {/*  */}
             <Grid container justifyContent="flex-start" alignItems="center" item sm={6} md={3} lg={3}>
               <Card style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
-                <CardContent>
+                <CardContent sx={{background:"#EEEEEE"}}>
                   <Typography variant="h6" component="div">
                     Monthly
                   </Typography>

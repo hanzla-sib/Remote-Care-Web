@@ -72,14 +72,14 @@ const SimpleAreaChart = () => {
     changevariable = 290;
   }
   else if (width <= 499) {
-    changevariable = 300;
+    changevariable = 230;
   }
   return (
 
-    <ResponsiveContainer height={200} width={changevariable}>
+    <ResponsiveContainer  height={200} width={changevariable}>
 
 
-      <BarChart data={data}>
+      <BarChart  data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />

@@ -54,81 +54,80 @@ function Prescription() {
             margin: 'auto',
             borderRadius:"30px",
             marginBottom: "50px",
-
+            background: "linear-gradient(to right,#000000, #434343);",
             overflow: "auto"
           }}>
             <Grid container justifyContent={"center"}>
-              <Accordion sx={{ maxWidth: "80%" }}>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
-
-                >
-                  <Typography>Prescription 1</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Typography>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    malesuada lacus ex, sit amet blandit leo lobortis eget.
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-              <Accordion sx={{ maxWidth: "80%" }}>
+              <Accordion sx={{background: "linear-gradient(to right,#000000, #434343);", maxWidth: "80%" }}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography>Prescription 2</Typography>
+                  <Typography color={"white"}>Prescription 1</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>
+                  <Typography color={"white"}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
                     malesuada lacus ex, sit amet blandit leo lobortis eget.
                   </Typography>
                 </AccordionDetails>
               </Accordion>
-              <Accordion sx={{ maxWidth: "80%" }}>
+              <Accordion sx={{background: "linear-gradient(to right,#000000, #434343)", maxWidth: "80%" }}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography>Prescription 3</Typography>
+                  <Typography color={"white"}>Prescription 2</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>
+                  <Typography color={"white"}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
                     malesuada lacus ex, sit amet blandit leo lobortis eget.
                   </Typography>
                 </AccordionDetails>
               </Accordion>
-              <Accordion sx={{ maxWidth: "80%" }}>
+              <Accordion sx={{background: "linear-gradient(to right,#000000, #434343)", maxWidth: "80%" }}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography>Prescription 4</Typography>
+                  <Typography color={"white"}>Prescription 3</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>
+                  <Typography color={"white"}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
                     malesuada lacus ex, sit amet blandit leo lobortis eget.
                   </Typography>
                 </AccordionDetails>
               </Accordion>
-              <Accordion sx={{ maxWidth: "80%" }}>
+              <Accordion sx={{background: "linear-gradient(to right,#000000, #434343)", maxWidth: "80%" }}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Typography color={"white"}>Prescription 4</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography color={"white"}>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                    malesuada lacus ex, sit amet blandit leo lobortis eget.
+                  </Typography>
+                </AccordionDetails>
+              </Accordion>
+              <Accordion sx={{background: "linear-gradient(to right,#000000, #434343)", maxWidth: "80%" }}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel2a-content"
                   id="panel2a-header"
                 >
-                  <Typography>Prescription 5</Typography>
+                  <Typography color={"white"}>Prescription 5</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>
+                  <Typography color={"white"}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
                     malesuada lacus ex, sit amet blandit leo lobortis eget.
                   </Typography>

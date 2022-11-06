@@ -70,7 +70,7 @@ const submitbutton = async () => {
   return (
 
 
-          <Paper
+          <Paper elevation={24}
             sx={{
               border: "none", 
               boxShadow: "20",
@@ -80,8 +80,8 @@ const submitbutton = async () => {
               maxWidth: 400,
               borderRadius:"30px" ,
               flexGrow: 1,
-              backgroundColor: (theme) =>
-                theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+              background: "linear-gradient(to right,#4b6cb7, #182848);"
+                
             }}
           >
             <Grid container spacing={2} direction={"column"}>
@@ -93,7 +93,7 @@ const submitbutton = async () => {
               </Grid> */}
 
               <Grid item xs={12} sm container justifyContent={"flex-start"}>
-              <TextField sx={{ width: "70%" }} id="outlined-basic" value={nameoffood} onChange={(e)=>{setnameofffod(e.target.value)}} label="ADD MEAL" variant="outlined" />
+              <TextField  sx={{ width: "70%",background:"#ffff" }} id="outlined-basic" value={nameoffood} onChange={(e)=>{setnameofffod(e.target.value)}} label="ADD MEAL" variant="outlined" />
               </Grid>
 
               <Grid item xs={12} sm container justifyContent={"flex-start"}>

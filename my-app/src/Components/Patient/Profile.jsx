@@ -64,11 +64,11 @@ function Profile() {
 
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
-      <Box sx={{ backgroundColor: "#293148", height: { sx: "auto", md: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
+       <Box sx={{ background: "linear-gradient(#304352, #3498db);", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
         <Sidebar />
 
       </Box>
-      <Box pl={"20px"} sx={{ overflowY: "auto", height: "90vh", flex: 2 }}>
+      <Box pl={"20px"} sx={{ overflowY: "auto", height: "93.5vh", flex: 2 }}>
         <Container maxWidth={false}  >
           <Paper
             sx={{
