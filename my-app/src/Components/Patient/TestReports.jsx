@@ -6,6 +6,12 @@ import Sidebar from "./Sidebar";
 import {auth} from "../../Firebase/firebase-config";
 import axios from "axios";
 import React from "react";
+
+const delay = ms => new Promise(
+  resolve => setTimeout(resolve, ms)
+);
+
+
 function Tests() {
 
   const [getheight, setheight] = react.useState(false);
@@ -27,29 +33,32 @@ function Tests() {
   }
 
 
-  const baseURL = "http://localhost:5000/Usersfunctions/read/"+auth.currentUser.email;
-  console.log("===================",auth.currentUser.email)
-  console.log("data    ",auth.currentUser);
-  const [post, setPost] = React.useState({});
-  const [error, setError] = React.useState({});
-
-  React.useEffect(() => {
-    
-    async function fetchData() {
-      try {
-    await axios.get(`${baseURL}`).then((response) => {
-      setPost(response.data);
-    }).catch(error => {
-      setError(error);
-    });
+  // const [checktrue,settrue]=React.useState(false);
+  // const [post, setPost] = React.useState({});
+  // const [error, setError] = React.useState({});
+ 
+  // React.useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //   await delay(1000);
+  //   const baseURL = "http://localhost:5000/Usersfunctions/read/"+auth.currentUser.email;
+  //   console.log("===================",auth.currentUser.email)
+  //   console.log("data    ",auth.currentUser);
+  //   await axios.get(`${baseURL}`).then((response) => {
+  //     setPost(response.data);
+  //     settrue(true);
+      
+  //   }).catch(error => {
+  //     setError(error);
+  //   });
         
-      } catch (e) {
-          console.error(e);
+  //     } catch (e) {
+  //         console.error(e);
           
-      }
-  };
-  fetchData();
-  }, []);
+  //     }
+  // };
+  // fetchData();
+  // }, []);
 
   return (<Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
 

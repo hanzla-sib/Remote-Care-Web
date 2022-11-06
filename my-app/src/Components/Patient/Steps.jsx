@@ -7,6 +7,9 @@ import {auth} from "../../Firebase/firebase-config";
 import axios from "axios";
 import React from "react";
 
+const delay = ms => new Promise(
+  resolve => setTimeout(resolve, ms)
+);
 
 const Img = styled('img')({
   margin: 'auto',
@@ -16,18 +19,21 @@ const Img = styled('img')({
 });
 function Steps() {
   
-  const baseURL = "http://localhost:5000/Usersfunctions/read/"+auth.currentUser.email;
-  console.log("===================",auth.currentUser.email)
-  console.log("data    ",auth.currentUser);
+  const [checktrue,settrue]=React.useState(false);
   const [post, setPost] = React.useState({});
   const [error, setError] = React.useState({});
-
+ 
   React.useEffect(() => {
-    
     async function fetchData() {
       try {
+    await delay(1000);
+    const baseURL = "http://localhost:5000/Usersfunctions/read/"+auth.currentUser.email;
+    console.log("===================",auth.currentUser.email)
+    console.log("data    ",auth.currentUser);
     await axios.get(`${baseURL}`).then((response) => {
       setPost(response.data);
+      settrue(true);
+      
     }).catch(error => {
       setError(error);
     });
@@ -52,7 +58,7 @@ function Steps() {
               <Card style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
                 <CardContent>
                   <Typography variant="h4" component="div">
-                    Hi, MR {post.Name}
+                    Hi, MR  {checktrue == true? post.Name: "null"}
                   </Typography>
                   <Typography variant="h6" component="div">
                     Steps Count

@@ -7,6 +7,11 @@ import { auth } from "../../Firebase/firebase-config";
 import SimpleAreaChart from "../Chart";
 import Sidebar from "./Sidebar";
 
+
+const delay = ms => new Promise(
+  resolve => setTimeout(resolve, ms)
+);
+
 const Img = styled('img')({
   margin: 'auto',
   display: 'block',
@@ -15,19 +20,21 @@ const Img = styled('img')({
 });
 function CaloriesBurned() {
 
-  
-  const baseURL = "http://localhost:5000/Usersfunctions/read/"+auth.currentUser.email;
-  console.log("===================",auth.currentUser.email)
-  console.log("data    ",auth.currentUser);
+  const [checktrue,settrue]=React.useState(false);
   const [post, setPost] = React.useState({});
   const [error, setError] = React.useState({});
-
+ 
   React.useEffect(() => {
-    
     async function fetchData() {
       try {
+    await delay(1000);
+    const baseURL = "http://localhost:5000/Usersfunctions/read/"+auth.currentUser.email;
+    console.log("===================",auth.currentUser.email)
+    console.log("data    ",auth.currentUser);
     await axios.get(`${baseURL}`).then((response) => {
       setPost(response.data);
+      settrue(true);
+      
     }).catch(error => {
       setError(error);
     });
@@ -39,6 +46,7 @@ function CaloriesBurned() {
   };
   fetchData();
   }, []);
+  
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
       
@@ -51,7 +59,7 @@ function CaloriesBurned() {
               <Card style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
                 <CardContent>
                   <Typography variant="h4" component="div">
-                    Hi, MR {post.Name}
+                    Hi, MR {checktrue == true? post.Name: "null"}
                   </Typography>
                   <Typography variant="h6" component="div">
                     Calories Record.

@@ -23,31 +23,37 @@ import Meal from "./Meal";
 //   );
 // }
 
+
+
 const Img = styled('img')({
   margin: 'auto',
   display: 'block',
   maxWidth: '100%',
   maxHeight: '100%',
 });
-
+const delay = ms => new Promise(
+  resolve => setTimeout(resolve, ms)
+);
 
 
 function Home() {
 
+ 
 
-
-  const baseURL = "http://localhost:5000/Usersfunctions/read/"+auth.currentUser.email;
-  console.log("===================",auth.currentUser.email)
-  console.log("data    ",auth.currentUser);
+  const [checktrue,settrue]=React.useState(false);
   const [post, setPost] = React.useState({});
   const [error, setError] = React.useState({});
-
+ 
   React.useEffect(() => {
-    
     async function fetchData() {
       try {
+    await delay(1000);
+    const baseURL = "http://localhost:5000/Usersfunctions/read/"+auth.currentUser.email;
+    console.log("===================",auth.currentUser.email)
+    console.log("data    ",auth.currentUser);
     await axios.get(`${baseURL}`).then((response) => {
       setPost(response.data);
+      settrue(true);
       
     }).catch(error => {
       setError(error);
@@ -100,7 +106,8 @@ function Home() {
                 <CardContent sx={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
                   <Typography variant="h4" component="div" color={"#000000"}>
                     Hi,
-                    {post.Name}
+                    {checktrue == true? post.Name: "null"}
+                    
 
                   </Typography>
                   <Typography variant="body2" component="div">

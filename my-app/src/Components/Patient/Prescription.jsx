@@ -19,29 +19,29 @@ const Img = styled('img')({
 function Prescription() {
 
   
-  const baseURL = "http://localhost:5000/Usersfunctions/read/"+auth.currentUser.email;
-  console.log("===================",auth.currentUser.email)
-  console.log("data    ",auth.currentUser);
-  const [post, setPost] = React.useState({});
-  const [error, setError] = React.useState({});
+  // const baseURL = "http://localhost:5000/Usersfunctions/read/"+auth.currentUser.email;
+  // console.log("===================",auth.currentUser.email)
+  // console.log("data    ",auth.currentUser);
+  // const [post, setPost] = React.useState({});
+  // const [error, setError] = React.useState({});
 
-  React.useEffect(() => {
+  // React.useEffect(() => {
     
-    async function fetchData() {
-      try {
-    await axios.get(`${baseURL}`).then((response) => {
-      setPost(response.data);
-    }).catch(error => {
-      setError(error);
-    });
+  //   async function fetchData() {
+  //     try {
+  //   await axios.get(`${baseURL}`).then((response) => {
+  //     setPost(response.data);
+  //   }).catch(error => {
+  //     setError(error);
+  //   });
         
-      } catch (e) {
-          console.error(e);
+  //     } catch (e) {
+  //         console.error(e);
           
-      }
-  };
-  fetchData();
-  }, []);
+  //     }
+  // };
+  // fetchData();
+  // }, []);
 
   return (
 

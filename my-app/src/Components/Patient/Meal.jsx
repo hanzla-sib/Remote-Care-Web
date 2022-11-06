@@ -9,6 +9,10 @@ import StaticTimePickerDemo from "../Time";
 import { auth } from "../../Firebase/firebase-config";
 import axios from "axios";
 
+const delay = ms => new Promise(
+  resolve => setTimeout(resolve, ms)
+);
+
 const Img = styled('img')({
   margin: 'auto',
   display: 'block',
@@ -16,29 +20,31 @@ const Img = styled('img')({
   maxHeight: '100%',
 });
 function Meal() {
-  const baseURL = "http://localhost:5000/Usersfunctions/read/"+auth.currentUser.email;
-  console.log("===================",auth.currentUser.email)
-  console.log("data    ",auth.currentUser);
-  const [post, setPost] = React.useState({});
-  const [error, setError] = React.useState({});
+  // const [checktrue,settrue]=React.useState(false);
+  // const [post, setPost] = React.useState({});
+  // const [error, setError] = React.useState({});
 
-  React.useEffect(() => {
+  // React.useEffect(() => {
     
-    async function fetchData() {
-      try {
-    await axios.get(`${baseURL}`).then((response) => {
-      setPost(response.data);
-    }).catch(error => {
-      setError(error);
-    });
+  //   async function fetchData() {
+  //     try {
+  //       await delay(10000);
+  //       const baseURL = "http://localhost:5000/Usersfunctions/read/"+auth.currentUser.email;
+  // console.log("===================",auth.currentUser.email)
+  // console.log("data    ",auth.currentUser);
+  //   await axios.get(`${baseURL}`).then((response) => {
+  //     setPost(response.data);
+  //   }).catch(error => {
+  //     setError(error);
+  //   });
         
-      } catch (e) {
-          console.error(e);
+  //     } catch (e) {
+  //         console.error(e);
           
-      }
-  };
-  fetchData();
-  }, []);
+  //     }
+  // };
+  // fetchData();
+  // }, []);
 
   
 const[nameoffood,setnameofffod]=React.useState("");

@@ -25,21 +25,30 @@ const Img = styled('img')({
   maxHeight: '100%',
  borderRadius: "50%"
 });
+
+const delay = ms => new Promise(
+  resolve => setTimeout(resolve, ms)
+);
+
+
 function Profile() {
 
   
-  const baseURL = "http://localhost:5000/Usersfunctions/read/"+auth.currentUser.email;
-  console.log("===================",auth.currentUser.email)
-  console.log("data    ",auth.currentUser);
+  const [checktrue,settrue]=React.useState(false);
   const [post, setPost] = React.useState({});
   const [error, setError] = React.useState({});
-
+ 
   React.useEffect(() => {
-    
     async function fetchData() {
       try {
+    await delay(1000);
+    const baseURL = "http://localhost:5000/Usersfunctions/read/"+auth.currentUser.email;
+    console.log("===================",auth.currentUser.email)
+    console.log("data    ",auth.currentUser);
     await axios.get(`${baseURL}`).then((response) => {
       setPost(response.data);
+      settrue(true);
+      
     }).catch(error => {
       setError(error);
     });
@@ -83,10 +92,10 @@ function Profile() {
               </Grid>
               <Grid item xs={12} sm container justifyContent={"center"} direction={"column"}>
                 <Typography gutterBottom variant="h5" component="div">
-                Hi, MR {post.Name}
+                Hi, MR {checktrue == true? post.Name: "null"}
                 </Typography>
                 <Typography gutterBottom variant="h5" component="div">
-                 {post.Email}
+                {checktrue == true? post.Email: "null"}
                 </Typography>
               </Grid>
             </Grid>
