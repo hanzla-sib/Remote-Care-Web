@@ -3,25 +3,19 @@ import { Box, Stack } from "@mui/system";
 import Sidebar from "./Sidebar";
 import { Card, CardContent, CardMedia, Grid } from "@mui/material";
 import { Container } from "@mui/system";
-import React from "react";
+import React, { useContext } from "react";
 import SimpleAreaChart from "../Chart"
 import styled from "@emotion/styled";
 import axios from "axios";
 import { auth } from "../../Firebase/firebase-config"
 import StaticTimePickerDemo from "../Time";
-
+import SetAppoint from "./SetAppointments";
 import Prescription from "./Prescription";
 import Meal from "./Meal";
+import { AuthContext } from "../../Context/AuthContext";
+import Showappointmentsrec from "./Show_appointments_rec";
 
 
-
-// function generate(element) {
-//   return [0, 1, 2].map((value) =>
-//     React.cloneElement(element, {
-//       key: value,
-//     }),
-//   );
-// }
 
 
 
@@ -31,40 +25,35 @@ const Img = styled('img')({
   maxWidth: '100%',
   maxHeight: '100%',
 });
-const delay = ms => new Promise(
-  resolve => setTimeout(resolve, ms)
-);
+// const delay = ms => new Promise(
+//   resolve => setTimeout(resolve, ms)
+// );
 
 
 function Home() {
+  const { curruser } = useContext(AuthContext);
 
- 
 
-  const [checktrue,settrue]=React.useState(false);
+  const [checktrue, settrue] = React.useState(false);
   const [post, setPost] = React.useState({});
   const [error, setError] = React.useState({});
- 
+
   React.useEffect(() => {
     async function fetchData() {
       try {
-    await delay(1000);
-    const baseURL = "http://localhost:5000/Usersfunctions/read/"+auth.currentUser.email;
-    console.log("===================",auth.currentUser.email)
-    console.log("data    ",auth.currentUser);
-    await axios.get(`${baseURL}`).then((response) => {
-      setPost(response.data);
-      settrue(true);
-      
-    }).catch(error => {
-      setError(error);
-    });
-        
+        // await delay(1000);
+        const baseURL = "http://localhost:5000/mysql/get_user_type/" + curruser.email;
+        await axios.get(`${baseURL}`).then((response) => {
+          setPost(response.data);
+          settrue(true);
+        }).catch(error => {
+          setError(error);
+        });
       } catch (e) {
-          console.error(e);
-          
+        console.error(e);
       }
-  };
-  fetchData();
+    };
+    fetchData();
   }, []);
 
   return (
@@ -79,18 +68,18 @@ function Home() {
             justifyContent="center" direction={"row"} >
 
 
-            <Grid  marginRight={"20px"} maxWidth={"500px"} justifyContent="left" alignItems="center" container item sm={12} md={12} lg={12}>
+            <Grid marginRight={"20px"} maxWidth={"500px"} justifyContent="left" alignItems="center" container item sm={12} md={12} lg={12}>
 
               {/* showing the Dashboard */}
 
-              <Card  style={{ color: '#4AA54E', backgroundColor: '#EEEEEE', fontWeight: "bold", border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
+              <Card style={{ color: '#4AA54E', backgroundColor: '#EEEEEE', fontWeight: "bold", border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
                 <CardContent sx={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
                   <Typography variant="h4" component="div" >
                     Patient Overview
-                
+
 
                   </Typography>
-                
+
                 </CardContent>
               </Card>
             </Grid>
@@ -100,12 +89,12 @@ function Home() {
 
               {/* showing the name of the user */}
 
-              <Card style={{color: '#4AA54E', backgroundColor: '#EEEEEE', border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
+              <Card style={{ color: '#4AA54E', backgroundColor: '#EEEEEE', border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
                 <CardContent sx={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
                   <Typography variant="h5" component="div" >
                     Hi,
-                    {checktrue == true? post.Name: "null"}
-                    
+                    {checktrue == true ? post.name : "null"}
+
 
                   </Typography>
                   <Typography variant="body2" component="div">
@@ -127,7 +116,7 @@ function Home() {
             {/* showing Cards */}
             {/* Step Count Card */}
             <Grid justifyContent="center" alignItems="center" container item sm={5} md={3} lg={3}>
-              <Card style={{color: '#ffff', backgroundColor: '#E73E3B' }} sx={{ maxWidth: 180, border: "0px solid black", borderRadius: "30px", boxShadow: 20 }} elevation={2}>
+              <Card style={{ color: '#ffff', backgroundColor: '#E73E3B' }} sx={{ maxWidth: 180, border: "0px solid black", borderRadius: "30px", boxShadow: 20 }} elevation={2}>
                 <CardMedia
                   component="img"
                   height="auto"
@@ -149,12 +138,12 @@ function Home() {
 
             {/* Calorie Card */}
             <Grid justifyContent="center" alignItems="center" container item sm={5} md={3} lg={3}>
-              <Card   sx={{ maxWidth: 180, border: "0px solid black", borderRadius: "30px", boxShadow: 20 }}>
+              <Card sx={{ maxWidth: 180, border: "0px solid black", borderRadius: "30px", boxShadow: 20 }}>
                 <CardMedia
                   component="img"
                   height="auto"
                   image="https://is5-ssl.mzstatic.com/image/thumb/Purple128/v4/7c/66/ab/7c66ab1f-038c-7200-8de6-51afd6d47fa3/source/512x512bb.jpg"
-                  
+
                   alt="Calorie"
                 />
                 <CardContent>
@@ -172,7 +161,7 @@ function Home() {
 
             {/* Heart Beat Card */}
             <Grid justifyContent="center" alignItems="center" container item sm={12} md={3} lg={3}>
-              <Card style={{color: '#ffff', backgroundColor: '#00ACC1' }}  sx={{ maxWidth: 180, border: "0px solid black", borderRadius: "30px", boxShadow: 20 }}>
+              <Card style={{ color: '#ffff', backgroundColor: '#00ACC1' }} sx={{ maxWidth: 180, border: "0px solid black", borderRadius: "30px", boxShadow: 20 }}>
                 <CardMedia
                   component="img"
                   height="auto"
@@ -219,35 +208,7 @@ function Home() {
               {/* set appointmnets */}
 
               <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={2}>
-                <Card style={{ border: "none" }} sx={{ minWidth: 150, maxWidth: 400, minHeight: 200, borderRadius: "30px", boxShadow: 20, backgroundColor: "black" }} >
-                  <CardContent>
-                    <Typography style={{ color: "white" }} variant="h6" marginLeft={"25px"} >
-                      Set Appointments
-                    </Typography>
-                    <List >
-                      <ListItem sx={{ justifyContent: "center", alignItems: "center" }} >
-
-                        <Button style={{ maxWidth: '200px', maxHeight: '50px', minWidth: '100px', minHeight: '40px' }} variant="contained">Dr1</Button>
-
-                      </ListItem>
-                      <ListItem sx={{ justifyContent: "center", alignItems: "center" }}>
-
-                        <Button style={{ maxWidth: '200px', maxHeight: '50px', minWidth: '100px', minHeight: '40px' }} variant="contained">Dr2</Button>
-
-                      </ListItem>
-                      <ListItem sx={{ justifyContent: "center", alignItems: "center" }}>
-
-                        <Button style={{ maxWidth: '200px', maxHeight: '50px', minWidth: '100px', minHeight: '40px' }} variant="contained" size="large">Dr3</Button>
-
-                      </ListItem>
-                      <ListItem sx={{ justifyContent: "center", alignItems: "center" }}>
-
-                        <Button style={{ maxWidth: '200px', maxHeight: '50px', minWidth: '100px', minHeight: '40px' }} variant="contained">Dr4</Button>
-
-                      </ListItem>
-                    </List>
-                  </CardContent>
-                </Card>
+              <SetAppoint />
               </Grid>
 
 
@@ -255,93 +216,7 @@ function Home() {
 
 
               <Grid maxWidth={"500px"} justifyContent="center" alignItems="center" container item sm={5} md={5} lg={2}>
-                <Card style={{ border: "none" }} sx={{ minWidth: 150, maxWidth: 400, minHeight: 200, borderRadius: "30px", boxShadow: "20", backgroundColor: "black", marginBottom: "20px" }}>
-                  <CardContent >
-
-                    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', backgroundColor: "black" }}>
-                      <Typography style={{ color: "white" }} variant="h6">Appointments</Typography>
-                      <ListItem alignItems="flex-start" >
-
-                        <ListItemText style={{ color: "#1e90ff" }}
-                          primary="DR.1"
-                          secondary={
-                            <React.Fragment>
-                              <Typography style={{ color: "#1e90ff" }}
-                                sx={{ display: 'inline' }}
-                                component="span"
-                                variant="body2"
-                                color="text.primary"
-                              >
-                                " Tonight 6pm"
-                              </Typography>
-
-                            </React.Fragment>
-                          }
-                        />
-                      </ListItem>
-                      <Divider variant="inset" component="li" />
-                      <ListItem alignItems="flex-start" >
-
-                        <ListItemText style={{ color: "#1e90ff" }}
-                          primary="DR.2"
-                          secondary={
-                            <React.Fragment>
-                              <Typography style={{ color: "#1e90ff" }}
-                                sx={{ display: 'inline' }}
-                                component="span"
-                                variant="body2"
-                                color="text.primary"
-                              >
-                                " Tonight 6pm"
-                              </Typography>
-
-                            </React.Fragment>
-                          }
-                        />
-                      </ListItem>
-                      <Divider variant="inset" component="li" />
-                      <ListItem alignItems="flex-start" >
-
-                        <ListItemText style={{ color: "#1e90ff" }}
-                          primary="DR.3"
-                          secondary={
-                            <React.Fragment>
-                              <Typography style={{ color: "#1e90ff" }}
-                                sx={{ display: 'inline' }}
-                                component="span"
-                                variant="body2"
-                                color="text.primary"
-                              >
-                                " Tonight 6pm"
-                              </Typography>
-
-                            </React.Fragment>
-                          }
-                        />
-                      </ListItem>
-                      <Divider variant="inset" component="li" />
-                      <ListItem alignItems="flex-start" >
-
-                        <ListItemText style={{ color: "#1e90ff" }}
-                          primary="DR.4"
-                          secondary={
-                            <React.Fragment>
-                              <Typography style={{ color: "#1e90ff" }}
-                                sx={{ display: 'inline' }}
-                                component="span"
-                                variant="body2"
-                                color="text.primary"
-                              >
-                                " Tonight 6pm"
-                              </Typography>
-
-                            </React.Fragment>
-                          }
-                        />
-                      </ListItem>
-                    </List>
-                  </CardContent>
-                </Card>
+               <Showappointmentsrec />
               </Grid>
 
 

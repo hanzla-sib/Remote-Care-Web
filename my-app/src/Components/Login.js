@@ -3,9 +3,10 @@ import { Avatar, Button, Checkbox, FormControlLabel, Grid, Link, Paper, Stack, T
 import { blue } from "@mui/material/colors";
 import { NavLink, useNavigate } from "react-router-dom";
 import { async } from "@firebase/util";
-import { signInWithEmailAndPassword,onAuthStateChanged,signOut } from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../Firebase/firebase-config";
 import { AuthContext } from "../Context/AuthContext";
+import axios from "axios";
 const main_style = {
     // backgroundImage: `url("https://wallpaperaccess.com/full/624111.jpg")`,
     backgroundSize: "cover",
@@ -24,44 +25,87 @@ const btn = {
 
 
 
+const delay = ms => new Promise(
+  resolve => setTimeout(resolve, ms)
+);
 
 
 
 function Login() {
 
-const {dispatch}=useContext(AuthContext);
+    const { dispatch } = useContext(AuthContext);
 
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const signout = async () => {
-       signOut(auth);
+        signOut(auth);
     }
-const [email,setemail]=useState("");
-const [password,setpass]=useState("");
-    const handlelogin=(e)=>{
+
+    const [email, setemail] = useState("");
+    const [password, setpass] = useState("");
+    const handlelogin = (e) => {
         e.preventDefault();
-        signInWithEmailAndPassword(auth,email,password)
-        .then((userCredential)=>{
-            const user=userCredential.user;
-            dispatch({type:"LOGIN",payload:user})
-            navigate("/");
-            console.log(user);
-        })
-        .catch((error)=>{
-            console.log(error);
-        })
-
+        fetchData();
         
-
+        // signInWithEmailAndPassword(auth, email, password)
+        //     .then((userCredential) => {
+        //         const user = userCredential.user;
+        //         dispatch({ type: "LOGIN", payload: user })
+        //         console.log(getusertype);
+        //         // if(getusertype===1){
+        //         //     navigate("/");
+        //         // }
+        //         // else if(getusertype===2){
+        //         //     navigate("DoctorHome");
+        //         // }
+        //         // else{
+        //         //     alert("Email not found in MYSQL DB");
+        //         // }
+        //         navigate("/");
+               
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     })
     }
 
+
+    async function fetchData() {
+        try {
+            // await delay(1000);
+            const baseURL = "http://localhost:5000/mysql/get_user_type/" + email;
+            await axios.get(`${baseURL}`).then((response) => {
+                signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                dispatch({ type: "LOGIN", payload: user })
+               
+                if(response.data.user_type==="1"){
+                    navigate("/");
+                }
+                else if(response.data.user_type==="2"){
+                    navigate("/DoctorHome");
+                }
+                else{
+                    alert("Email not found in MYSQL DB");
+                }
+            
+               
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            }).catch(error => {
+                console.log(error);
+            });
+        } catch (e) {
+            console.error(e);
+        }
+    };
 
 
     return (
         <div style={main_style}>
-
             <p>.</p>
-
-
             <Grid>
                 <Paper direction="column" justifyContent="center" elevation={10} style={style_login} sx={{ background: "-webkit-linear-gradient(left, #AFEEEE, #40E0D0)" }}>
                     <Grid align="center">
@@ -70,15 +114,15 @@ const [password,setpass]=useState("");
 
                     </Grid>
                     <form onSubmit={handlelogin}>
-                    <TextField sx={{ margin: "10px 0" }} name="email" label="email" placeholder="Enter email" onChange={e=>setemail(e.target.value)} fullWidth required></TextField>
-                    <TextField name="password" label="password" placeholder="Enter password" type="password"  onChange={e=>setpass(e.target.value)}  fullWidth required></TextField>
-                    <FormControlLabel
-                        control={
-                            <Checkbox defaultChecked color="info" />}
-                        label="Remember me"
-                    />
+                        <TextField sx={{ margin: "10px 0" }} name="email" label="email" placeholder="Enter email" onChange={e => setemail(e.target.value)} fullWidth required></TextField>
+                        <TextField name="password" label="password" placeholder="Enter password" type="password" onChange={e => setpass(e.target.value)} fullWidth required></TextField>
+                        <FormControlLabel
+                            control={
+                                <Checkbox defaultChecked color="info" />}
+                            label="Remember me"
+                        />
 
-                    <Button  type="submit" color="primary" variant="contained" fullWidth style={btn}>Login</Button>
+                        <Button type="submit" color="primary" variant="contained" fullWidth style={btn}>Login</Button>
                     </form>
                     <Typography sx={{ margin: "5px 0" }}>
                         <Link href="#">
@@ -95,7 +139,7 @@ const [password,setpass]=useState("");
                     <Typography>
                         {/* {auth.currentUser.email} */}
                         {/* {auth.currentUser.uid} */}
-                        <Button onClick={signout}  color="primary" variant="contained" fullWidth style={btn}>Logout</Button>
+                        <Button onClick={signout} color="primary" variant="contained" fullWidth style={btn}>Logout</Button>
                     </Typography>
 
 

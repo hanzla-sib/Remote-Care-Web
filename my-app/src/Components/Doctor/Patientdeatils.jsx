@@ -1,10 +1,8 @@
 import styled from "@emotion/styled";
 import { Box, Button, ButtonBase, Card, CardContent, Container, FormControl, Grid, InputLabel, MenuItem, Select, Stack, TextField, Typography } from "@mui/material";
 import React from "react";
-
 import SimpleAreaChart from "../Chart";
 import DoctorSidebar from "./DoctorSidebar";
-
 
 const Img = styled('img')({
     margin: 'auto',

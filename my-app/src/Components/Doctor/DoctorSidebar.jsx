@@ -1,9 +1,15 @@
+import { Button } from "@mui/material";
 import { Stack } from "@mui/system";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
 function DoctorSidebar(){
-    return(  
+    const logout = async () => {
+        localStorage.clear();
+        window.location.reload();
+      }
+    return( 
+         
         <Stack direction="row"
             sx={{
                 overflowY: "auto",
@@ -29,7 +35,7 @@ function DoctorSidebar(){
             <NavLink style={{ textDecoration: "none", color: "white" }} to="/Dprescription"> <button
                 className="category-btn">Prescription deatils  </button></NavLink>
 
-           
+        <Button onClick={logout}>logout</Button>
 
         </Stack>
     )

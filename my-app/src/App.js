@@ -17,6 +17,7 @@ import Health_record from "./Components/Patient/Health_Record";
 function App() {
 
   const { curruser } = useContext(AuthContext);
+  console.log(curruser);
   // const curruser=false;
 
   const RequireAuth = ({ children }) => {

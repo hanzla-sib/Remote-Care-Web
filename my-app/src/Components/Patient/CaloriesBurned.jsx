@@ -1,16 +1,17 @@
 import styled from "@emotion/styled";
 import { Box, Button, ButtonBase, Card, CardContent, CardMedia, Container, Grid, Paper, Stack, TextField, Typography } from "@mui/material";
 import axios from "axios";
-import React from "react";
+import React, { useContext } from "react";
 import react from "react";
+import { AuthContext } from "../../Context/AuthContext";
 import { auth } from "../../Firebase/firebase-config";
 import SimpleAreaChart from "../Chart";
 import Sidebar from "./Sidebar";
 
 
-const delay = ms => new Promise(
-  resolve => setTimeout(resolve, ms)
-);
+// const delay = ms => new Promise(
+//   resolve => setTimeout(resolve, ms)
+// );
 
 const Img = styled('img')({
   margin: 'auto',
@@ -19,7 +20,7 @@ const Img = styled('img')({
   maxHeight: '100%',
 });
 function CaloriesBurned() {
-
+  const { curruser } = useContext(AuthContext);
   const [checktrue,settrue]=React.useState(false);
   const [post, setPost] = React.useState({});
   const [error, setError] = React.useState({});
@@ -27,10 +28,10 @@ function CaloriesBurned() {
   React.useEffect(() => {
     async function fetchData() {
       try {
-    await delay(1000);
-    const baseURL = "http://localhost:5000/Usersfunctions/read/"+auth.currentUser.email;
-    console.log("===================",auth.currentUser.email)
-    console.log("data    ",auth.currentUser);
+    // await delay(1000);
+    const baseURL = "http://localhost:5000/Usersfunctions/read/"+curruser.email;
+    // console.log("===================",auth.currentUser.email)
+    // console.log("data    ",auth.currentUser);
     await axios.get(`${baseURL}`).then((response) => {
       setPost(response.data);
       settrue(true);

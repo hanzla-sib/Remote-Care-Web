@@ -11,8 +11,7 @@ function Navbar() {
     return (
         <AppBar p={2} sx={{ position: "sticky", backgroundColor: "#293148" }}>
             <Styledbar variant="dense" >
-                <Typography variant="h6" sx={{ marginLeft: "24px" }}>REMCARE</Typography>
-               
+                <Typography variant="h6" sx={{ marginLeft: "24px" }}>REMCARE</Typography> 
             </Styledbar>
         </AppBar>
 

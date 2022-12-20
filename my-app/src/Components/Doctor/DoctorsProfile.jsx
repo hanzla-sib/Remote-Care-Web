@@ -1,10 +1,12 @@
 import { Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
-import React from "react";
+import React, { useContext } from "react";
 import DoctorSidebar from "./DoctorSidebar";
 import styled from "@emotion/styled";
 import { Button, ButtonBase, Grid, Paper, TextField } from "@mui/material";
 import { Container } from "@mui/system";
+import axios from "axios";
+import { AuthContext } from "../../Context/AuthContext";
 
 
 const Img = styled('img')({
@@ -14,6 +16,34 @@ const Img = styled('img')({
   maxHeight: '100%',
 });
 function DoctorProfile() {
+  const [checktrue, settrue] = React.useState(false);
+  const [post, setPost] = React.useState({});
+  const [error, setError] = React.useState({});
+  const { curruser } = useContext(AuthContext);
+  console.log("====================");
+  console.log(curruser.email);
+
+  React.useEffect(() => {
+    async function fetchData() {
+      try {
+        // await delay(1000);
+        const baseURL = "http://localhost:5000/mysql/get_user_type/" + curruser.email;
+
+        await axios.get(`${baseURL}`).then((response) => {
+          setPost(response.data);
+          settrue(true);
+
+        }).catch(error => {
+          setError(error);
+        });
+
+      } catch (e) {
+        console.error(e);
+
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
       <Box sx={{ backgroundColor: "#293148", height: { sx: "auto", md: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
@@ -40,11 +70,11 @@ function DoctorProfile() {
                 </ButtonBase>
               </Grid>
               <Grid item xs={12} sm container justifyContent={"center"} direction={"column"}>
-                <Typography gutterBottom variant="h5" component="div">
-                  Name
+              <Typography gutterBottom variant="h5" component="div">
+                   {checktrue === true ? post.name : "null"}
                 </Typography>
                 <Typography gutterBottom variant="h5" component="div">
-                  Email
+                  {checktrue === true ? post.email : "null"}
                 </Typography>
               </Grid>
             </Grid>

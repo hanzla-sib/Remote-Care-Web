@@ -1,10 +1,36 @@
 import { Button, Card, CardContent, CardMedia, Divider, Grid, List, ListItem, ListItemText, Typography } from "@mui/material";
 import { Box, Container, Stack } from "@mui/system";
-import React from "react";
+import React, { useContext } from "react";
 import SimpleAreaChart from "../Chart";
 import DoctorSidebar from "./DoctorSidebar";
 import StaticTimePickerDemo from "../Time";
+import { AuthContext } from "../../Context/AuthContext";
+import axios from "axios";
 function DoctorHome(){
+  const { curruser } = useContext(AuthContext);
+  const [checktrue, settrue] = React.useState(false);
+  const [post, setPost] = React.useState({});
+  const [error, setError] = React.useState({});
+
+  React.useEffect(() => {
+    async function fetchData() {
+      try {
+        // await delay(1000);
+        const baseURL = "http://localhost:5000/mysql/get_user_type/" + curruser.email;
+        await axios.get(`${baseURL}`).then((response) => {
+          setPost(response.data);
+          settrue(true);
+
+        }).catch(error => {
+          setError(error);
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    fetchData();
+  }, []);
+
 return(
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
     <Box sx={{ backgroundColor: "#293148", height: { sx: "auto", md: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
@@ -20,7 +46,7 @@ return(
             <Card style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
               <CardContent sx={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
                 <Typography variant="h6" component="div">
-                  Hi, MR Doctor
+                  Hi, MR  {checktrue == true ? post.name : "null"}
                 </Typography>
                 <Typography variant="body2" component="div">
                   Lorem Ipsum is simply dummy text of the printing and typesetting industry.

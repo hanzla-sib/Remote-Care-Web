@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
-import React from "react";
+import React, { useContext } from "react";
 import Sidebar from "./Sidebar";
 import styled from "@emotion/styled";
 import { Button, ButtonBase, Grid, Paper, TextField } from "@mui/material";
@@ -8,10 +8,11 @@ import { Container } from "@mui/system";
 import StaticTimePickerDemo from "../Time";
 import { auth } from "../../Firebase/firebase-config";
 import axios from "axios";
+import { AuthContext } from "../../Context/AuthContext";
 
-const delay = ms => new Promise(
-  resolve => setTimeout(resolve, ms)
-);
+// const delay = ms => new Promise(
+//   resolve => setTimeout(resolve, ms)
+// );
 
 const Img = styled('img')({
   margin: 'auto',
@@ -20,6 +21,7 @@ const Img = styled('img')({
   maxHeight: '100%',
 });
 function Meal() {
+  const { curruser } = useContext(AuthContext);
   // const [checktrue,settrue]=React.useState(false);
   // const [post, setPost] = React.useState({});
   // const [error, setError] = React.useState({});
@@ -54,7 +56,7 @@ const submitbutton = async () => {
     
       const studentObject = {
           Namefood: nameoffood,  
-          Email:auth.currentUser.email
+          Email:curruser.email
       };
       axios.post('http://localhost:5000/Usersfunctions/queryfood', studentObject)
           .then(res => console.log(res.data));
