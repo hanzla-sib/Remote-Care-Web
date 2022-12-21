@@ -5,6 +5,8 @@ import SimpleAreaChart from "../Chart";
 import DoctorSidebar from "./DoctorSidebar";
 import StaticTimePickerDemo from "../Time";
 import { AuthContext } from "../../Context/AuthContext";
+import AppointmentsRequest from "./AppointmentsRequests";
+import RejectAppoint from "./Rejectorappoint";
 import axios from "axios";
 function DoctorHome(){
   const { curruser } = useContext(AuthContext);
@@ -46,7 +48,7 @@ return(
             <Card style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
               <CardContent sx={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
                 <Typography variant="h6" component="div">
-                  Hi, MR  {checktrue == true ? post.name : "null"}
+                  Hi, Dr.  {checktrue == true ? post.name : "null"}
                 </Typography>
                 <Typography variant="body2" component="div">
                   Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -66,110 +68,11 @@ return(
 
 {/* --------------------- */}
           <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={5}>
-            <Card style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
-              <CardContent>
-                <Typography variant="h6" marginLeft={"40px"} >
-                Appointment Requests
-                </Typography>
-                <List >
-                  <ListItem  >
-                    <ListItemText sx={{marginLeft:"60px"}}>p1</ListItemText>
-                    <Button sx={{marginRight:"10px"}} variant="contained">Accept</Button>
-                    <Button variant="contained">Reject</Button>
-                    
-
-                  </ListItem>
-                  <ListItem  >
-                    <ListItemText sx={{marginLeft:"60px"}}>p2</ListItemText>
-                    <Button sx={{marginRight:"10px"}} variant="contained">Accept</Button>
-                    <Button variant="contained">Reject</Button>
-
-                  </ListItem>
-                  <ListItem  >
-                    <ListItemText sx={{marginLeft:"60px"}}>p3</ListItemText>
-                    <Button sx={{marginRight:"10px"}} variant="contained">Accept</Button>
-                    <Button variant="contained">Reject</Button>
-
-                  </ListItem>
-                  <ListItem  >
-                    <ListItemText sx={{marginLeft:"60px"}}>p4</ListItemText>
-                    <Button sx={{marginRight:"10px"}} variant="contained">Accept</Button>
-                    <Button variant="contained">Reject</Button>
-
-                  </ListItem>
-                </List>
-              </CardContent>
-            </Card>
+            <RejectAppoint />
           </Grid>
 {/* --------------------------- */}
           <Grid maxWidth={"500px"} justifyContent="center" alignItems="center" container item sm={5} md={5} lg={5}>
-            <Card style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
-              <CardContent >
-
-                <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-                  <Typography variant="h6">Appointments</Typography>
-                  <ListItem alignItems="flex-start">
-
-                    <ListItemText
-                      primary="P.1"
-                      secondary={
-                        <React.Fragment>
-                          <Typography
-                            sx={{ display: 'inline' }}
-                            component="span"
-                            variant="body2"
-                            color="text.primary"
-                          >
-                            " Tonight 6pm"
-                          </Typography>
-
-                        </React.Fragment>
-                      }
-                    />
-                  </ListItem>
-                  <Divider variant="inset" component="li" />
-                  <ListItem alignItems="flex-start">
-
-                    <ListItemText
-                      primary="P.2"
-                      secondary={
-                        <React.Fragment>
-                          <Typography
-                            sx={{ display: 'inline' }}
-                            component="span"
-                            variant="body2"
-                            color="text.primary"
-                          >
-
-                          </Typography>
-                          {" Tonight 6pm"}
-                        </React.Fragment>
-                      }
-                    />
-                  </ListItem>
-                  <Divider variant="inset" component="li" />
-                  <ListItem alignItems="flex-start">
-
-                    <ListItemText
-                      primary="P.3"
-                      secondary={
-                        <React.Fragment>
-                          <Typography
-                            sx={{ display: 'inline' }}
-                            component="span"
-                            variant="body2"
-                            color="text.primary"
-                          >
-
-                          </Typography>
-                          {"Tonight 6pm"}
-                        </React.Fragment>
-                      }
-                    />
-                  </ListItem>
-                </List>
-              </CardContent>
-            </Card>
+          <AppointmentsRequest />
           </Grid>
 
           {/* ----------- */}

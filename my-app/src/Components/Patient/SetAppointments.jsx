@@ -21,7 +21,7 @@ function SetAppoint() {
             var array1 = [];
             const baseURL = "http://localhost:5000/mysql/get_all_docs_in_patient_appoint/" + curruser.email;
             await axios.get(`${baseURL}`).then((response) => {
-                console.log(response.data);
+                // console.log(response.data);
                 fetchDataafterlimit(response.data);
             }).catch(error => {
                 setError(error);
@@ -43,24 +43,29 @@ function SetAppoint() {
             }
             const baseURL = "http://localhost:5000/mysql/get_limited_doctors_in_patient_appoint";
             const resp = await axios.post('http://localhost:5000/mysql/get_limited_doctors_in_patient_appoint',data1);
-            console.log(resp.data);
+            // console.log(resp.data);
             for (var i = 0; i < resp.data.length; i++) {
                 array1[i] = resp.data[i];
             }
+            console.log(array1);
             fetchdoctors(array1);
         } catch (e) {
             console.error(e);
         }
-        //================
+    
+    };
 
-
-        // for (var i = 0; i < response.data.length; i++) {
-        //     array1[i] = response.data[i].name;
-        // }
-        // fetchdoctors(array1);
-
-
-
+    const requestApooint = async (docname) => {
+        try { 
+            const objec={
+                pat_email:curruser.email,
+                doc_name:docname
+            }
+            const resp = await axios.post('http://localhost:5000/mysql/RequestAppoint',objec);
+            alert(resp.data);
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     return (
@@ -72,7 +77,7 @@ function SetAppoint() {
                 <List >
                     {getdoctors.map((value) => (
                         <ListItem sx={{ justifyContent: "center", alignItems: "center" }} >
-                            <Button style={{ maxWidth: '200px', maxHeight: '50px', minWidth: '100px', minHeight: '40px' }} variant="contained">{value}</Button>
+                            <Button  onClick={(e) => requestApooint(value)} style={{ maxWidth: '200px', maxHeight: '50px', minWidth: '100px', minHeight: '40px' }} variant="contained">{value}</Button>
                         </ListItem>
                     ))}
                 </List>

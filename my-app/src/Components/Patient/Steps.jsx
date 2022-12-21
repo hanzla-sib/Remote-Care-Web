@@ -22,11 +22,20 @@ function Steps() {
   const { curruser } = useContext(AuthContext);
   const [checktrue,settrue]=React.useState(false);
   const [post, setPost] = React.useState({});
+  const [call, setCall] = React.useState([]);
   const [error, setError] = React.useState({});
  
   React.useEffect(() => {
     async function fetchData() {
+      
       try {
+        call.push({name:"2022-12-21",uv:1000});
+        call.push({name:"2022-12-21",uv:2000});
+        call.push({name:"2022-12-21",uv:5000});
+        call.push({name:"2022-12-21",uv:4000});
+        call.push({name:"2022-12-21",uv:1000});
+        call.push({name:"2022-12-21",uv:3500});
+        call.push({name:"2022-12-21",uv:6600});
     // await delay(1000);
     const baseURL = "http://localhost:5000/Usersfunctions/read/"+curruser.email;
     console.log("===================",auth.currentUser.email)
@@ -80,7 +89,7 @@ function Steps() {
             <Grid margin={"40px 0px"} container justifyContent="flex-start" alignItems="center" item sm={12} md={6} lg={6}>
               <Container sx={{ border: "1px solid black", backgroundColor: "white" }} maxWidth={false} >
                 <Typography variant="body2">Graph</Typography>
-                <SimpleAreaChart />
+                <SimpleAreaChart arr={call}/>
               </Container>
             </Grid>
             {/*  */}
@@ -99,7 +108,7 @@ function Steps() {
             <Grid margin={"40px 0px"} container justifyContent="flex-start" alignItems="center" item sm={12} md={6} lg={6}>
               <Container sx={{ border: "1px solid black", backgroundColor: "white" }} maxWidth={false} >
                 <Typography variant="body2">Graph</Typography>
-                <SimpleAreaChart />
+                <SimpleAreaChart arr={call}/>
               </Container>
             </Grid>
 
@@ -119,7 +128,7 @@ function Steps() {
             <Grid container justifyContent="flex-start" alignItems="center" item sm={12} md={6} lg={6}>
               <Container sx={{ border: "1px solid black", backgroundColor: "white" }} maxWidth={false} >
                 <Typography variant="body2">Graph</Typography>
-                <SimpleAreaChart />
+                <SimpleAreaChart arr={call}/>
               </Container>
             </Grid>
             {/*  */}

@@ -31,10 +31,9 @@ function Tests() {
       await axios.get(`${baseURL}`).then((response) => {
         for (var i = 0; i < response.data.length; i++) {
           array1[i] = response.data[i].imageurl;
+       
         }
-        console.log(array1);
-        setPost(array1);
-        console.log(post);
+       setPost(array1);
       }).catch(error => {
         setError(error);
       });
@@ -63,7 +62,7 @@ function Tests() {
           <CardMedia
             component="img"
             height="194"
-            image={`http://192.168.100.212/smd_project/${value}`}
+            image={`http://192.168.182.116/smd_project/${value}`}
             alt="Paella dish"
           />
           <CardContent>

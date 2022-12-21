@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   BarChart,
@@ -11,17 +11,34 @@ import {
   ResponsiveContainer
 } from "recharts";
 
-const data = [
-  { name: "Mon", uv: 4000, pv: 2400, amt: 2400 },
-  { name: "Tue", uv: 3000, pv: 1398, amt: 2210 },
-  { name: "Wed", uv: 2000, pv: 9800, amt: 2290 },
-  { name: "Thu", uv: 2780, pv: 3908, amt: 2000 },
-  { name: "Fri", uv: 1890, pv: 4800, amt: 2181 },
-  { name: "Sat", uv: 2390, pv: 3800, amt: 2500 },
-  { name: "Sun", uv: 3490, pv: 4300, amt: 2100 }
-];
+// const data = [
+//   { name: "Mon", pv: 2400 },
+//   { name: "Tue", pv: 1398 },
+//   { name: "Wed", pv: 9800 },
+//   { name: "Thu", pv: 3908 },
+//   { name: "Fri", pv: 4800 },
+//   { name: "Sat", pv: 3800 },
+//   { name: "Sun", pv: 4300 }
+// ];
 
-const SimpleAreaChart = () => {
+
+
+
+const SimpleAreaChart = ({arr}) => {
+  const [names, setNames] = useState([]);
+  console.log("propssss");
+  console.log(arr);
+  
+
+  var data = [];
+  
+  for(var i=0;i<arr.length;i++){
+    // names.push({name:arr[i].name,pv:arr[i].uv});
+      data.push({name:arr[i].name,CaloriesConsumed:arr[i].uv});
+  }
+  // setNames(data)
+  console.log("names======");
+  console.log(data);
   let changevariable = 0;
   const [width, setWidth] = React.useState(window.innerWidth);
   const breakpoint = 1330;
@@ -80,13 +97,12 @@ const SimpleAreaChart = () => {
 
 
       <BarChart  data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="6 6" />
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="pv" fill="#8884d8" />
-        <Bar dataKey="uv" fill="#82ca9d" />
+        <Bar dataKey="CaloriesConsumed" fill="#8884d8" />
       </BarChart>
     </ResponsiveContainer>
   );

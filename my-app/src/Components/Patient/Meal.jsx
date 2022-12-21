@@ -58,7 +58,8 @@ const submitbutton = async () => {
           Namefood: nameoffood,  
           Email:curruser.email
       };
-      axios.post('http://localhost:5000/Usersfunctions/queryfood', studentObject)
+      
+      axios.post('http://localhost:5000/mysql/queryfood', studentObject)
           .then(res => console.log(res.data));
           alert("meal added");
   }

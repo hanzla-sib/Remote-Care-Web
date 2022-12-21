@@ -16,24 +16,13 @@ express = require('express'),
 
 
 router.route('/get_test_record/:id').get(async (req, res) => {
-  pool.query(`select * from test_record`, (err, result, fields) => {
-
-
-    if (err) {
-      return console.log(err);
-    }
-    //  console.log(result);
+  var email = req.params.id;
+  var sql = 'select * FROM test_record where Temail = ?';
+  pool.query(sql, [email], function (err, result) {
+    if (err) throw err;
+    console.log(result);
     res.send(result);
-
-  })
-
-  //   var adr = req.params.id;
-  // var sql = 'select * FROM test_record';
-  // await pool.query(sql, [adr], function (err, result) {
-  //   if (err) throw err;
-  //   console.log(result[0]);
-  //   res.send(result[0]);
-  // });
+  });
 });
 
 
@@ -63,13 +52,13 @@ router.route('/get_all_docs_in_patient_appoint/:id').get(async (req, res) => {
 
 
 
-router.route('/get_limited_doctors_in_patient_appoint').post(async(req, res,next) => {
+router.route('/get_limited_doctors_in_patient_appoint').post(async (req, res, next) => {
   var email = req.body.email;
   var array1 = [];
   var l = 0;
 
   var length = req.body.dataarray.length;
- 
+
   for (let item of req.body.dataarray) {
     // console.log(item.email);
     var sql = 'SELECT * FROM patient_appointment WHERE p_email = ? AND d_email = ?';
@@ -96,15 +85,222 @@ router.route('/get_limited_doctors_in_patient_appoint').post(async(req, res,next
 
 router.route('/get_pending_and_confirmed_appoint/:id').get(async (req, res) => {
   var pateintemail = req.params.id;
- 
-  var sql = 'SELECT * FROM patient_appointment WHERE p_email = ?';
-    pool.query(sql, [pateintemail], function (err, result) {
-      if (err) throw err;
-      res.send(result);
 
-    });
+  var sql = 'SELECT * FROM patient_appointment WHERE p_email = ?';
+  pool.query(sql, [pateintemail], function (err, result) {
+    if (err) throw err;
+    res.send(result);
+
+  });
 });
 
+
+router.route('/DoctorSideshowACCEPTEDAPPOINT/:id').get(async (req, res) => {
+  var Doctoremail = req.params.id;
+
+  var sql = 'SELECT * FROM doctor_appointment WHERE d_email = ? and appoint_status="Accepted"';
+  pool.query(sql, [Doctoremail], function (err, result) {
+    if (err) throw err;
+    res.send(result);
+
+  });
+});
+
+router.route('/DoctorPendingAppoint/:id').get(async (req, res) => {
+  var Doctoremail = req.params.id;
+
+  var sql = 'SELECT * FROM doctor_appointment WHERE d_email = ? and appoint_status="Pending"';
+  pool.query(sql, [Doctoremail], function (err, result) {
+    if (err) throw err;
+    res.send(result);
+
+  });
+});
+
+
+
+router.route('/RejectAppointment').post(async (req, res, next) => {
+  var docemail = req.body.doc_email;
+  var patemail = req.body.pat_email;
+
+  console.log(docemail);
+
+
+  var sql = "DELETE FROM patient_appointment WHERE p_email = ? AND d_email = ?";
+  pool.query(sql, [patemail, docemail], function (err, result) {
+    if (err) throw err;
+    console.log(result.affectedRows + " record(s) deleted");
+  });
+
+  var sql = "DELETE FROM doctor_appointment WHERE p_email = ? AND d_email = ?";
+  pool.query(sql, [patemail, docemail], function (err, result) {
+    if (err) throw err;
+    console.log(result.affectedRows + " record(s) deleted");
+  });
+
+  res.send("deleted Appoint");
+});
+
+
+router.route('/AcceptAppointment').post(async (req, res, next) => {
+  var docemail = req.body.doc_email;
+  var patemail = req.body.pat_email;
+
+  console.log(docemail);
+
+
+  var sql = "UPDATE patient_appointment SET appoint_status = 'Accepted' WHERE p_email = ? AND d_email = ?";
+  pool.query(sql, [patemail, docemail], function (err, result) {
+    if (err) throw err;
+    console.log(result.affectedRows + " record(s) updated");
+  });
+
+
+  var sql = "UPDATE doctor_appointment SET appoint_status = 'Accepted' WHERE p_email = ? AND d_email = ?";
+  pool.query(sql, [patemail, docemail], function (err, result) {
+    if (err) throw err;
+    console.log(result.affectedRows + " record(s) updated");
+  });
+
+  res.send("updated Appoint");
+});
+
+
+
+
+router.route('/RequestAppoint').post(async (req, res, next) => {
+  var docname = req.body.doc_name;
+  var patemail = req.body.pat_email;
+
+  var patname = "";
+  var sql = 'SELECT * FROM user WHERE email = ?';
+  pool.query(sql, [patemail], function (err, result) {
+    if (err) throw err;
+    patname = result[0].name;
+  });
+
+
+  var sql = 'SELECT * FROM user WHERE name = ?';
+  pool.query(sql, [docname], function (err, result) {
+    if (err) throw err;
+    console.log(result[0].email);
+    console.log(patname);
+    var sql1 = "INSERT INTO patient_appointment (p_name, p_email,appoint_status,d_name,d_email) VALUES ?";
+    var values = [
+      [patname, patemail, 'Pending', docname, result[0].email]
+    ];
+    pool.query(sql1, [values], function (err, result) {
+      if (err) throw err;
+      console.log("1 record inserted in pateint");
+    });
+
+    var sql1 = "INSERT INTO doctor_appointment (d_name, d_email,appoint_status,p_name,p_email) VALUES ?";
+    var values = [
+      [docname, result[0].email, 'Pending', patname, patemail]
+    ];
+    pool.query(sql1, [values], function (err, result) {
+      if (err) throw err;
+      console.log("1 record inserted in pateint");
+    });
+  });
+  res.send("updated Appoint");
+});
+
+
+
+router.route('/queryfood').post((req, res) => {
+  console.log(req.body);
+  try {
+    const id = req.body.Email;
+    const userJson = {
+      Namefood: req.body.Namefood
+    };
+    console.log("asdasd   ", userJson);
+    const request = require('request');
+    var query = userJson.Namefood;
+
+    request.get({
+      url: 'https://api.calorieninjas.com/v1/nutrition?query=' + query,
+      headers: {
+        'X-Api-Key': 'tss9OJ5+zRf9qtV6t8HILA==Gq0oiP3o3a2KBq5B'
+      },
+    }, function (error, response, body) {
+      if (error) return console.error('Request failed:', error);
+      else if (response.statusCode != 200) return console.error('Error:', response.statusCode, body.toString('utf8'));
+      else {
+        console.log("-------------");
+        console.log(body);
+        var obj = JSON.parse(body);
+
+        console.log(obj.items[0].calories);
+        const foodcalorieobj = {
+          foodname: userJson.Namefood,
+          calorie: obj.items[0].calories
+        };
+        
+        var date_time = new Date();
+var day = ("0" + date_time.getDate()).slice(-2);
+var month = ("0" + (date_time.getMonth() + 1)).slice(-2);
+var year = date_time.getFullYear();
+   
+var date = year + "-" + month + "-" + day;
+        //===============
+
+        var check = false;
+        var caloriecountsum = 0;
+        var sql = 'SELECT * FROM consumed_calories WHERE p_email = ? and date_log = ?';
+        pool.query(sql, [id, date], function (err, result) {
+          if (err) throw err;
+
+          console.log(result.length);
+          console.log(date);
+
+          if (result.length === 1) {
+            caloriecountsum = result[0].Calories;
+            caloriecountsum = caloriecountsum + foodcalorieobj.calorie;
+            var sql = "UPDATE consumed_calories SET Calories = ? WHERE p_email = ? AND date_log = ?";
+            pool.query(sql, [caloriecountsum, id, date], function (err, result) {
+              if (err) throw err;
+              console.log(result.affectedRows + " record(s) updated");
+            });
+          }
+          else {
+            var sql1 = "INSERT INTO consumed_calories (p_email,date_log,Calories) VALUES ?";
+            var values = [
+              [id, date, foodcalorieobj.calorie]
+            ];
+            pool.query(sql1, [values], function (err, result) {
+              if (err) throw err;
+              console.log("1 record inserted in pateint");
+            });
+            res.send(req.body);
+          }
+
+
+        });
+        console.log(check);
+      
+
+      }
+    });
+
+  }
+  catch {
+    res.send("eroor write");
+  }
+});
+
+
+router.route('/getCaloriegraph/:id').get(async (req, res) => {
+  var pateintemail = req.params.id;
+  var sql = 'select * FROM consumed_calories where p_email = ?';
+
+  pool.query(sql,[pateintemail],function (err, result) {
+    if (err) throw err;
+    res.send(result);
+    // console.log(result);
+  });
+});
 
 
 

@@ -4,7 +4,8 @@ import Sidebar from "./Sidebar";
 import { Card, CardContent, CardMedia, Grid } from "@mui/material";
 import { Container } from "@mui/system";
 import React, { useContext } from "react";
-import SimpleAreaChart from "../Chart"
+// import SimpleAreaChart from "../Chart"
+import Caloriegraph from "./Caloriegraph";
 import styled from "@emotion/styled";
 import axios from "axios";
 import { auth } from "../../Firebase/firebase-config"
@@ -200,7 +201,7 @@ function Home() {
               <Grid justifyContent="flex-start" alignItems="flex-start" item sm={12} md={6} lg={6} sx={{ borderRadius: "30px", boxShadow: 20, margin: "auto" }}>
                 <Container sx={{ border: "1px  black", backgroundColor: "white" }} maxWidth={false} >
                   <Typography variant="h6">Calories intake</Typography>
-                  <SimpleAreaChart />
+                  <Caloriegraph />
                 </Container>
               </Grid>
 
