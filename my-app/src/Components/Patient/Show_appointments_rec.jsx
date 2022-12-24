@@ -1,15 +1,16 @@
-import { Card, CardContent, Divider, List, ListItem, ListItemText, Typography } from "@mui/material";
+import { Card, CardContent, Divider, List, ListItem, ListItemText,Typography } from "@mui/material";
 import axios from "axios";
 import React, { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 
-function Show_appointments_rec() {
+
+function Show_appointments_rec({setreloderappoint}) {
     const { curruser } = useContext(AuthContext);
     const [error, setError] = React.useState({});
     const [getallapppoint, fetallappoint] = React.useState([{}]);
     React.useEffect(() => {
         fetchData();
-    }, []);
+    }, [setreloderappoint]);
 
     async function fetchData() {
         try {
@@ -37,30 +38,31 @@ function Show_appointments_rec() {
     return (
         <Card style={{ border: "none" }} sx={{ minWidth: 150, maxWidth: 400, minHeight: 200, borderRadius: "30px", boxShadow: "20", backgroundColor: "black", marginBottom: "20px" }}>
             <CardContent >
-
+            <Typography display={"none"}>{setreloderappoint}</Typography>
                 <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', backgroundColor: "black" }}>
                     <Typography style={{ color: "white" }} variant="h6">Appointments</Typography>
                     {getallapppoint.map((value) => (
-                    <ListItem alignItems="flex-start" >
+                        <ListItem sx={{ backgroundColor: "white" }} alignItems="flex-start" >
 
-                        <ListItemText style={{ color: "#1e90ff" }}
-                            primary={value.d_name}
-                            secondary={
-                                <React.Fragment>
-                                    <Typography style={{ color: "#1e90ff" }}
-                                        sx={{ display: 'inline' }}
-                                        component="span"
-                                        variant="body2"
-                                        color="text.primary"
-                                    >
-                                        {value.appoint_status}
-                                    </Typography>
+                            <ListItemText style={{ color: "black"}}
+                                primary={value.d_name}
+                                secondary={
+                                    <React.Fragment>
+                                        <Typography style={{ color: "green" }}
+                                            sx={{ display: 'inline' }}
+                                            component="span"
+                                            variant="body2"
+                                            color="text.primary"
+                                        >
+                                            {value.Date1 ? value.appoint_status + " Meet me : " + value.Date1 + " " + value.Time1 : value.appoint_status}
 
-                                </React.Fragment>
-                            }
-                        />
-                    </ListItem>
-           ))}
+                                        </Typography>
+                                        <Divider color="#FDA228" sx={{ height: 3 }} />
+                                    </React.Fragment>
+                                }
+                            />
+                        </ListItem>
+                    ))}
 
                 </List>
             </CardContent>

@@ -62,7 +62,7 @@ function Tests() {
           <CardMedia
             component="img"
             height="194"
-            image={`http://192.168.182.116/smd_project/${value}`}
+            image={`http://192.168.100.212/smd_project/${value}`}
             alt="Paella dish"
           />
           <CardContent>

@@ -20,34 +20,8 @@ const Img = styled('img')({
   maxWidth: '100%',
   maxHeight: '100%',
 });
-function Meal() {
+function Meal({setreloader}) {
   const { curruser } = useContext(AuthContext);
-  // const [checktrue,settrue]=React.useState(false);
-  // const [post, setPost] = React.useState({});
-  // const [error, setError] = React.useState({});
-
-  // React.useEffect(() => {
-    
-  //   async function fetchData() {
-  //     try {
-  //       await delay(10000);
-  //       const baseURL = "http://localhost:5000/Usersfunctions/read/"+auth.currentUser.email;
-  // console.log("===================",auth.currentUser.email)
-  // console.log("data    ",auth.currentUser);
-  //   await axios.get(`${baseURL}`).then((response) => {
-  //     setPost(response.data);
-  //   }).catch(error => {
-  //     setError(error);
-  //   });
-        
-  //     } catch (e) {
-  //         console.error(e);
-          
-  //     }
-  // };
-  // fetchData();
-  // }, []);
-
   
 const[nameoffood,setnameofffod]=React.useState("");
 
@@ -58,10 +32,14 @@ const submitbutton = async () => {
           Namefood: nameoffood,  
           Email:curruser.email
       };
-      
+      var min = 1;
+      var max = 1000;
+      var rand =  min + (Math.random() * (max-min));
       axios.post('http://localhost:5000/mysql/queryfood', studentObject)
           .then(res => console.log(res.data));
           alert("meal added");
+          setreloader(rand);
+          // handleClick("5");
   }
   catch (error) {
       alert("error");

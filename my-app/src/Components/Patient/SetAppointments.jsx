@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, List, ListItem, Typography } from "@mui/material";
+import { Button, Card, CardContent, Divider, List, ListItem, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContext";
@@ -6,13 +6,14 @@ import { AuthContext } from "../../Context/AuthContext";
 const delay = ms => new Promise(
     resolve => setTimeout(resolve, ms)
 );
-function SetAppoint() {
+function SetAppoint({setreloderappoint}) {
     const { curruser } = useContext(AuthContext);
     const [error, setError] = React.useState({});
     const [getdoctors, fetchdoctors] = React.useState([]);
+    const [getupdate,setupdate]=React.useState(0);
     React.useEffect(() => {
         fetchData();
-    }, []);
+    }, [getupdate]);
 
 
     async function fetchData() {
@@ -47,7 +48,7 @@ function SetAppoint() {
             for (var i = 0; i < resp.data.length; i++) {
                 array1[i] = resp.data[i];
             }
-            console.log(array1);
+           
             fetchdoctors(array1);
         } catch (e) {
             console.error(e);
@@ -61,8 +62,13 @@ function SetAppoint() {
                 pat_email:curruser.email,
                 doc_name:docname
             }
+            var min = 1;
+            var max = 1000;
+            var rand =  min + (Math.random() * (max-min));
             const resp = await axios.post('http://localhost:5000/mysql/RequestAppoint',objec);
-            alert(resp.data);
+          
+            setupdate(rand);
+            setreloderappoint(rand);
         } catch (err) {
             console.error(err);
         }
@@ -75,11 +81,18 @@ function SetAppoint() {
                     Set Appointments
                 </Typography>
                 <List >
+             
                     {getdoctors.map((value) => (
+                        
                         <ListItem sx={{ justifyContent: "center", alignItems: "center" }} >
+                        
                             <Button  onClick={(e) => requestApooint(value)} style={{ maxWidth: '200px', maxHeight: '50px', minWidth: '100px', minHeight: '40px' }} variant="contained">{value}</Button>
+                           
                         </ListItem>
+                        
+                        
                     ))}
+                    <Divider color="#FDA228" sx={{ height: 3 }} />
                 </List>
             </CardContent>
         </Card>

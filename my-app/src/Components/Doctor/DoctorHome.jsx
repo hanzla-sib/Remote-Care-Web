@@ -1,7 +1,7 @@
 import { Button, Card, CardContent, CardMedia, Divider, Grid, List, ListItem, ListItemText, Typography } from "@mui/material";
 import { Box, Container, Stack } from "@mui/system";
 import React, { useContext } from "react";
-import SimpleAreaChart from "../Chart";
+import SimpleAreaChart from "./DocChartforPat";
 import DoctorSidebar from "./DoctorSidebar";
 import StaticTimePickerDemo from "../Time";
 import { AuthContext } from "../../Context/AuthContext";
@@ -13,6 +13,7 @@ function DoctorHome(){
   const [checktrue, settrue] = React.useState(false);
   const [post, setPost] = React.useState({});
   const [error, setError] = React.useState({});
+  const [reloder,setreloader]=React.useState(0);
 
   React.useEffect(() => {
     async function fetchData() {
@@ -31,7 +32,7 @@ function DoctorHome(){
       }
     };
     fetchData();
-  }, []);
+  }, [reloder]);
 
 return(
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
@@ -68,11 +69,11 @@ return(
 
 {/* --------------------- */}
           <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={5}>
-            <RejectAppoint />
+              <RejectAppoint setreloader={setreloader}/>
           </Grid>
 {/* --------------------------- */}
           <Grid maxWidth={"500px"} justifyContent="center" alignItems="center" container item sm={5} md={5} lg={5}>
-          <AppointmentsRequest />
+          <AppointmentsRequest setreloader={reloder} />
           </Grid>
 
           {/* ----------- */}

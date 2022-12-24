@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 
-function AppointmentsRequest(){
+function AppointmentsRequest({setreloader}){
     const [error, setError] = React.useState({});
     const { curruser } = useContext(AuthContext);
     const [getallapppoint, fetallappoint] = React.useState([]);
@@ -28,13 +28,14 @@ function AppointmentsRequest(){
           }
         };
         fetchData();
-      }, []);
+      }, [setreloader]);
 
     return(  <Card style={{ border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
     <CardContent >
-
+      
       <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
         <Typography variant="h6">Appointments</Typography>
+        <Typography display={"none"} >{setreloader}</Typography>
         {getallapppoint.map((value) => (
             <ListItem alignItems="flex-start">
           <ListItemText
@@ -47,7 +48,7 @@ function AppointmentsRequest(){
                   variant="body2"
                   color="text.primary"
                 >
-                 {value.p_name}
+                 {"Date  : "+value.Date1+"   Time   : "+value.Time1}
                 </Typography>
                 <Divider variant="inset" component="li" />
               </React.Fragment>

@@ -85,7 +85,8 @@ function Profile() {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6} md={6} lg={6} >
                 <ButtonBase sx={{ width: "100%", height: 128 }}>
-                  <Img alt="complex" src={post.Dp} />
+                  {/* <Img alt="complex" src={'http://192.168.100.212/smd_project/'+post.Dp} /> */}
+                    <Img alt="complex" src={'http://192.168.100.212/smd_project/23-12-2022-1671825264-99713.jpg'} />
                 </ButtonBase>
               </Grid>
               <Grid item xs={12} sm container justifyContent={"center"} direction={"column"}>

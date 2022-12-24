@@ -1,8 +1,9 @@
+import { Typography } from "@mui/material";
 import axios from "axios";
 import React, { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import SimpleAreaChart from "../Chart"
-function Caloriegraph() {
+function Caloriegraph({setreloader}) {
 
     const { curruser } = useContext(AuthContext);
     const [checktrue, settrue] = React.useState(false);
@@ -12,6 +13,7 @@ function Caloriegraph() {
     React.useEffect(() => {
         async function fetchData() {
             try {
+                // setPost([{}]);
                 // await delay(1000);
                 const baseURL = "http://localhost:5000/mysql/getCaloriegraph/" + curruser.email;
                 await axios.get(`${baseURL}`).then((response) => {
@@ -32,10 +34,14 @@ function Caloriegraph() {
             }
         };
         fetchData();
-    }, []);
+    }, [setreloader]);
 
     return (
+        <div>
+        <Typography display={"none"}>{setreloader}</Typography>
+        
         <SimpleAreaChart arr={post}/>
+        </div>
     )
 }
 

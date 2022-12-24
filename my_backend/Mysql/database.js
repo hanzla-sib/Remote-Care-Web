@@ -145,19 +145,21 @@ router.route('/RejectAppointment').post(async (req, res, next) => {
 router.route('/AcceptAppointment').post(async (req, res, next) => {
   var docemail = req.body.doc_email;
   var patemail = req.body.pat_email;
+  var time=req.body.time1;
+  var date=req.body.date1;
 
   console.log(docemail);
 
 
-  var sql = "UPDATE patient_appointment SET appoint_status = 'Accepted' WHERE p_email = ? AND d_email = ?";
-  pool.query(sql, [patemail, docemail], function (err, result) {
+  var sql = "UPDATE patient_appointment SET appoint_status = 'Accepted',Time1 = ?,Date1 = ? WHERE p_email = ? AND d_email = ?";
+  pool.query(sql, [time,date,patemail, docemail], function (err, result) {
     if (err) throw err;
     console.log(result.affectedRows + " record(s) updated");
   });
 
 
-  var sql = "UPDATE doctor_appointment SET appoint_status = 'Accepted' WHERE p_email = ? AND d_email = ?";
-  pool.query(sql, [patemail, docemail], function (err, result) {
+  var sql = "UPDATE doctor_appointment SET appoint_status = 'Accepted',Time1 = ?,Date1 = ? WHERE p_email = ? AND d_email = ?";
+  pool.query(sql, [time,date,patemail, docemail], function (err, result) {
     if (err) throw err;
     console.log(result.affectedRows + " record(s) updated");
   });
