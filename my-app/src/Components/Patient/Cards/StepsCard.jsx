@@ -1,7 +1,44 @@
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
-import React from "react";
+import axios from "axios";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../../Context/AuthContext";
 
 function StepCard(){
+  const [toggle, setToggle] = useState(false)
+  const { curruser } = useContext(AuthContext);
+  const [checktrue, settrue] = React.useState(false);
+  const [post, setPost] = React.useState([{daily_steps:0,status:"resting"}]);
+  const [error, setError] = React.useState({});
+  
+
+  React.useEffect(() => {
+   
+      setTimeout(() => {
+        setToggle((prevToggle) => !prevToggle)
+     async function fetchData() {
+      try {
+     
+        // await delay(1000);
+        const baseURL = "http://localhost:5000/mysql/getHeartb/" + curruser.email;
+        await axios.get(`${baseURL}`).then((response) => {
+         console.log(response.data);
+          setPost({daily_steps:response.data[0].steps_daily,status:response.data[0].motion});
+          settrue(true);
+        }).catch(error => {
+          setError(error);
+        });
+      } catch (e) {
+        console.error(e);
+      }
+     
+    };
+    fetchData();
+      },
+      3000);
+     
+  
+  }, [toggle]);
+
     return( <Card style={{ color: '#ffff', backgroundColor: '#E73E3B' }} sx={{ maxWidth: 180, border: "0px solid black", borderRadius: "30px", boxShadow: 20 }} elevation={2}>
     <CardMedia
       component="img"
@@ -14,7 +51,9 @@ function StepCard(){
         Step Counts
       </Typography>
       <Typography variant="h5" >
-        count
+      
+        {post.daily_steps}   {post.status}
+        
       </Typography>
     </CardContent>
   </Card>)

@@ -11,21 +11,20 @@ function Caloriegraph({setreloader}) {
     const [error, setError] = React.useState({});
 
     React.useEffect(() => {
+        
         async function fetchData() {
             try {
-                // setPost([{}]);
                 // await delay(1000);
                 const baseURL = "http://localhost:5000/mysql/getCaloriegraph/" + curruser.email;
                 await axios.get(`${baseURL}`).then((response) => {
-                    console.log(response.data);
+                    
+                    for(var j=0;j<post.length;j++){
+                        post.pop();
+                    }
                     for(var i=0;i<response.data.length;i++){
                         post.push({name:response.data[i].date_log,uv:response.data[i].Calories});
-                        // post.push({name:response.data[i].date_log,uv:response.data[i].Calories});
-                    }
-                    // setPost(response.data);
-                    console.log("-----------");
-                    console.log(post);
-                    
+                        
+                    } 
                 }).catch(error => {
                     setError(error);
                 });
@@ -39,7 +38,6 @@ function Caloriegraph({setreloader}) {
     return (
         <div>
         <Typography display={"none"}>{setreloader}</Typography>
-        
         <SimpleAreaChart arr={post}/>
         </div>
     )

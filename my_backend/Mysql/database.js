@@ -305,5 +305,17 @@ router.route('/getCaloriegraph/:id').get(async (req, res) => {
 });
 
 
+router.route('/getHeartb/:id').get(async (req, res) => {
+  var pateintemail = req.params.id;
+  // console.log(pateintemail);
+  var sql = 'select * FROM daily_steps where Demail = ?';
+
+  pool.query(sql,[pateintemail],function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+
+
 
 module.exports = router;

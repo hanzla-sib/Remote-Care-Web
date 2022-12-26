@@ -1,7 +1,10 @@
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
-import React from "react";
-
+import React, { useContext } from "react";
+import { AuthContext } from "../../../Context/AuthContext";
+import axios from "axios";
 function HeartbeatCard(){
+  
+
     return(  <Card style={{ color: '#ffff', backgroundColor: '#00ACC1' }} sx={{ maxWidth: 180, border: "0px solid black", borderRadius: "30px", boxShadow: 20 }}>
     <CardMedia
       component="img"

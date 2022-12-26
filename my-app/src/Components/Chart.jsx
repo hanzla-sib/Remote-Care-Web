@@ -26,8 +26,8 @@ import {
 
 const SimpleAreaChart = ({arr}) => {
   const [names, setNames] = useState([]);
-  console.log("propssss");
-  console.log(arr);
+  // console.log("propssss");
+  // console.log(arr);
   
 
   var data = [];
@@ -37,8 +37,8 @@ const SimpleAreaChart = ({arr}) => {
       data.push({name:arr[i].name,CaloriesConsumed:arr[i].uv});
   }
   // setNames(data)
-  console.log("names======");
-  console.log(data);
+  // console.log("names======");
+  // console.log(data);
   let changevariable = 0;
   const [width, setWidth] = React.useState(window.innerWidth);
   const breakpoint = 1330;
