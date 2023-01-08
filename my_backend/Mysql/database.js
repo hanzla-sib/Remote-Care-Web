@@ -305,7 +305,7 @@ router.route('/getCaloriegraph/:id').get(async (req, res) => {
 });
 
 
-router.route('/getHeartb/:id').get(async (req, res) => {
+router.route('/getSteps/:id').get(async (req, res) => {
   var pateintemail = req.params.id;
   // console.log(pateintemail);
   var sql = 'select * FROM daily_steps where Demail = ?';
@@ -315,6 +315,57 @@ router.route('/getHeartb/:id').get(async (req, res) => {
     res.send(result);
   });
 });
+
+
+router.route('/getStepsgraph_weekly/:id').get(async (req, res) => {
+  var pateintemail = req.params.id;
+  var sql = 'select * FROM weekly_steps where Demail = ?';
+
+  pool.query(sql,[pateintemail],function (err, result) {
+    if (err) throw err;
+    res.send(result);
+    // console.log(result);
+  });
+});
+
+
+
+router.route('/getStepsgraph_Monthly/:id').get(async (req, res) => {
+  var pateintemail = req.params.id;
+  var sql = 'select extract(MONTH from date_log) as month,sum(steps_daily) as steps from weekly_steps where Demail = ?  group by month';
+
+  pool.query(sql,[pateintemail],function (err, result) {
+    if (err) throw err;
+    res.send(result);
+    // console.log(result);
+  });
+});
+
+
+router.route('/getCaloriesBurntgraph_Monthly/:id').get(async (req, res) => {
+  var pateintemail = req.params.id;
+  var sql = 'select extract(MONTH from date_log) as month,sum(Burnt_Calories) as totalburntCalories from weekly_steps where Demail = ?  group by month';
+
+  pool.query(sql,[pateintemail],function (err, result) {
+    if (err) throw err;
+    res.send(result);
+    // console.log(result);
+  });
+});
+
+
+router.route('/getCaloriesConsumedgraph_Monthly/:id').get(async (req, res) => {
+  var pateintemail = req.params.id;
+  var sql = 'select extract(MONTH from date_log) as month,sum(Calories) as totalConsumedCalories from consumed_calories where p_email = ?  group by month';
+
+  pool.query(sql,[pateintemail],function (err, result) {
+    if (err) throw err;
+    res.send(result);
+    // console.log(result);
+  });
+});
+
+
 
 
 

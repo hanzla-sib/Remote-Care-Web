@@ -31,7 +31,7 @@ function Sidebar() {
 
             <span>
                 <NavLink style={{ textDecoration: "none", color: "white" }} to="/profile"><button
-                    className="category-btn">Profile</button></NavLink>
+                    className="category-btn">Test Records</button></NavLink>
             </span>
 
 

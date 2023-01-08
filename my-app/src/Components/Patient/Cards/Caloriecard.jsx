@@ -29,11 +29,12 @@ function CalorieCard({setreloader}){
     fetchData();
   }, [setreloader]);
     return(
-        <Card sx={{ maxWidth: 180, border: "0px solid black", borderRadius: "30px", boxShadow: 20 }}>
+        <Card sx={{  border: "0px solid black", borderRadius: "30px", boxShadow: 20 }}>
        
         <CardMedia
           component="img"
-          height="auto"
+          height="250px"
+      width="200px"
           image="https://is5-ssl.mzstatic.com/image/thumb/Purple128/v4/7c/66/ab/7c66ab1f-038c-7200-8de6-51afd6d47fa3/source/512x512bb.jpg"
           alt="Calorie"
         />

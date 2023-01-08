@@ -18,8 +18,10 @@ const Img = styled('img')({
 
 
   maxWidth: '100%',
-  maxHeight: '100%',
-  borderRadius: "50%"
+ 
+  Height: '20%',
+  
+ 
 });
 
 // const delay = ms => new Promise(
@@ -31,7 +33,9 @@ function Profile() {
 
 
   const [checktrue, settrue] = React.useState(false);
-  const [post, setPost] = React.useState({});
+  const [post, setPost] = React.useState("user");
+  const [name, setname] = React.useState("user");
+  const [email, setemail] = React.useState("user");
   const [error, setError] = React.useState({});
   const { curruser } = useContext(AuthContext);
   console.log("====================");
@@ -44,7 +48,11 @@ function Profile() {
         const baseURL = "http://localhost:5000/mysql/get_user_type/" + curruser.email;
 
         await axios.get(`${baseURL}`).then((response) => {
-          setPost(response.data);
+          console.log(response.data.imageurl);
+          setPost(response.data.imageurl);
+          setname(response.data.name);
+          setemail(response.data.email);
+         
           settrue(true);
 
         }).catch(error => {
@@ -64,83 +72,36 @@ function Profile() {
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
       <Box sx={{ background: "linear-gradient(#304352, #3498db);", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
         <Sidebar />
-
       </Box>
-      <Box pl={"20px"} sx={{ overflowY: "auto", height: "93.5vh", flex: 2 }}>
+      <Box  sx={{ overflowY: "auto", height: "93.5vh", flex: 2,marginTop:"20px" }}>
         <Container maxWidth={false}  >
-          <Paper
+          {/* <Paper
             sx={{
-              p: 2,
               margin: 'auto',
               marginTop: "55px",
               marginBottom: "40px",
               borderRadius: "30px",
-              boxShadow: "20",
-              maxWidth: 500,
-              flexGrow: 1,
+              maxWidth: 200,
               backgroundColor: (theme) =>
                 theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
             }}
           >
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6} md={6} lg={6} >
-                <ButtonBase sx={{ width: "100%", height: 128 }}>
-                  {/* <Img alt="complex" src={'http://192.168.100.212/smd_project/'+post.Dp} /> */}
-                    <Img alt="complex" src={'http://192.168.100.212/smd_project/23-12-2022-1671825264-99713.jpg'} />
-                </ButtonBase>
-              </Grid>
-              <Grid item xs={12} sm container justifyContent={"center"} direction={"column"}>
+            <Grid>
+                <Img alt="complex" src={'http://localhost/smd_project/'+post} />
+              <Grid item xs={12} textAlign="center" direction={"column"}>
                 <Typography gutterBottom variant="h5" component="div">
-                  Hi, MR {checktrue == true ? post.name : "null"}
+                  Hi, MR {checktrue == true ? name : "null"}
                 </Typography>
                 <Typography gutterBottom variant="h5" component="div">
-                  {checktrue == true ? post.email : "null"}
+                  {checktrue == true ? email : "null"}
                 </Typography>
               </Grid>
             </Grid>
-          </Paper>
+          </Paper> */}
 
-          <Grid container justifyContent={"center"} alignItems="center" spacing={2} direction={"row"} sx={{ boxShadow: 20, borderRadius: "30px", }}>
-            <Grid item xs={12} container sm={12} md={6} lg={6} justifyContent={"center"} >
-
-              <Paper
-                sx={{
-                  border: "none", boxShadow: "20",
-                  p: 2,
-                  margin: 'auto',
-                  marginTop: "10px",
-                  marginBottom: "40px",
-                  borderRadius: "30px",
-                  maxWidth: 500,
-                  flexGrow: 1,
-                  backgroundColor: "black"
-                }}
-              >
-                <Grid container justifyContent={"center"} alignItems="center" spacing={2} direction={"column"} sx={{ backgroundColor: "black", borderRadius: "30px", }}>
-                  <Grid item xs={12} sm container justifyContent={"flex-start"}>
-                    <Typography variant="h5" style={{ color: "white" }}>Update Profile: </Typography>
-                  </Grid>
-                  <Grid item xs={12} sm container justifyContent={"flex-end"}>
-                    <TextField sx={{ width: "70%", input: { color: 'white' } }} id="outlined-basic" label="Change Name" variant="outlined" focused />
-                  </Grid>
-
-                  <Grid item xs={12} sm container justifyContent={"flex-end"}>
-                    <TextField sx={{ width: "70%", input: { color: 'white' } }} id="outlined-basic" label="Change Email" variant="outlined" focused />
-                  </Grid>
-                  <Grid item xs={12} sm container justifyContent={"flex-end"}>
-                    <TextField sx={{ width: "70%", input: { color: 'white' } }} id="outlined-basic" label="enter old password" variant="outlined" focused />
-                  </Grid>
-                  <Grid item xs={12} sm container justifyContent={"flex-end"}>
-                    <TextField sx={{ width: "70%", input: { color: 'white' } }} id="outlined-basic" label="enter new password" variant="outlined" focused />
-                  </Grid>
-                  <Grid item xs={12} sm container justifyContent={"flex-end"}>
-                    <Button variant="contained" sx={{ background: "#545CD8" }}>Save</Button>
-                  </Grid>
-
-                </Grid>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} container sm={12} md={6} lg={6} justifyContent={"center"} >
+          <Grid container justifyContent={"flex-start"} alignItems="center" spacing={2} direction={"column"} sx={{ boxShadow: 20, borderRadius: "30px" }}>
+          <h3>TEST RECORDS</h3>
+            <Grid item xs={12} container sm={12} md={6} lg={12} justifyContent={"flex-start"} >
               <Tests />
             </Grid>
           </Grid>

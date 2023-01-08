@@ -42,11 +42,12 @@ function SetAppoint({setreloderappoint}) {
                 email: curruser.email,
                 dataarray: params
             }
-            const baseURL = "http://localhost:5000/mysql/get_limited_doctors_in_patient_appoint";
+            
             const resp = await axios.post('http://localhost:5000/mysql/get_limited_doctors_in_patient_appoint',data1);
             // console.log(resp.data);
             for (var i = 0; i < resp.data.length; i++) {
                 array1[i] = resp.data[i];
+              
             }
            
             fetchdoctors(array1);
@@ -75,13 +76,13 @@ function SetAppoint({setreloderappoint}) {
     };
 
     return (
-        <Card style={{ border: "none" }} sx={{ minWidth: 150, maxWidth: 400, minHeight: 200, borderRadius: "30px", boxShadow: 20, backgroundColor: "black" }} >
+        <Card style={{ border: "none" }} sx={{  maxWidth: 400,maxHeight:280,minHeight:280, overflow:"auto", borderRadius: "30px", boxShadow: "20", backgroundColor: "black", marginBottom: "20px" ,marginTop:"10px"}} >
             <CardContent>
                 <Typography style={{ color: "white" }} variant="h6" marginLeft={"25px"} >
                     Set Appointments
                 </Typography>
                 <List >
-             
+                <Divider color="#FDA228" sx={{ height: 3 }} />
                     {getdoctors.map((value) => (
                         
                         <ListItem sx={{ justifyContent: "center", alignItems: "center" }} >

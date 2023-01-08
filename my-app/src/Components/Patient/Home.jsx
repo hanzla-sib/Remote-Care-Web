@@ -5,7 +5,7 @@ import { Card, CardContent, CardMedia, Grid } from "@mui/material";
 import { Container } from "@mui/system";
 import React, { useContext } from "react";
 // import SimpleAreaChart from "../Chart"
-import Caloriegraph from "./Caloriegraph";
+
 import styled from "@emotion/styled";
 import axios from "axios";
 import { auth } from "../../Firebase/firebase-config"
@@ -18,6 +18,9 @@ import Showappointmentsrec from "./Show_appointments_rec";
 import CalorieCard from "./Cards/Caloriecard";
 import StepCard from "./Cards/StepsCard";
 import HeartbeatCard from "./Cards/Heartbeat";
+import Steps_weekly from "./weekly_graphs/Steps_weekly";
+import CalorieBurnt_graph from "./weekly_graphs/Weekly_calories_burnt";
+import CalorieConsumed_graph from "./weekly_graphs/Weekly_calories_consumed";
 
 
 
@@ -37,8 +40,8 @@ function Home() {
   const [checktrue, settrue] = React.useState(false);
   const [post, setPost] = React.useState({});
   const [error, setError] = React.useState({});
-  const [reloder,setreloader]=React.useState(0);
-  const [reloderappoint,setreloderappoint]=React.useState(0);
+  const [reloder, setreloader] = React.useState(0);
+  const [reloderappoint, setreloderappoint] = React.useState(0);
   React.useEffect(() => {
     async function fetchData() {
       try {
@@ -64,21 +67,24 @@ function Home() {
       </Box>
       {/* HOMEPAGE STARTING */}
       <Box pl={"20px"} sx={{ overflowY: "auto", height: "93.5vh", flex: 2, backgroundColor: "#EEEEEE" }}>
-        <Container >
+        <Container disableGutters maxWidth >
           <Grid columnSpacing={{ lg: 0, sm: 1, md: 3, xs: 2 }} columnGap={{ lg: 2, md: 2, sm: 1, xs: 1 }} sx={{ margin: "auto" }} rowSpacing={4} container alignItems="center"
             justifyContent="center" direction={"row"} >
 
 
-            <Grid marginRight={"20px"} maxWidth={"500px"} justifyContent="left" alignItems="center" container item sm={12} md={12} lg={12}>
+            <Grid  maxWidth={"500px"} justifyContent="left" alignItems="center" container item sm={12} md={12} lg={12}>
 
               {/* showing the Dashboard */}
 
               <Card style={{ color: '#4AA54E', backgroundColor: '#EEEEEE', fontWeight: "bold", border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
                 <CardContent sx={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
-                  <Typography variant="h4" component="div" >
+                  <Typography variant="h4" component="div" style={{
+                    fontWeight: 800,
+                    background: "-webkit-linear-gradient(45deg, #ffa600 30%, #003f5c 90%)",
+                    webkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}>
                     Patient Overview
-
-
                   </Typography>
 
                 </CardContent>
@@ -86,13 +92,18 @@ function Home() {
             </Grid>
 
 
-            <Grid marginRight={"20px"} maxWidth={"500px"} justifyContent="left" alignItems="center" container item sm={12} md={12} lg={12}>
+            <Grid maxWidth={"500px"} justifyContent="center" alignItems="center" container item sm={12} md={12} lg={12}>
 
               {/* showing the name of the user */}
 
-              <Card style={{ color: '#4AA54E', backgroundColor: '#EEEEEE', border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
+              <Card style={{ color: '#4AA54E', backgroundColor: '#EEEEEE', border: "none", boxShadow: "none" }} sx={{  maxWidth: 400 }}>
                 <CardContent sx={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
-                  <Typography variant="h5" component="div" >
+                  <Typography variant="h3"  component="div"style={{
+                    fontWeight: 900,
+                    background: "-webkit-linear-gradient(45deg, #ffa600 30%, #ffa600 90%)",
+                    webkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }} >
                     Hi,
                     {checktrue == true ? post.name : "null"}
 
@@ -113,64 +124,81 @@ function Home() {
 
 
 
+            <Grid justifyContent="space-evenly" alignItems="center" container item xs={12} sm={12} md={12} lg={12}>
+              {/* showing Cards */}
+              {/* Step Count Card */}
+              <Grid justifyContent="center" alignItems="center" item xs={7} sm={5} md={3} lg={2}>
+                <StepCard />
+              </Grid>
 
-            {/* showing Cards */}
-            {/* Step Count Card */}
-            <Grid justifyContent="center" alignItems="center" container item sm={5} md={3} lg={3}>
-             <StepCard />
+
+              {/* Calorie Card */}
+              <Grid justifyContent="center" alignItems="center" sx={{ marginTop: "10px" }} item xs={7} sm={5} md={3} lg={2}>
+                <CalorieCard setreloader={reloder} />
+              </Grid>
+
+
+              {/* Heart Beat Card */}
+              <Grid justifyContent="center" alignItems="center" sx={{ marginTop: "10px" }} item xs={7} sm={5} md={3} lg={2}>
+                <HeartbeatCard />
+              </Grid>
+
+              {/* Showing Appointments */}
+
+
+              <Grid justifyContent="center" alignItems="center" sx={{ marginTop: "10px" }} item xs={7} sm={5} md={5} lg={2}>
+                <Showappointmentsrec setreloderappoint={reloderappoint} />
+
+              </Grid>
+
             </Grid>
 
-
-            {/* Calorie Card */}
-            <Grid justifyContent="center" alignItems="center" container item sm={5} md={3} lg={3}>
-            <CalorieCard setreloader={reloder}/>
-            </Grid>
-
-
-            {/* Heart Beat Card */}
-            <Grid justifyContent="center" alignItems="center" container item sm={12} md={3} lg={3}>
-             <HeartbeatCard />
-            </Grid>
 
             {/* Add Meal funtionality */}
 
-            <Grid item xs={12} container sm={12} md={6} lg={4} justifyContent={"center"} >
-              <Meal setreloader={setreloader}/>
+            <Grid item xs={12} container sm={12} md={6} lg={3} justifyContent={"center"} >
+              <Meal setreloader={setreloader} />
             </Grid>
 
 
             {/* Add Prescription funtionality */}
 
-            <Grid sx={{ marginTop: "40px" }} item xs={12} container sm={12} md={6} lg={6} justifyContent={"flex-end"} >
+            <Grid sx={{ marginTop: "40px" }} item xs={12} container sm={12} md={6} lg={5} justifyContent={"flex-end"} >
               <Prescription />
             </Grid>
+
+            {/* set appointmnets */}
+
+            <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={3}>
+              <SetAppoint setreloderappoint={setreloderappoint} />
+            </Grid>
+
+
+
 
             <Grid columnSpacing={{ lg: 0, sm: 1, md: 3, xs: 2 }} columnGap={{ lg: 2, md: 2, sm: 1, xs: 1 }} sx={{ margin: "auto" }} rowSpacing={4} container alignItems="center"
               justifyContent="center" direction={"row"} >
 
+
+
               {/* Graph of the Calories intake */}
-              <Grid justifyContent="flex-start" alignItems="flex-start" item sm={12} md={6} lg={6} sx={{ borderRadius: "30px", boxShadow: 20, margin: "auto" }}>
-                <Container sx={{ border: "1px  black", backgroundColor: "white" }} maxWidth={false} >
-                  <Typography variant="h6">Calories intake</Typography>
-                  <Caloriegraph setreloader={reloder}/>
-                </Container>
-              </Grid>
+              <CalorieConsumed_graph />
+
+              {/* Graph of the Calories burned */}
+              <CalorieBurnt_graph />
+
+              {/* Graph of the Heart beat */}
+              <CalorieBurnt_graph />
 
 
-              {/* set appointmnets */}
-
-              <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={2}>
-              <SetAppoint setreloderappoint={setreloderappoint}/>
-              </Grid>
+              {/* Graph of the steps */}
+              <Steps_weekly />
 
 
-              {/* Showing Appointments */}
 
 
-              <Grid maxWidth={"500px"} justifyContent="center" alignItems="center" container item sm={5} md={5} lg={2}>
-               <Showappointmentsrec setreloderappoint={reloderappoint} />
-               
-              </Grid>
+
+
 
 
             </Grid>

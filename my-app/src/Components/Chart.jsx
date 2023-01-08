@@ -34,7 +34,7 @@ const SimpleAreaChart = ({arr}) => {
   
   for(var i=0;i<arr.length;i++){
     // names.push({name:arr[i].name,pv:arr[i].uv});
-      data.push({name:arr[i].name,CaloriesConsumed:arr[i].uv});
+      data.push({name:arr[i].name,Health_Record:arr[i].uv});
   }
   // setNames(data)
   // console.log("names======");
@@ -97,12 +97,26 @@ const SimpleAreaChart = ({arr}) => {
 
 
       <BarChart  data={data}>
+      <defs>
+        <linearGradient
+          id="colorUv"
+          x1="0"
+          y1="0"
+          x2="0"
+          y2="100%"
+          spreadMethod="reflect"
+        >
+          <stop offset="0" stopColor="#ffa600" />
+          <stop offset="1" stopColor="#003f5c" />
+        </linearGradient>
+      </defs>
+      
         <CartesianGrid strokeDasharray="6 6" />
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="CaloriesConsumed" fill="#8884d8" />
+        <Bar dataKey="Health_Record" fill="url(#colorUv)" />
       </BarChart>
     </ResponsiveContainer>
   );
