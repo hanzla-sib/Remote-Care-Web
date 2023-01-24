@@ -73,7 +73,7 @@ function Profile() {
       <Box sx={{ background: "linear-gradient(#304352, #3498db);", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
         <Sidebar />
       </Box>
-      <Box  sx={{ overflowY: "auto", height: "93.5vh", flex: 2,marginTop:"20px" }}>
+      <Box  sx={{ overflowY: "auto", height: "93.5vh", flex: 2 }}>
         <Container maxWidth={false}  >
           {/* <Paper
             sx={{
