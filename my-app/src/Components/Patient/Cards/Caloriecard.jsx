@@ -44,7 +44,7 @@ function CalorieCard({setreloader}){
           </Typography>
         
           <Typography gutterBottom variant="h5" component="div">
-            Calories
+            Calories Intake
           </Typography>
           <Typography variant="h5" color="text.secondary">
             {checktrue?post:"0"}

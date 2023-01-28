@@ -47,32 +47,9 @@ function Health_record() {
 
   return (
 
-    <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
-      <Box sx={{ background: "linear-gradient(#304352, #3498db);", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
-        <Sidebar />
-      </Box>
-      <Box pl={"20px"} sx={{ overflowY: "auto", height: "93.5vh", flex: 2, backgroundColor: "#EEEEEE" }}>
-
-      <Grid marginRight={"20px"} maxWidth={"500px"} justifyContent="left" alignItems="center" container item sm={12} md={12} lg={12}>
-
-{/* showing the name of the user */}
-
-<Card style={{ color: '#4AA54E', backgroundColor: '#EEEEEE', border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
-  <CardContent sx={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
-    <Typography variant="h5" component="div" >
-      Hi,
-      {checktrue == true ? post.name : "null"}
-
-
-    </Typography>
-    <Typography variant="body2" component="div">
-      {/* {post.typeofuser} */}
-    </Typography>
-  </CardContent>
-</Card>
-
-
-</Grid>
+   
+     
+      
         <Grid columnSpacing={{ lg: 0, sm: 1, md: 3, xs: 2 }} columnGap={{ lg: 2, md: 2, sm: 1, xs: 1 }} sx={{ margin: "auto" }} rowSpacing={4} container alignItems="center"
           justifyContent="center" direction={"row"} >
         
@@ -80,7 +57,7 @@ function Health_record() {
          <Monthly_calories_Consumed />
 
           {/* Graph of the Calories burned */}
-        <Monthly_calories_Burnt />
+          <Monthly_calories_Burnt />
 
           {/* Graph of the Heart beat */}
           <Monthly_calories_Burnt />
@@ -88,8 +65,8 @@ function Health_record() {
           {/* Graph of the steps */}
           <Steps_Monthly />
         </Grid>
-      </Box>
-    </Stack>
+     
+   
   );
 }
 export default Health_record;

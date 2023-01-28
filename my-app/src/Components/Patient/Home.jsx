@@ -3,7 +3,7 @@ import { Box, Stack } from "@mui/system";
 import Sidebar from "./Sidebar";
 import { Card, CardContent, CardMedia, Grid } from "@mui/material";
 import { Container } from "@mui/system";
-import React, { useContext } from "react";
+import React, { useContext, useRef, useState } from "react";
 // import SimpleAreaChart from "../Chart"
 
 import styled from "@emotion/styled";
@@ -21,7 +21,12 @@ import HeartbeatCard from "./Cards/Heartbeat";
 import Steps_weekly from "./weekly_graphs/Steps_weekly";
 import CalorieBurnt_graph from "./weekly_graphs/Weekly_calories_burnt";
 import CalorieConsumed_graph from "./weekly_graphs/Weekly_calories_consumed";
+import Health_record from "./Health_Record";
+import Show_old_appointment from "./Show_old_appointments_record";
+import Range_weekly_steps from "./Range_graphs/Steps_weekly_range";
+import Range_weekly_burnt_cal from "./Range_graphs/Weekly_calories_burnt_range";
 
+import Range_weekly_Intake_cal from "./Range_graphs/Weekly_calories_consumed_range";
 
 
 const Img = styled('img')({
@@ -36,6 +41,23 @@ const Img = styled('img')({
 
 
 function Home() {
+  const [date1, setDate1] = useState('');
+  const [date2, setDate2] = useState('');
+  const [combinedate,setcombine]=useState([]);
+  const dateInputRef = useRef(null);
+  const [check1,setcheck]=useState(false);
+  const handleChange = (e) => {
+    setDate1(e.target.value);
+  };
+
+  const generategraph = () => {
+    setcombine({from:date1,to:date2});
+    setcheck(true);
+  };
+
+  const handleChange1 = (e) => {
+    setDate2(e.target.value);
+  };
   const { curruser } = useContext(AuthContext);
   const [checktrue, settrue] = React.useState(false);
   const [post, setPost] = React.useState({});
@@ -70,9 +92,7 @@ function Home() {
         <Container disableGutters maxWidth >
           <Grid columnSpacing={{ lg: 0, sm: 1, md: 3, xs: 2 }} columnGap={{ lg: 2, md: 2, sm: 1, xs: 1 }} sx={{ margin: "auto" }} rowSpacing={4} container alignItems="center"
             justifyContent="center" direction={"row"} >
-
-
-            <Grid  maxWidth={"500px"} justifyContent="left" alignItems="center" container item sm={12} md={12} lg={12}>
+            <Grid maxWidth={"500px"} justifyContent="left" alignItems="center" container item sm={12} md={12} lg={12}>
 
               {/* showing the Dashboard */}
 
@@ -96,9 +116,9 @@ function Home() {
 
               {/* showing the name of the user */}
 
-              <Card style={{ color: '#4AA54E', backgroundColor: '#EEEEEE', border: "none", boxShadow: "none" }} sx={{  maxWidth: 400 }}>
+              <Card style={{ color: '#4AA54E', backgroundColor: '#EEEEEE', border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
                 <CardContent sx={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
-                  <Typography variant="h3"  component="div"style={{
+                  <Typography variant="h3" component="div" style={{
                     fontWeight: 900,
                     background: "-webkit-linear-gradient(45deg, #ffa600 30%, #ffa600 90%)",
                     webkitBackgroundClip: "text",
@@ -155,24 +175,32 @@ function Home() {
 
 
             {/* Add Meal funtionality */}
-
+            {/* 
             <Grid item xs={12} container sm={12} md={6} lg={3} justifyContent={"center"} >
               <Meal setreloader={setreloader} />
-            </Grid>
+            </Grid> */}
 
 
             {/* Add Prescription funtionality */}
 
-            <Grid sx={{ marginTop: "40px" }} item xs={12} container sm={12} md={6} lg={5} justifyContent={"flex-end"} >
+            {/* <Grid sx={{ marginTop: "40px" }} item xs={12} container sm={12} md={6} lg={5} justifyContent={"flex-end"} >
               <Prescription />
-            </Grid>
+            </Grid> */}
 
             {/* set appointmnets */}
-
-            <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={3}>
-              <SetAppoint setreloderappoint={setreloderappoint} />
+            <Grid justifyContent="space-evenly" alignItems="center" container item xs={12} sm={12} md={12} lg={12}>
+              <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={4}>
+                {/* <SetAppoint setreloderappoint={setreloderappoint} /> */}
+                <Showappointmentsrec setreloderappoint={reloderappoint} />
+              </Grid>
+              <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={4}>
+                {/* <SetAppoint setreloderappoint={setreloderappoint} /> */}
+                <Show_old_appointment setreloderappoint={reloderappoint} />
+              </Grid>
             </Grid>
-
+            <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={10}>
+              <Typography variant="h5">WEEKLY RECORDS</Typography>
+            </Grid>
 
 
 
@@ -194,19 +222,48 @@ function Home() {
               {/* Graph of the steps */}
               <Steps_weekly />
 
-
-
-
-
-
-
-
             </Grid>
 
 
+            <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={10}>
+              <Typography variant="h5">MONTHLY RECORDS</Typography>
+            </Grid>
+            <Grid columnSpacing={{ lg: 0, sm: 1, md: 3, xs: 2 }} columnGap={{ lg: 2, md: 2, sm: 1, xs: 1 }} sx={{ margin: "auto" }} rowSpacing={4} container alignItems="center"
+              justifyContent="center" direction={"row"}>
+              <Health_record />
+            </Grid>
+
+            <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={10}>
+              <Typography variant="h5">Range Records</Typography>
+            </Grid>
+            <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={10}>
+              <Grid>
+              <Typography>FROM</Typography>
+                <input
+                  type="date"
+                  onChange={handleChange}
+                  ref={dateInputRef}
+                />
+            <Typography>To</Typography>
+                <input
+                  type="date"
+                  onChange={handleChange1}
+                  ref={dateInputRef}
+                />
+              <Button variant="contained" onClick={generategraph}>generate Graph</Button>
+              </Grid>
+
+            </Grid>
+            {check1 == true ?  <Grid columnSpacing={{ lg: 0, sm: 1, md: 3, xs: 2 }} columnGap={{ lg: 2, md: 2, sm: 1, xs: 1 }} sx={{ margin: "auto" }} rowSpacing={4} container alignItems="center"
+              justifyContent="center" direction={"row"}>
+              <Range_weekly_steps dat={{dat1:date1,dat2:date2}}/>
+              <Range_weekly_burnt_cal dat={{dat1:date1,dat2:date2}}/>
+              <Range_weekly_Intake_cal dat={{dat1:date1,dat2:date2}}/>
+            </Grid> : ""}
+           
+
+
           </Grid>
-
-
         </Container>
       </Box>
     </Stack>

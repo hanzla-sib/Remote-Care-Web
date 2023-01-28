@@ -5,17 +5,18 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../../Context/AuthContext";
 import SimpleAreaChart from "../../Chart";
 
-function Steps_Monthly(){
+function Steps_weekly_record({dat}){
     const { curruser } = useContext(AuthContext);
     const [post, setPost] = React.useState([]);
   
   const [error, setError] = React.useState({});
   React.useEffect(() => {
-        
+    
+        // console.log(dat.dat1);
+
     async function fetchData() {
         try {
-            // await delay(1000);
-            const baseURL = "http://localhost:5000/mysql/getStepsgraph_Monthly/" + curruser.email;
+            const baseURL = "http://localhost:5000/mysql/getStepsgraph_weekly_range/" + curruser.email+"/"+dat.dat1+"/"+dat.dat2;
             await axios.get(`${baseURL}`).then((response) => {
                 console.log(response.data);
                 for(var j=0;j<post.length;j++){
@@ -27,11 +28,17 @@ function Steps_Monthly(){
                 }
                 
                 for(var i=countdig;i<response.data.length;i++){
-                  
-                    post.push({name:response.data[i].month,uv:response.data[i].steps});
+                    let date_val=response.data[i].date_log;
+                    let smalldate="";
+                    smalldate+=date_val[5];
+                    smalldate+=date_val[6];
+                    smalldate+=date_val[7];
+                    smalldate+=date_val[8];
+                    smalldate+=date_val[9];
+                    post.push({name:smalldate,uv:response.data[i].steps_daily});
                    
                 } 
-               
+          
             }).catch(error => {
                 setError(error);
             });
@@ -44,14 +51,14 @@ function Steps_Monthly(){
   
 return (
     <React.Fragment>
-            <Grid justifyContent="flex-start" alignItems="flex-start" item sm={12} md={6} lg={5} sx={{ borderRadius: "30px", boxShadow: 20, marginBottom: "10px" }}>
-            <Container sx={{ border: "1px  black", backgroundColor: "white" }} maxWidth={false} >
-              <Typography variant="h6">Steps</Typography>
-              <SimpleAreaChart arr={post} />
-            </Container>
-          </Grid>
+    <Grid justifyContent="flex-start" alignItems="flex-start" item sm={12} md={6} lg={5} sx={{ borderRadius: "30px", boxShadow: 20 , marginBottom:"30px" }}>
+                <Container sx={{ border: "1px  black", backgroundColor: "white" }} maxWidth={false} >
+                  <Typography variant="h6">Steps</Typography>
+                  <SimpleAreaChart arr={post} />
+                </Container>
+              </Grid>
 </React.Fragment>)
 
 }
 
-export default Steps_Monthly
+export default Steps_weekly_record

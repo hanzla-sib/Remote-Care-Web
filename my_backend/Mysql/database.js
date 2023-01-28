@@ -367,6 +367,47 @@ router.route('/getCaloriesConsumedgraph_Monthly/:id').get(async (req, res) => {
 
 
 
+router.route('/getStepsgraph_weekly_range/:id/:from/:to').get(async (req, res) => {
+  var pateintemail = req.params.id;
+  var from = req.params.from;
+  var to = req.params.to;
+ 
 
+ 
+
+
+  const query = 'SELECT * FROM `weekly_steps` ' +
+  'WHERE `Demail`=? AND date_log BETWEEN ? AND ?';
+  
+const values = [pateintemail,from+"T19:00:00.000Z",to+"T19:00:00.000Z"];                                // id >= 2 AND id <= 4
+
+pool.query(query, values, (error, result) => {  // sends queries
+                              
+if (error) throw error;
+res.send(result);
+});
+
+});
+
+
+router.route('/getCaloriegraph/:id/:from/:to').get(async (req, res) => {
+  var pateintemail = req.params.id;
+  var from = req.params.from;
+  var to = req.params.to;
+
+
+  const query = 'SELECT * FROM `consumed_calories` ' +
+  'WHERE `p_email`=? AND date_log BETWEEN ? AND ?';
+  
+const values = [pateintemail,from+"T19:00:00.000Z",to+"T19:00:00.000Z"];                                // id >= 2 AND id <= 4
+
+pool.query(query, values, (error, result) => {  // sends queries
+                              
+if (error) throw error;
+res.send(result);
+});
+
+ 
+});
 
 module.exports = router;

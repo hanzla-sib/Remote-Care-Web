@@ -35,8 +35,8 @@ function Sidebar() {
             </span>
 
 
-            <NavLink style={{ textDecoration: "none", color: "white" }} to="/HealthRecord"> <button
-                className="category-btn">HealthRecord Graph  </button></NavLink>
+            {/* <NavLink style={{ textDecoration: "none", color: "white" }} to="/HealthRecord"> <button
+                className="category-btn">HealthRecord Graph  </button></NavLink> */}
 
 
         <Button onClick={logout}>logout</Button>

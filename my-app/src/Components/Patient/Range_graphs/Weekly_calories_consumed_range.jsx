@@ -5,7 +5,7 @@ import { AuthContext } from "../../../Context/AuthContext";
 import SimpleAreaChart from "../../Chart";
 
 
-function CalorieConsumed_graph({setreloader}) {
+function CalorieConsumed_graph_range({dat}) {
 
     const { curruser } = useContext(AuthContext);
     const [checktrue, settrue] = React.useState(false);
@@ -17,7 +17,8 @@ function CalorieConsumed_graph({setreloader}) {
         async function fetchData() {
             try {
                 // await delay(1000);
-                const baseURL = "http://localhost:5000/mysql/getCaloriegraph/" + curruser.email;
+                const baseURL = "http://localhost:5000/mysql/getCaloriegraph/" + curruser.email+"/"+dat.dat1+"/"+dat.dat2;
+               
                 await axios.get(`${baseURL}`).then((response) => {
                     
                     for(var j=0;j<post.length;j++){
@@ -48,7 +49,7 @@ function CalorieConsumed_graph({setreloader}) {
             }
         };
         fetchData();
-    }, [setreloader]);
+    },[]);
 
     return (
         <React.Fragment>
@@ -62,4 +63,4 @@ function CalorieConsumed_graph({setreloader}) {
     )
 }
 
-export default CalorieConsumed_graph;
+export default CalorieConsumed_graph_range;

@@ -5,7 +5,7 @@ import { AuthContext } from "../../../Context/AuthContext";
 import SimpleAreaChart from "../../Chart";
 
 
-function CalorieConsumed_graph({setreloader}) {
+function CalorieBurnt_graph_range({dat}) {
 
     const { curruser } = useContext(AuthContext);
     const [checktrue, settrue] = React.useState(false);
@@ -17,7 +17,7 @@ function CalorieConsumed_graph({setreloader}) {
         async function fetchData() {
             try {
                 // await delay(1000);
-                const baseURL = "http://localhost:5000/mysql/getCaloriegraph/" + curruser.email;
+                const baseURL = "http://localhost:5000/mysql/getStepsgraph_weekly_range/" + curruser.email+"/"+dat.dat1+"/"+dat.dat2;
                 await axios.get(`${baseURL}`).then((response) => {
                     
                     for(var j=0;j<post.length;j++){
@@ -36,7 +36,7 @@ function CalorieConsumed_graph({setreloader}) {
                         smalldate+=date_val[7];
                         smalldate+=date_val[8];
                         smalldate+=date_val[9];
-                        post.push({name:smalldate,uv:response.data[i].Calories});
+                        post.push({name:smalldate,uv:response.data[i].Burnt_Calories});
                        
                     } 
                    
@@ -48,13 +48,13 @@ function CalorieConsumed_graph({setreloader}) {
             }
         };
         fetchData();
-    }, [setreloader]);
+    },[]);
 
     return (
         <React.Fragment>
         <Grid justifyContent="flex-start" alignItems="flex-start" item sm={12} md={6} lg={5} sx={{ borderRadius: "30px", boxShadow: 20 , marginBottom:"30px" }}>
                     <Container sx={{ border: "1px  black", backgroundColor: "white" }} maxWidth={false} >
-                      <Typography variant="h6">Consumed Intake</Typography>
+                      <Typography variant="h6">Burnt Calories</Typography>
                       <SimpleAreaChart arr={post} />
                     </Container>
                   </Grid>
@@ -62,4 +62,4 @@ function CalorieConsumed_graph({setreloader}) {
     )
 }
 
-export default CalorieConsumed_graph;
+export default CalorieBurnt_graph_range;
