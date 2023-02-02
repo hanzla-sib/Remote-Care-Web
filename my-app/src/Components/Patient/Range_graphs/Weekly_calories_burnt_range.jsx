@@ -20,13 +20,11 @@ function CalorieBurnt_graph_range({dat}) {
                 const baseURL = "http://localhost:5000/mysql/getStepsgraph_weekly_range/" + curruser.email+"/"+dat.dat1+"/"+dat.dat2;
                 await axios.get(`${baseURL}`).then((response) => {
                     
-                    for(var j=0;j<post.length;j++){
-                        post.pop();
-                    }
+                    post.length=0;
                     var countdig=0;
-                    if(response.data.length>=7){
-                        countdig=response.data.length-7;
-                    }
+                    // if(response.data.length>=7){
+                    //     countdig=response.data.length-7;
+                    // }
                     
                     for(var i=countdig;i<response.data.length;i++){
                         let date_val=response.data[i].date_log;
@@ -48,7 +46,7 @@ function CalorieBurnt_graph_range({dat}) {
             }
         };
         fetchData();
-    },[]);
+    },[dat]);
 
     return (
         <React.Fragment>

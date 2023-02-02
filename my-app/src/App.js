@@ -30,7 +30,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route exact path="/" element={<RequireAuth><Home /></RequireAuth>} />
-          <Route exact path="/Profile" element={<RequireAuth><Profile /></RequireAuth>} />
+          {/* <Route exact path="/Profile" element={<RequireAuth><Profile /></RequireAuth>} /> */}
           {/* <Route exact path="/HealthRecord" element={<RequireAuth><Health_record /></RequireAuth>} /> */}
           <Route exact path="/Loginpage" element={<Login />} />
           <Route exact path="/Signup" element={<Signup />} />

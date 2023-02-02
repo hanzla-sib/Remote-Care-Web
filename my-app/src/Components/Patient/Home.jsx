@@ -25,6 +25,7 @@ import Health_record from "./Health_Record";
 import Show_old_appointment from "./Show_old_appointments_record";
 import Range_weekly_steps from "./Range_graphs/Steps_weekly_range";
 import Range_weekly_burnt_cal from "./Range_graphs/Weekly_calories_burnt_range";
+import Tests from "./TestReports";
 
 import Range_weekly_Intake_cal from "./Range_graphs/Weekly_calories_consumed_range";
 
@@ -84,11 +85,11 @@ function Home() {
 
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
-      <Box sx={{ background: "linear-gradient(#16222A, #3A6073);", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
+      <Box sx={{ background: "linear-gradient(#16222A, #3A6073);",minWidth:"150px", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
         <Sidebar />
       </Box>
       {/* HOMEPAGE STARTING */}
-      <Box pl={"20px"} sx={{ overflowY: "auto", height: "93.5vh", flex: 2, backgroundColor: "#EEEEEE" }}>
+      <Box pl={"20px"} sx={{ overflowY: "auto", height: "93.5vh", flex: 1, backgroundColor: "#EEEEEE" }}>
         <Container disableGutters maxWidth >
           <Grid columnSpacing={{ lg: 0, sm: 1, md: 3, xs: 2 }} columnGap={{ lg: 2, md: 2, sm: 1, xs: 1 }} sx={{ margin: "auto" }} rowSpacing={4} container alignItems="center"
             justifyContent="center" direction={"row"} >
@@ -168,7 +169,6 @@ function Home() {
 
               <Grid justifyContent="center" alignItems="center" sx={{ marginTop: "10px" }} item xs={7} sm={5} md={5} lg={2}>
                 <Showappointmentsrec setreloderappoint={reloderappoint} />
-
               </Grid>
 
             </Grid>
@@ -188,16 +188,7 @@ function Home() {
             </Grid> */}
 
             {/* set appointmnets */}
-            <Grid justifyContent="space-evenly" alignItems="center" container item xs={12} sm={12} md={12} lg={12}>
-              <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={4}>
-                {/* <SetAppoint setreloderappoint={setreloderappoint} /> */}
-                <Showappointmentsrec setreloderappoint={reloderappoint} />
-              </Grid>
-              <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={4}>
-                {/* <SetAppoint setreloderappoint={setreloderappoint} /> */}
-                <Show_old_appointment setreloderappoint={reloderappoint} />
-              </Grid>
-            </Grid>
+     
             <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={10}>
               <Typography variant="h5">WEEKLY RECORDS</Typography>
             </Grid>
@@ -231,6 +222,19 @@ function Home() {
             <Grid columnSpacing={{ lg: 0, sm: 1, md: 3, xs: 2 }} columnGap={{ lg: 2, md: 2, sm: 1, xs: 1 }} sx={{ margin: "auto" }} rowSpacing={4} container alignItems="center"
               justifyContent="center" direction={"row"}>
               <Health_record />
+            </Grid>
+
+            <Grid justifyContent="space-evenly" alignItems="center" container item xs={12} sm={12} md={12} lg={12}>
+              <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={4}>
+              <Typography variant="h5">Test Records</Typography>
+                {/* <SetAppoint setreloderappoint={setreloderappoint} /> */}
+                <Tests />
+              </Grid>
+              <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={4}>
+              <Typography variant="h5">Appointment History</Typography>
+                {/* <SetAppoint setreloderappoint={setreloderappoint} /> */}
+                <Show_old_appointment setreloderappoint={reloderappoint} />
+              </Grid>
             </Grid>
 
             <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={10}>

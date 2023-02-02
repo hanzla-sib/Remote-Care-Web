@@ -26,13 +26,13 @@ function Sidebar() {
             }}>
 
             <NavLink  style={{ textDecoration: "none", color: "white" }} to="/"><span> <button
-                className="category-btn">Home </button></span></NavLink>
+                className="category-btn">Home</button></span></NavLink>
 
 
-            <span>
+            {/* <span>
                 <NavLink style={{ textDecoration: "none", color: "white" }} to="/profile"><button
                     className="category-btn">Test Records</button></NavLink>
-            </span>
+            </span> */}
 
 
             {/* <NavLink style={{ textDecoration: "none", color: "white" }} to="/HealthRecord"> <button

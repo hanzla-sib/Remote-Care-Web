@@ -14,15 +14,17 @@ import {
 
 
 
-const SimpleAreaChart = ({arr}) => {
+const Rangechart = ({arr}) => {
   
   let changevariable = 0;
   const [width, setWidth] = React.useState(window.innerWidth);
   const breakpoint = 1330;
 
  let data=[];
-
+//  console.log("''''''''''''''''''''''''''");
+//  console.log(arr);
  for(var i=0;i<arr.length;i++){
+    
      data.push({name:arr[i].name,Health_Record:arr[i].uv});
  }
 
@@ -110,4 +112,4 @@ const SimpleAreaChart = ({arr}) => {
 };
 
 
-export default SimpleAreaChart;
+export default Rangechart;

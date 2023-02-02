@@ -145,21 +145,21 @@ router.route('/RejectAppointment').post(async (req, res, next) => {
 router.route('/AcceptAppointment').post(async (req, res, next) => {
   var docemail = req.body.doc_email;
   var patemail = req.body.pat_email;
-  var time=req.body.time1;
-  var date=req.body.date1;
+  var time = req.body.time1;
+  var date = req.body.date1;
 
   console.log(docemail);
 
 
   var sql = "UPDATE patient_appointment SET appoint_status = 'Accepted',Time1 = ?,Date1 = ? WHERE p_email = ? AND d_email = ?";
-  pool.query(sql, [time,date,patemail, docemail], function (err, result) {
+  pool.query(sql, [time, date, patemail, docemail], function (err, result) {
     if (err) throw err;
     console.log(result.affectedRows + " record(s) updated");
   });
 
 
   var sql = "UPDATE doctor_appointment SET appoint_status = 'Accepted',Time1 = ?,Date1 = ? WHERE p_email = ? AND d_email = ?";
-  pool.query(sql, [time,date,patemail, docemail], function (err, result) {
+  pool.query(sql, [time, date, patemail, docemail], function (err, result) {
     if (err) throw err;
     console.log(result.affectedRows + " record(s) updated");
   });
@@ -239,13 +239,13 @@ router.route('/queryfood').post((req, res) => {
           foodname: userJson.Namefood,
           calorie: obj.items[0].calories
         };
-        
+
         var date_time = new Date();
-var day = ("0" + date_time.getDate()).slice(-2);
-var month = ("0" + (date_time.getMonth() + 1)).slice(-2);
-var year = date_time.getFullYear();
-   
-var date = year + "-" + month + "-" + day;
+        var day = ("0" + date_time.getDate()).slice(-2);
+        var month = ("0" + (date_time.getMonth() + 1)).slice(-2);
+        var year = date_time.getFullYear();
+
+        var date = year + "-" + month + "-" + day;
         //===============
 
         var check = false;
@@ -281,7 +281,7 @@ var date = year + "-" + month + "-" + day;
 
         });
         console.log(check);
-      
+
 
       }
     });
@@ -297,7 +297,7 @@ router.route('/getCaloriegraph/:id').get(async (req, res) => {
   var pateintemail = req.params.id;
   var sql = 'select * FROM consumed_calories where p_email = ?';
 
-  pool.query(sql,[pateintemail],function (err, result) {
+  pool.query(sql, [pateintemail], function (err, result) {
     if (err) throw err;
     res.send(result);
     // console.log(result);
@@ -310,7 +310,7 @@ router.route('/getSteps/:id').get(async (req, res) => {
   // console.log(pateintemail);
   var sql = 'select * FROM daily_steps where Demail = ?';
 
-  pool.query(sql,[pateintemail],function (err, result) {
+  pool.query(sql, [pateintemail], function (err, result) {
     if (err) throw err;
     res.send(result);
   });
@@ -321,7 +321,7 @@ router.route('/getStepsgraph_weekly/:id').get(async (req, res) => {
   var pateintemail = req.params.id;
   var sql = 'select * FROM weekly_steps where Demail = ?';
 
-  pool.query(sql,[pateintemail],function (err, result) {
+  pool.query(sql, [pateintemail], function (err, result) {
     if (err) throw err;
     res.send(result);
     // console.log(result);
@@ -334,7 +334,7 @@ router.route('/getStepsgraph_Monthly/:id').get(async (req, res) => {
   var pateintemail = req.params.id;
   var sql = 'select extract(MONTH from date_log) as month,sum(steps_daily) as steps from weekly_steps where Demail = ?  group by month';
 
-  pool.query(sql,[pateintemail],function (err, result) {
+  pool.query(sql, [pateintemail], function (err, result) {
     if (err) throw err;
     res.send(result);
     // console.log(result);
@@ -346,7 +346,7 @@ router.route('/getCaloriesBurntgraph_Monthly/:id').get(async (req, res) => {
   var pateintemail = req.params.id;
   var sql = 'select extract(MONTH from date_log) as month,sum(Burnt_Calories) as totalburntCalories from weekly_steps where Demail = ?  group by month';
 
-  pool.query(sql,[pateintemail],function (err, result) {
+  pool.query(sql, [pateintemail], function (err, result) {
     if (err) throw err;
     res.send(result);
     // console.log(result);
@@ -358,7 +358,7 @@ router.route('/getCaloriesConsumedgraph_Monthly/:id').get(async (req, res) => {
   var pateintemail = req.params.id;
   var sql = 'select extract(MONTH from date_log) as month,sum(Calories) as totalConsumedCalories from consumed_calories where p_email = ?  group by month';
 
-  pool.query(sql,[pateintemail],function (err, result) {
+  pool.query(sql, [pateintemail], function (err, result) {
     if (err) throw err;
     res.send(result);
     // console.log(result);
@@ -371,21 +371,21 @@ router.route('/getStepsgraph_weekly_range/:id/:from/:to').get(async (req, res) =
   var pateintemail = req.params.id;
   var from = req.params.from;
   var to = req.params.to;
- 
 
- 
+
+
 
 
   const query = 'SELECT * FROM `weekly_steps` ' +
-  'WHERE `Demail`=? AND date_log BETWEEN ? AND ?';
-  
-const values = [pateintemail,from+"T19:00:00.000Z",to+"T19:00:00.000Z"];                                // id >= 2 AND id <= 4
+    'WHERE `Demail`=? AND date_log BETWEEN ? AND ?';
 
-pool.query(query, values, (error, result) => {  // sends queries
-                              
-if (error) throw error;
-res.send(result);
-});
+  const values = [pateintemail, from + "T19:00:00.000Z", to + "T19:00:00.000Z"];                                // id >= 2 AND id <= 4
+
+  pool.query(query, values, (error, result) => {  // sends queries
+
+    if (error) throw error;
+    res.send(result);
+  });
 
 });
 
@@ -397,17 +397,29 @@ router.route('/getCaloriegraph/:id/:from/:to').get(async (req, res) => {
 
 
   const query = 'SELECT * FROM `consumed_calories` ' +
-  'WHERE `p_email`=? AND date_log BETWEEN ? AND ?';
-  
-const values = [pateintemail,from+"T19:00:00.000Z",to+"T19:00:00.000Z"];                                // id >= 2 AND id <= 4
+    'WHERE `p_email`=? AND date_log BETWEEN ? AND ?';
 
-pool.query(query, values, (error, result) => {  // sends queries
-                              
-if (error) throw error;
-res.send(result);
+  const values = [pateintemail, from + "T19:00:00.000Z", to + "T19:00:00.000Z"];
+
+  pool.query(query, values, (error, result) => {  // sends queries
+
+    if (error) throw error;
+    res.send(result);
+  });
+
+
 });
 
- 
+router.route('/get_appointment_history/:id').get(async (req, res) => {
+  var pateintemail = req.params.id;
+
+  var sql = 'SELECT * FROM appointment_history WHERE p_email = ?';
+  pool.query(sql, [pateintemail], function (err, result) {
+    if (err) throw err;
+    res.send(result);
+
+  });
 });
+
 
 module.exports = router;

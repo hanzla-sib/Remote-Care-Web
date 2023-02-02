@@ -17,7 +17,7 @@ function Show_old_appointment({setreloderappoint}) {
         try {
             // await delay(1000);
             var array1 = [{}];
-            const baseURL = "http://localhost:5000/mysql/get_pending_and_confirmed_appoint/" + curruser.email;
+            const baseURL = "http://localhost:5000/mysql/get_appointment_history/" + curruser.email;
             await axios.get(`${baseURL}`).then((response) => {
                 // console.log(response.data);
                 for (var i = 0; i < response.data.length; i++) {
@@ -43,22 +43,22 @@ function Show_old_appointment({setreloderappoint}) {
             <CardContent >
             <Typography display={"none"}>{setreloderappoint}</Typography>
                 <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', backgroundColor: "black" ,marginBottom: "10px"}}>
-                    <Typography style={{ color: "white" }} variant="h6">Appointment History</Typography>
+                    {/* <Typography style={{ color: "white" }} variant="h6">Appointment History</Typography> */}
                     {getallapppoint.map((value) => (
                          <ListItem sx={{ backgroundColor: "white" ,border: "0px solid black", boxShadow: 3, borderRadius: "50px",marginBottom: "10px"}}  >
 
                             <ListItemText  style={{  color: "black", textAlign:"center" }} sx={{border: "0px solid black", boxShadow: 3, borderRadius: "50px"}}
-                                primary={value.d_name}
+                                primary={"DR. "+value.d_name}
                                 secondary={
                                     <React.Fragment>
+                                      
                                         <Typography  style={{ color: "green" }}
                                             sx={{ display: 'inline', justifyItems:"center" }}
                                             component="span"
                                             variant="body2"
                                             color="text.primary"
                                         >
-                                            {value.Date1 ? value.appoint_status + " Meet me : " + value.Date1 + " " + value.Time1 : value.appoint_status}
-
+                                            {value.Date1 ?  " Appointment done : " + value.Date1 + " ": ""}
                                         </Typography>
                                         <Divider color="#FDA228" sx={{ height: 3 }} />
                                     </React.Fragment>

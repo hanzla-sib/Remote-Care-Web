@@ -1,36 +1,15 @@
-import { Avatar, Button, Card, CardActionArea, CardContent, CardHeader, CardMedia, Grid, ImageListItemBar, ListSubheader, Typography } from "@mui/material";
-import { Box, Container, Stack } from "@mui/system";
-
-
-import { auth } from "../../Firebase/firebase-config";
+import { Button, Card, CardContent, Divider, List, ListItem, ListItemText, Typography } from "@mui/material";
+import { textAlign } from "@mui/system";
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContext";
-import Lightbox from 'react-18-image-lightbox';
-import 'react-18-image-lightbox/style.css';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-
-
-
 
 
 function Tests() {
   const { curruser } = useContext(AuthContext);
+  const [error, setError] = React.useState({});
   const [post, setPost] = React.useState([]);
-  const [error, setError] = React.useState([]);
-
-  const [isOpen, setIsOpen] = useState(false);
-  const [imgIndex, setImgIndex] = useState(0);
-  const [valueimg, setvalueimg] = useState("");
-
-
-  function clickme(val) {
-    setvalueimg(val);
-    setIsOpen(true);
-
-  }
-
+  const [getallapppoint, fetallappoint] = React.useState([{}]);
   React.useEffect(() => {
     fetchData();
   }, []);
@@ -38,31 +17,19 @@ function Tests() {
   async function fetchData() {
     try {
       // var array1 = [{img:"",det:""}];
-    
+
       // await delay(1000);
       const baseURL = "http://localhost:5000/mysql/get_test_record/" + curruser.email;
-      for(var j=0;j<post.length;j++){
+
+      for (var j = 0; j < post.length; j++) {
         post.pop();
-    }
+      }
       await axios.get(`${baseURL}`).then((response) => {
+        console.log("ssssss");
+        console.log(response.data);
         for (var i = 0; i < response.data.length; i++) {
-          // array1[0] = response.data[i].imageurl;
-          // array1[1] = response.data[1].imageurl;
-          // array1[2] = response.data[i].imageurl;
-          // array1[3] = response.data[1].imageurl;
-          // array1[4] = response.data[i].imageurl;
-          // array1[5] = response.data[1].imageurl;
-          // array1[6] = response.data[i].imageurl;
-          // array2[0] = response.data[i].details;
-          // array2[1] = response.data[1].details;
-          // array2[2] = response.data[i].details;
-          // array2[3] = response.data[1].details;
-          // array2[4] = response.data[i].details;
-          // array2[5] = response.data[1].details;
-          // array2[6] = response.data[i].details;
-          post.push({img:response.data[i].imageurl,det:response.data[i].details});
 
-
+          post.push({ img: response.data[i].image_link, det: response.data[i].details });
         }
         // setPost(array1);
       }).catch(error => {
@@ -72,46 +39,46 @@ function Tests() {
       console.error(e);
     }
   };
+
+
+
+
   return (
-    <React.Fragment>
+    <Card style={{ border: "none" }} sx={{ maxWidth: 300, maxHeight: 365, minHeight: 365, overflow: "auto", borderRadius: "30px", boxShadow: "20", backgroundColor: "black", marginBottom: "20px", marginTop: "10px" }}>
+      <CardContent >
 
-      <div className="app">
-   
+        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', backgroundColor: "black", marginBottom: "10px" }}>
+          {/* <Typography style={{ color: "white" }} variant="h6">TEST RECORDS</Typography> */}
+          {post.map((value) => (
+            <ListItem sx={{ backgroundColor: "white", border: "0px solid black", boxShadow: 3, borderRadius: "50px", marginBottom: "10px" }}  >
 
-        {isOpen && <Lightbox
-         
-          mainSrc={`http://localhost/smd_project/${valueimg}`}
+              <ListItemText style={{ color: "black", textAlign: "center" }} sx={{ border: "0px solid black", boxShadow: 3, borderRadius: "50px" }}
+                primary={value.det}
+                secondary={
+                  <React.Fragment>
+                    <Typography style={{ color: "green" }}
+                      sx={{ display: 'inline', justifyItems: "center" }}
+                      component="span"
+                      variant="body2"
+                      color="text.primary"
+                    >
+                      <a href={value.img} target="_blank">
+                      <Button variant="contained">open</Button>
+                      </a>
 
-          onCloseRequest={() => setIsOpen(false)}
+                    </Typography>
+                    <Divider color="#FDA228" sx={{ height: 3 }} />
+                  </React.Fragment>
+                }
+              />
+            </ListItem>
+          ))}
 
-        />}
-      </div>
-
-    <ImageList sx={{ width:1250, height: 450 }} cols={6} rowHeight={164}>
-        {post.map((value) => (
-          <ImageListItem sx={{margin:"20px"}} onClick={() => clickme(value.img)} key={value}>
-            <img
-              src={`http://localhost/smd_project/${value.img}`}
-              loading="lazy"
-            />
-             <ImageListItemBar
-            title={value.det}
-            
-           
-    
-          />
-       
-          </ImageListItem>
-          
-        ))}
-      </ImageList>
-    
-
-
-    </React.Fragment>
-
-
+        </List>
+      </CardContent>
+    </Card>
   )
+
 }
 
 export default Tests;
