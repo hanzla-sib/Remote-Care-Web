@@ -421,5 +421,15 @@ router.route('/get_appointment_history/:id').get(async (req, res) => {
   });
 });
 
+router.route('/get_all_patients').get(async (req, res) => {
+
+var usertype="1";
+  var sql = 'select * FROM user where user_type = ?';
+  pool.query(sql, [usertype], function (err, result) {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
 
 module.exports = router;

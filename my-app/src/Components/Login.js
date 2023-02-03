@@ -86,6 +86,9 @@ function Login() {
                 else if(response.data.user_type==="2"){
                     navigate("/DoctorHome");
                 }
+                else if(response.data.user_type==="0"){
+                    navigate("/ADMIN");
+                }
                 else{
                     alert("Email not found in MYSQL DB");
                 }

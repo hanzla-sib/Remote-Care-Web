@@ -12,7 +12,9 @@ import Patientdeatils from "./Components/Doctor/Patientdeatils";
 import DoctorPrescription from "./Components/Doctor/DoctorPrescriptionDetails";
 import {useContext } from "react";
 import { AuthContext } from "./Context/AuthContext";
-import Health_record from "./Components/Patient/Health_Record";
+import Adminhome from "./Components/Admin/Adminhome";
+import Patient_data from "./Components/Admin/PatientsData";
+
 
 function App() {
 
@@ -38,6 +40,8 @@ function App() {
           <Route exact path="/Dprofile" element={<RequireAuth><DoctorProfile /></RequireAuth>} />
           <Route exact path="/Dpatientdeatils" element={<RequireAuth><Patientdeatils /></RequireAuth>} />
           <Route exact path="/Dprescription" element={<RequireAuth><DoctorPrescription /></RequireAuth>} />
+          <Route exact path="/ADMIN" element={<RequireAuth><Adminhome /></RequireAuth>} />
+          <Route exact path="/patienthistoryadmin" element={<RequireAuth><Patient_data /></RequireAuth>} />
         </Routes>
       </Box>
     </BrowserRouter>
