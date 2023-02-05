@@ -39,28 +39,30 @@ function Show_old_appointment({setreloderappoint}) {
 
 
     return (
-        <Card style={{ border: "none" }} sx={{  maxWidth: 400,maxHeight:365,minHeight:365, overflow:"auto", borderRadius: "30px", boxShadow: "20", backgroundColor: "black", marginBottom: "20px" ,marginTop:"10px"}}>
+        <Card style={{ border: "none" }} sx={{  maxWidth: 400,maxHeight:365,minHeight:365, overflow:"auto", borderRadius: "30px", boxShadow: "10", backgroundColor: "#EEEEEE", marginBottom: "20px" ,marginTop:"10px"}}>
             <CardContent >
             <Typography display={"none"}>{setreloderappoint}</Typography>
-                <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', backgroundColor: "black" ,marginBottom: "10px"}}>
+                <List sx={{ width: '100%', maxWidth: 360, bgcolor: '#EEEEEE', backgroundColor: "#EEEEEE" ,marginBottom: "5px"}}>
                     {/* <Typography style={{ color: "white" }} variant="h6">Appointment History</Typography> */}
                     {getallapppoint.map((value) => (
-                         <ListItem sx={{ backgroundColor: "white" ,border: "0px solid black", boxShadow: 3, borderRadius: "50px",marginBottom: "10px"}}  >
+                       
+                         <ListItem sx={{ backgroundColor: "lightsteelblue" ,border: "0px solid black", boxShadow: 8, borderRadius: "50px",marginBottom: "20px"}}  >
 
-                            <ListItemText  style={{  color: "black", textAlign:"center" }} sx={{border: "0px solid black", boxShadow: 3, borderRadius: "50px"}}
-                                primary={"DR. "+value.d_name}
+                            <ListItemText  style={{  color: "black", textAlign:"center" }} sx={{ border: "0px solid black", boxShadow: 5, borderRadius: "20px",margin:"10px"}}
+                               
+                                primary=<Typography sx={{fontSize:"18px"}} variant="subtitle1">{"DR. "+value.d_name}</Typography>
                                 secondary={
                                     <React.Fragment>
                                       
                                         <Typography  style={{ color: "green" }}
                                             sx={{ display: 'inline', justifyItems:"center" }}
                                             component="span"
-                                            variant="body2"
+                                            variant="body1"
                                             color="text.primary"
                                         >
                                             {value.Date1 ?  " Appointment done : " + value.Date1 + " ": ""}
                                         </Typography>
-                                        <Divider color="#FDA228" sx={{ height: 3 }} />
+                                        
                                     </React.Fragment>
                                 }
                             />

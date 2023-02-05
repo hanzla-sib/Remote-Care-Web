@@ -11,25 +11,16 @@ function Steps_weekly_record({dat}){
   
   const [error, setError] = React.useState({});
   React.useEffect(() => {
-    console.log("---------------------------------------");
-        console.log(dat.dat1);
+  
 
     async function fetchData() {
         try {
             const baseURL = "http://localhost:5000/mysql/getStepsgraph_weekly_range/" + curruser.email+"/"+dat.dat1+"/"+dat.dat2;
             await axios.get(`${baseURL}`).then((response) => {
-                // console.log("---------------------------------------");
-                // console.log(response.data);
-                // for(var j=0;j<post.length;j++){
-                //     post.pop();
-                // }
+             
                 post.length=0;
                 var countdig=0;
-                // if(response.data.length>=7){
-                //     countdig=response.data.length-7;
-                // }
-                // console.log("''''''''''''''''''''''''''");
-                // console.log(post);
+               
                 for(var i=countdig;i<response.data.length;i++){
                     let date_val=response.data[i].date_log;
                     let smalldate="";

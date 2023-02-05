@@ -18,9 +18,7 @@ function Caloriegraph({setreloader}) {
                 const baseURL = "http://localhost:5000/mysql/getCaloriegraph/" + curruser.email;
                 await axios.get(`${baseURL}`).then((response) => {
                     
-                    for(var j=0;j<post.length;j++){
-                        post.pop();
-                    }
+                    post.length=0;
                     for(var i=0;i<response.data.length;i++){
                         post.push({name:response.data[i].date_log,uv:response.data[i].Calories});
                         

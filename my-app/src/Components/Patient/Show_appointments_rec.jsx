@@ -39,16 +39,16 @@ function Show_appointments_rec({setreloderappoint}) {
 
 
     return (
-        <Card style={{ border: "none" }} sx={{  maxWidth: 400,maxHeight:365,minHeight:365, overflow:"auto", borderRadius: "30px", boxShadow: "20", backgroundColor: "black", marginBottom: "20px" ,marginTop:"10px"}}>
+        <Card style={{ border: "none" }} sx={{  maxWidth: 400,maxHeight:365,minHeight:365, overflow:"auto", borderRadius: "30px", boxShadow: "20", backgroundColor: "#EEEEEE", marginBottom: "20px" ,marginTop:"10px"}}>
             <CardContent >
             <Typography display={"none"}>{setreloderappoint}</Typography>
-                <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', backgroundColor: "black" ,marginBottom: "10px"}}>
-                    <Typography style={{ color: "white" }} variant="h6">Appointments Status</Typography>
+            <List sx={{ width: '100%', maxWidth: 360, bgcolor: '#EEEEEE', backgroundColor: "#EEEEEE" ,marginBottom: "5px"}}>
+                    <Typography style={{ color: "black" }} variant="h6">Appointments Status</Typography>
                     {getallapppoint.map((value) => (
-                         <ListItem sx={{ backgroundColor: "white" ,border: "0px solid black", boxShadow: 3, borderRadius: "50px",marginBottom: "10px"}}  >
+                        <ListItem sx={{ backgroundColor: "lightsteelblue" ,border: "0px solid black", boxShadow: 8, borderRadius: "50px",marginBottom: "20px"}}  >
 
-                            <ListItemText  style={{  color: "black", textAlign:"center" }} sx={{border: "0px solid black", boxShadow: 3, borderRadius: "50px"}}
-                                primary={value.d_name}
+                        <ListItemText  style={{  color: "black", textAlign:"center" }} sx={{ border: "0px solid black", boxShadow: 5, borderRadius: "20px",margin:"10px"}}
+                                primary=<Typography sx={{fontSize:"16px"}} variant="subtitle1">{"DR. "+value.d_name}</Typography>
                                 secondary={
                                     <React.Fragment>
                                         <Typography  style={{ color: "green" }}
@@ -60,7 +60,7 @@ function Show_appointments_rec({setreloderappoint}) {
                                             {value.Date1 ? value.appoint_status + " Meet me : " + value.Date1 + " " + value.Time1 : value.appoint_status}
 
                                         </Typography>
-                                        <Divider color="#FDA228" sx={{ height: 3 }} />
+                                        
                                     </React.Fragment>
                                 }
                             />

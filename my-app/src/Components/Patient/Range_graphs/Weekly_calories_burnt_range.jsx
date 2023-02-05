@@ -22,10 +22,7 @@ function CalorieBurnt_graph_range({dat}) {
                     
                     post.length=0;
                     var countdig=0;
-                    // if(response.data.length>=7){
-                    //     countdig=response.data.length-7;
-                    // }
-                    
+                
                     for(var i=countdig;i<response.data.length;i++){
                         let date_val=response.data[i].date_log;
                         let smalldate="";

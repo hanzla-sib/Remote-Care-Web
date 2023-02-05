@@ -38,8 +38,7 @@ function Profile() {
   const [email, setemail] = React.useState("user");
   const [error, setError] = React.useState({});
   const { curruser } = useContext(AuthContext);
-  console.log("====================");
-  console.log(curruser.email);
+
 
   React.useEffect(() => {
     async function fetchData() {
@@ -48,7 +47,7 @@ function Profile() {
         const baseURL = "http://localhost:5000/mysql/get_user_type/" + curruser.email;
 
         await axios.get(`${baseURL}`).then((response) => {
-          console.log(response.data.imageurl);
+       
           setPost(response.data.imageurl);
           setname(response.data.name);
           setemail(response.data.email);

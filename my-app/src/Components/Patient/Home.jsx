@@ -9,10 +9,7 @@ import React, { useContext, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import axios from "axios";
 import { auth } from "../../Firebase/firebase-config"
-import StaticTimePickerDemo from "../Time";
-import SetAppoint from "./SetAppointments";
-import Prescription from "./Prescription";
-import Meal from "./Meal";
+
 import { AuthContext } from "../../Context/AuthContext";
 import Showappointmentsrec from "./Show_appointments_rec";
 import CalorieCard from "./Cards/Caloriecard";
@@ -36,23 +33,20 @@ const Img = styled('img')({
   maxWidth: '100%',
   maxHeight: '100%',
 });
-// const delay = ms => new Promise(
-//   resolve => setTimeout(resolve, ms)
-// );
 
 
 function Home() {
   const [date1, setDate1] = useState('');
   const [date2, setDate2] = useState('');
-  const [combinedate,setcombine]=useState([]);
+  const [combinedate, setcombine] = useState([]);
   const dateInputRef = useRef(null);
-  const [check1,setcheck]=useState(false);
+  const [check1, setcheck] = useState(false);
   const handleChange = (e) => {
     setDate1(e.target.value);
   };
 
   const generategraph = () => {
-    setcombine({from:date1,to:date2});
+    setcombine({ from: date1, to: date2 });
     setcheck(true);
   };
 
@@ -60,9 +54,8 @@ function Home() {
     setDate2(e.target.value);
   };
   const { curruser } = useContext(AuthContext);
-  
-  console.log("hommee curruser");
-  console.log(curruser);
+
+
   const [checktrue, settrue] = React.useState(false);
   const [post, setPost] = React.useState({});
   const [error, setError] = React.useState({});
@@ -88,7 +81,7 @@ function Home() {
 
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
-      <Box sx={{ background: "linear-gradient(#16222A, #3A6073);",minWidth:"150px", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
+      <Box sx={{ background: "linear-gradient(#16222A, #3A6073);", minWidth: "150px", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
         <Sidebar />
       </Box>
       {/* HOMEPAGE STARTING */}
@@ -116,31 +109,7 @@ function Home() {
             </Grid>
 
 
-            <Grid maxWidth={"500px"} justifyContent="center" alignItems="center" container item sm={12} md={12} lg={12}>
 
-              {/* showing the name of the user */}
-
-              <Card style={{ color: '#4AA54E', backgroundColor: '#EEEEEE', border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }}>
-                <CardContent sx={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
-                  <Typography variant="h3" component="div" style={{
-                    fontWeight: 900,
-                    background: "-webkit-linear-gradient(45deg, #ffa600 30%, #ffa600 90%)",
-                    webkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }} >
-                    Hi,
-                    {checktrue == true ? post.name : "null"}
-
-
-                  </Typography>
-                  <Typography variant="body2" component="div">
-                    {/* {post.typeofuser} */}
-                  </Typography>
-                </CardContent>
-              </Card>
-
-
-            </Grid>
 
 
 
@@ -191,7 +160,7 @@ function Home() {
             </Grid> */}
 
             {/* set appointmnets */}
-     
+
             <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={10}>
               <Typography variant="h5">WEEKLY RECORDS</Typography>
             </Grid>
@@ -229,12 +198,12 @@ function Home() {
 
             <Grid justifyContent="space-evenly" alignItems="center" container item xs={12} sm={12} md={12} lg={12}>
               <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={4}>
-              <Typography variant="h5">Test Records</Typography>
+                <Typography variant="h5">Test Records</Typography>
                 {/* <SetAppoint setreloderappoint={setreloderappoint} /> */}
                 <Tests />
               </Grid>
               <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={4}>
-              <Typography variant="h5">Appointment History</Typography>
+                <Typography variant="h5">Appointment History</Typography>
                 {/* <SetAppoint setreloderappoint={setreloderappoint} /> */}
                 <Show_old_appointment setreloderappoint={reloderappoint} />
               </Grid>
@@ -245,29 +214,29 @@ function Home() {
             </Grid>
             <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={10}>
               <Grid>
-              <Typography>FROM</Typography>
+                <Typography>FROM</Typography>
                 <input
                   type="date"
                   onChange={handleChange}
                   ref={dateInputRef}
                 />
-            <Typography>To</Typography>
+                <Typography>To</Typography>
                 <input
                   type="date"
                   onChange={handleChange1}
                   ref={dateInputRef}
                 />
-              <Button variant="contained" onClick={generategraph}>generate Graph</Button>
+                <Button variant="contained" onClick={generategraph}>generate Graph</Button>
               </Grid>
 
             </Grid>
-            {check1 == true ?  <Grid columnSpacing={{ lg: 0, sm: 1, md: 3, xs: 2 }} columnGap={{ lg: 2, md: 2, sm: 1, xs: 1 }} sx={{ margin: "auto" }} rowSpacing={4} container alignItems="center"
+            {check1 == true ? <Grid columnSpacing={{ lg: 0, sm: 1, md: 3, xs: 2 }} columnGap={{ lg: 2, md: 2, sm: 1, xs: 1 }} sx={{ margin: "auto" }} rowSpacing={4} container alignItems="center"
               justifyContent="center" direction={"row"}>
-              <Range_weekly_steps dat={{dat1:date1,dat2:date2}}/>
-              <Range_weekly_burnt_cal dat={{dat1:date1,dat2:date2}}/>
-              <Range_weekly_Intake_cal dat={{dat1:date1,dat2:date2}}/>
+              <Range_weekly_steps dat={{ dat1: date1, dat2: date2 }} />
+              <Range_weekly_burnt_cal dat={{ dat1: date1, dat2: date2 }} />
+              <Range_weekly_Intake_cal dat={{ dat1: date1, dat2: date2 }} />
             </Grid> : ""}
-           
+
 
 
           </Grid>

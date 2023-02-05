@@ -20,9 +20,7 @@ function CalorieBurnt_graph({setreloader}) {
                 const baseURL = "http://localhost:5000/mysql/getStepsgraph_weekly/" + curruser.email;
                 await axios.get(`${baseURL}`).then((response) => {
                     
-                    for(var j=0;j<post.length;j++){
-                        post.pop();
-                    }
+                  post.length=0;
                     var countdig=0;
                     if(response.data.length>=7){
                         countdig=response.data.length-7;

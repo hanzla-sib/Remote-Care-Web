@@ -33,8 +33,7 @@ function CaloriesBurned() {
     // await delay(1000);
     call.push({name:"2022-12-21",uv:1000});
     const baseURL = "http://localhost:5000/Usersfunctions/read/"+curruser.email;
-    // console.log("===================",auth.currentUser.email)
-    // console.log("data    ",auth.currentUser);
+ 
     await axios.get(`${baseURL}`).then((response) => {
       setPost(response.data);
       settrue(true);

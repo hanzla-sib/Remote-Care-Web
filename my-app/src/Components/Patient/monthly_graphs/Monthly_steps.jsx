@@ -17,10 +17,8 @@ function Steps_Monthly(){
             // await delay(1000);
             const baseURL = "http://localhost:5000/mysql/getStepsgraph_Monthly/" + curruser.email;
             await axios.get(`${baseURL}`).then((response) => {
-                console.log(response.data);
-                for(var j=0;j<post.length;j++){
-                    post.pop();
-                }
+              
+              post.length=0;
                 var countdig=0;
                 if(response.data.length>=7){
                     countdig=response.data.length-7;

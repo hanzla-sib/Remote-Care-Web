@@ -21,7 +21,7 @@ function StepCard(){
         // await delay(1000);
         const baseURL = "http://localhost:5000/mysql/getSteps/" + curruser.email;
         await axios.get(`${baseURL}`).then((response) => {
-         console.log(response.data);
+        //  console.log(response.data);
           setPost({daily_steps:response.data[0].steps_daily,status:response.data[0].motion});
           settrue(true);
         }).catch(error => {
