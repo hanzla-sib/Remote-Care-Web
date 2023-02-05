@@ -427,9 +427,23 @@ var usertype="1";
   var sql = 'select * FROM user where user_type = ?';
   pool.query(sql, [usertype], function (err, result) {
     if (err) throw err;
-    console.log(result);
+    // console.log(result);
     res.send(result);
   });
 });
+
+
+router.route('/get_all_users_admin').get(async (req, res) => {
+
+  var usertype1="1";
+  var usertype2="2";
+    var sql = 'select * FROM user';
+    pool.query(sql,function (err, result) {
+      if (err) throw err;
+      console.log(result);
+      res.send(result);
+    });
+  });
+  
 
 module.exports = router;

@@ -25,7 +25,7 @@ function Sidebar() {
                 alignItems: "center"
             }}>
 
-            <NavLink  style={{ textDecoration: "none", color: "white" }} to="/"><span> <button
+            <NavLink  style={{ textDecoration: "none", color: "white" }} to="/homepat"><span> <button
                 className="category-btn">Home</button></span></NavLink>
 
 

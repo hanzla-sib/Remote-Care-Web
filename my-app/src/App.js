@@ -19,11 +19,12 @@ import Patient_data from "./Components/Admin/PatientsData";
 function App() {
 
   const { curruser } = useContext(AuthContext);
+  console.log("curruser");
   console.log(curruser);
   // const curruser=false;
 
   const RequireAuth = ({ children }) => {
-    return curruser ? (children) : <Navigate to={"/Signup"} />
+    return curruser ? (children) : <Navigate to={"/"} />
   }
   console.log("userStatus  " + curruser);
   return (
@@ -31,11 +32,9 @@ function App() {
       <Box sx={{ backgroundColor: "white" }}>
         <Navbar />
         <Routes>
-          <Route exact path="/" element={<RequireAuth><Home /></RequireAuth>} />
-          {/* <Route exact path="/Profile" element={<RequireAuth><Profile /></RequireAuth>} /> */}
-          {/* <Route exact path="/HealthRecord" element={<RequireAuth><Health_record /></RequireAuth>} /> */}
-          <Route exact path="/Loginpage" element={<Login />} />
-          <Route exact path="/Signup" element={<Signup />} />
+          <Route exact path="/homepat" element={<RequireAuth><Home /></RequireAuth>} />
+          <Route exact path="/" element={<Login />} />
+          {/* <Route exact path="/Signup" element={<Signup />} /> */}
           <Route exact path="/DoctorHome" element={<RequireAuth><DoctorHome /></RequireAuth>} />
           <Route exact path="/Dprofile" element={<RequireAuth><DoctorProfile /></RequireAuth>} />
           <Route exact path="/Dpatientdeatils" element={<RequireAuth><Patientdeatils /></RequireAuth>} />

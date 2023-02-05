@@ -45,27 +45,6 @@ function Login() {
     const handlelogin = (e) => {
         e.preventDefault();
         fetchData();
-        
-        // signInWithEmailAndPassword(auth, email, password)
-        //     .then((userCredential) => {
-        //         const user = userCredential.user;
-        //         dispatch({ type: "LOGIN", payload: user })
-        //         console.log(getusertype);
-        //         // if(getusertype===1){
-        //         //     navigate("/");
-        //         // }
-        //         // else if(getusertype===2){
-        //         //     navigate("DoctorHome");
-        //         // }
-        //         // else{
-        //         //     alert("Email not found in MYSQL DB");
-        //         // }
-        //         navigate("/");
-               
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //     })
     }
 
 
@@ -81,7 +60,7 @@ function Login() {
                 dispatch({ type: "LOGIN", payload: user })
                
                 if(response.data.user_type==="1"){
-                    navigate("/");
+                    navigate("/homepat");
                 }
                 else if(response.data.user_type==="2"){
                     navigate("/DoctorHome");

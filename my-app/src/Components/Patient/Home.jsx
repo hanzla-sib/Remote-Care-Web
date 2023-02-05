@@ -60,6 +60,9 @@ function Home() {
     setDate2(e.target.value);
   };
   const { curruser } = useContext(AuthContext);
+  
+  console.log("hommee curruser");
+  console.log(curruser);
   const [checktrue, settrue] = React.useState(false);
   const [post, setPost] = React.useState({});
   const [error, setError] = React.useState({});

@@ -76,7 +76,6 @@ function Patient_data() {
                                     >
                                         {pats.map((emaill) => (
                                             <MenuItem value={emaill}>{emaill}</MenuItem>
-
                                         ))}
                                     </Select>
                                 </FormControl>
