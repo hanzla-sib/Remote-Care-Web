@@ -60,14 +60,14 @@ function Patient_data() {
 
     return (
 
-        <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
-            <Box sx={{ background: "linear-gradient(#16222A, #3A6073);", minWidth: "150px", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
-                <Sidebaradmin />
-            </Box>
-            <Box pl={"20px"} sx={{ overflowY: "auto", height: "93.5vh", flex: 1, backgroundColor: "#EEEEEE" }}>
+        // <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
+        //     <Box sx={{ background: "linear-gradient(#16222A, #3A6073);", minWidth: "150px", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
+        //         <Sidebaradmin />
+        //     </Box>
+            // <Box pl={"20px"} sx={{ overflowY: "auto", height: "93.5vh", flex: 1, backgroundColor: "#EEEEEE" }}>
 
-                <Container disableGutters maxWidth >
-                    <Grid>
+            //     <Container disableGutters maxWidth >
+            <Grid container item xs={12} sm={12} md={12} lg={12}>
                         <Grid marginTop="30px" marginBottom="30px">
                             <Box maxWidth="200px" textAlign="center">
                                 <Typography>Select the Patient</Typography>
@@ -108,8 +108,8 @@ function Patient_data() {
                         </Grid> : ""}
 
                     </Grid>
-                </Container>
-            </Box>
+            //     </Container>
+            // </Box>
 
 
 
@@ -117,7 +117,7 @@ function Patient_data() {
 
 
 
-        </Stack>
+        // </Stack>
 
 
     );

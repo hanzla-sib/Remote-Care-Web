@@ -11,7 +11,7 @@ import axios from "axios";
 
 import { AuthContext } from "../../Context/AuthContext";
 
-
+import Patient_data from "./PatientsData";
 
 
 
@@ -310,7 +310,7 @@ const [selected_user,setselected]=React.useState("");
   };
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
-      <Box sx={{ background: "linear-gradient(#16222A, #3A6073);", minWidth: "150px", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
+      <Box sx={{  backgroundColor: "#293148", minWidth: "200px", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
         <Sidebaradmin />
       </Box>
       {/* HOMEPAGE STARTING */}
@@ -408,6 +408,8 @@ const [selected_user,setselected]=React.useState("");
                 </Card>
               </Grid>
             </Grid>
+
+
 
             {/* ============================================== */}
 
@@ -533,7 +535,7 @@ const [selected_user,setselected]=React.useState("");
                   </Card>
                 </Grid>
               </Grid></React.Fragment> : ""}
-
+              <Patient_data />
           </Grid>
         </Container>
       </Box>

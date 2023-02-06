@@ -93,11 +93,11 @@ function DoctorHome() {
 
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
-      <Box sx={{ backgroundColor: "#293148", height: { sx: "auto", md: "93.5vh" },minWidth: "150px", borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
+      <Box sx={{ backgroundColor: "#293148", height: { sx: "auto", md: "93.5vh" },minWidth: "200px", borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
         <DoctorSidebar />
       </Box>
       {/* HOMEPAGE STARTING */}
-      <Box pl={"20px"} sx={{ overflowY: "auto", height: "90vh", flex: 2 }}>
+      <Box pl={"20px"} sx={{ overflowY: "auto", height: "93.5vh", flex: 2 }}>
         <Container disableGutters maxWidth>
           <Grid columnSpacing={{ lg: 0, sm: 1, md: 3, xs: 2 }} columnGap={{ lg: 2, md: 2, sm: 1, xs: 1 }} sx={{ margin: "auto" }} rowSpacing={4} container alignItems="center"
             justifyContent="space-evenly" direction={"row"} >
@@ -124,37 +124,6 @@ function DoctorHome() {
 
 
 
-            <Grid maxWidth={"500px"} justifyContent="center" alignItems="center" container item sm={12} md={12} lg={12}>
-
-              <Card style={{ color: '#4AA54E', border: "none", boxShadow: "none" }} sx={{ maxWidth: 800 }}>
-                <CardContent sx={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
-                  <Typography align="center" variant="h4" component="div" style={{
-                    fontWeight: 900,
-                    background: "-webkit-linear-gradient(45deg, #003f5c 30%, #800000 90%)",
-                    webkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }} >
-                    Hi,
-                  </Typography>
-                  <Typography variant="h4" align="center" component="div" style={{
-                    fontWeight: 900,
-                    background: "-webkit-linear-gradient(45deg, #003f5c 30%, #800000 90%)",
-                    webkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }} >
-                    Dr.
-                    {checktrue == true ? post.name : "null"}
-
-                  </Typography>
-
-                  <Typography variant="body2" component="div">
-                    {/* {post.typeofuser} */}
-                  </Typography>
-                </CardContent>
-              </Card>
-
-
-            </Grid>
 
 
             {/*--------------------------------------------------------*/}
@@ -208,9 +177,9 @@ function DoctorHome() {
             {/*--------------------------------------------------------*/}
 
 
+
+
             {check ?
-
-
               <Grid columnSpacing={{ lg: 0, sm: 1, md: 3, xs: 2 }} columnGap={{ lg: 2, md: 2, sm: 1, xs: 1 }} sx={{ margin: "auto" }} rowSpacing={4} container alignItems="center"
                 justifyContent="left" direction={"row"} >
                 <Grid container item xs={12} sm={12} md={12} lg={12}>

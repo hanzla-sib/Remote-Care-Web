@@ -27,8 +27,8 @@ function Sidebaradmin() {
 
             <NavLink  style={{ textDecoration: "none", color: "white" }} to="/ADMIN"><span> <button
                 className="category-btn">Home</button></span></NavLink>
-          <NavLink  style={{ textDecoration: "none" }} to="/patienthistoryadmin"><span> <button
-                className="category-btn">PatientHistory</button></span></NavLink>
+          {/* <NavLink  style={{ textDecoration: "none" }} to="/patienthistoryadmin"><span> <button
+                className="category-btn">PatientHistory</button></span></NavLink> */}
 
 
         <Button onClick={logout}>logout</Button>

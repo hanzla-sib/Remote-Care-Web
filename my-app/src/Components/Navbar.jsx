@@ -18,13 +18,20 @@ function Navbar() {
     const [post, setPost] = React.useState({});
     const [error, setError] = React.useState({});
     const [reloder, setreloader] = React.useState(0);
-    const [reloderappoint, setreloderappoint] = React.useState(0);
+    const [num, setNum] = React.useState(0);
+
+    function randomNumberInRange(min, max) {
+      // 👇️ get number between min (inclusive) and max (inclusive)
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
     React.useEffect(() => {
         async function fetchData() {
           try {
             // await delay(1000);
             const baseURL = "http://localhost:5000/mysql/get_user_type/" + curruser.email;
             await axios.get(`${baseURL}`).then((response) => {
+              console.log("userrrrr");
+              console.log(response.data);
               setPost(response.data);
               settrue(true);
             }).catch(error => {
@@ -35,7 +42,8 @@ function Navbar() {
           }
         };
         fetchData();
-      }, [reloderappoint]);
+        setNum(randomNumberInRange(1, 10000));
+      }, [num]);
 
     const logout = async () => {
         localStorage.clear();
@@ -54,10 +62,10 @@ function Navbar() {
 
           </Typography>
           
-                {/* <Typography 
+                <Typography 
             variant="h5"
-            sx={{ flexGrow: 1,fontStyle:"italic"}}>Hi {post.name}</Typography> 
-                <Button  sx={{  display: { xs: 'none', sm: 'block' } }} variant="contained" onClick={logout}>logout</Button> */}
+            sx={{ flexGrow: 1,fontStyle:"italic"}}> {post.name}</Typography> 
+                <Button  sx={{  display: { xs: 'none', sm: 'block' } }} variant="contained" onClick={logout}>logout</Button>
             </Toolbar>
         </AppBar>
 

@@ -89,7 +89,7 @@ function Home() {
 
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
-      <Box sx={{ background: "linear-gradient(#16222A, #3A6073);", minWidth: "150px", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
+      <Box sx={{  backgroundColor: "#293148", minWidth: "200px", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
         <Sidebar />
       </Box>
       {/* HOMEPAGE STARTING */}
