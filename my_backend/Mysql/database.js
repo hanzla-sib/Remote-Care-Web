@@ -98,7 +98,7 @@ router.route('/get_pending_and_confirmed_appoint/:id').get(async (req, res) => {
 router.route('/DoctorSideshowACCEPTEDAPPOINT/:id').get(async (req, res) => {
   var Doctoremail = req.params.id;
 
-  var sql = 'SELECT * FROM doctor_appointment WHERE d_email = ? and appoint_status="Accepted"';
+  var sql = 'SELECT * FROM doctor_appointment WHERE d_email = ? and appoint_status="PENDING"';
   await pool.query(sql, [Doctoremail], function (err, result) {
     if (err) throw err;
     res.send(result);
@@ -494,5 +494,27 @@ router.route('/get_appointment_current_admin_pat/:id').get(async (req, res) => {
   });
 });
 
+router.route('/get_appointment_history_doc/:id').get(async (req, res) => {
+  var pateintemail = req.params.id;
 
+  var sql = 'SELECT * FROM appointment_history WHERE d_email = ?';
+  await pool.query(sql, [pateintemail], function (err, result) {
+    if (err) throw err;
+    // console.log(result);
+    res.send(result);
+
+  });
+});
+
+
+
+router.route('/get_all_patients_fordoc/:id').get(async (req, res) => {
+  var Doctoremail = req.params.id;
+  var sql = 'SELECT * FROM doctor_appointment WHERE d_email = ? and appoint_status="Accepted"';
+  await pool.query(sql, [Doctoremail], function (err, result) {
+    if (err) throw err;
+    res.send(result);
+
+  });
+});
 module.exports = router;

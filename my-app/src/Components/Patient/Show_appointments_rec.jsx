@@ -47,7 +47,7 @@ function Show_appointments_rec({setreloderappoint}) {
                     {getallapppoint.map((value) => (
                         <ListItem sx={{ backgroundColor: "lightsteelblue" ,border: "0px solid black", boxShadow: 8, borderRadius: "50px",marginBottom: "20px"}}  >
 
-                        <ListItemText  style={{  color: "black", textAlign:"center" }} sx={{ border: "0px solid black", boxShadow: 5, borderRadius: "20px",margin:"10px"}}
+                        <ListItemText  style={{  color: "black", textAlign:"center" }} sx={{ border: "0px solid black", boxShadow: 5, borderRadius: "20px",margin:"11px"}}
                                 primary=<Typography sx={{fontSize:"16px"}} variant="subtitle1">{"DR. "+value.d_name}</Typography>
                                 secondary={
                                     <React.Fragment>

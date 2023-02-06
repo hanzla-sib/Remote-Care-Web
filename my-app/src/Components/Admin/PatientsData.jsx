@@ -18,14 +18,20 @@ import Steps_graph from "./Weekly_Report_Patient/Steps_weekly_admin";
 
 
 function Patient_data() {
+    
+  const [num, setNum] = React.useState(0);
+
+  function randomNumberInRange(min, max) {
+    // 👇️ get number between min (inclusive) and max (inclusive)
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
     const [check, setcheck] = React.useState(false);
     const [patient, setPatient] = React.useState('');
     const [pats, setpats] = React.useState([]);
     const handleChange = (event) => {
         setcheck(true);
         setPatient(event.target.value);
-
-
+        setNum(randomNumberInRange(1, 10000));
     };
     React.useEffect(() => {
 
@@ -50,7 +56,7 @@ function Patient_data() {
             }
         };
         fetchData();
-    }, []);
+    }, [num]);
 
     return (
 

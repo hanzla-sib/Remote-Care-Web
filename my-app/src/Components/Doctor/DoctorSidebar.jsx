@@ -22,18 +22,11 @@ function DoctorSidebar(){
                 className="category-btn">Home </button></span></NavLink>
 
 
-            <span>
-                <NavLink style={{ textDecoration: "none", color: "white" }} to="/Dprofile"><button
-                    className="category-btn">Profile</button></NavLink>
-            </span>
+          
 
 
-            <NavLink style={{ textDecoration: "none", color: "white" }} to="/Dpatientdeatils">
-                <span><button
-                    className="category-btn">Patient details </button></span>
-            </NavLink>
-            <NavLink style={{ textDecoration: "none", color: "white" }} to="/Dprescription"> <button
-                className="category-btn">Prescription deatils  </button></NavLink>
+            
+           
 
         <Button onClick={logout}>logout</Button>
 

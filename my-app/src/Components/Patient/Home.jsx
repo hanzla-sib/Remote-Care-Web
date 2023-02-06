@@ -36,6 +36,13 @@ const Img = styled('img')({
 
 
 function Home() {
+
+  const [num, setNum] = useState(0);
+
+  function randomNumberInRange(min, max) {
+    // 👇️ get number between min (inclusive) and max (inclusive)
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
   const [date1, setDate1] = useState('');
   const [date2, setDate2] = useState('');
   const [combinedate, setcombine] = useState([]);
@@ -48,6 +55,7 @@ function Home() {
   const generategraph = () => {
     setcombine({ from: date1, to: date2 });
     setcheck(true);
+    setNum(randomNumberInRange(1, 10000));
   };
 
   const handleChange1 = (e) => {
@@ -77,7 +85,7 @@ function Home() {
       }
     };
     fetchData();
-  }, []);
+  }, [num]);
 
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
