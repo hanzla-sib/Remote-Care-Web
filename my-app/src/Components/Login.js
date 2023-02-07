@@ -85,6 +85,10 @@ function Login() {
         }
     };
 
+    React.useEffect(() => {
+        localStorage.clear();
+        // window.location.reload();
+      }, []);
 
     return (
         <div style={main_style}>

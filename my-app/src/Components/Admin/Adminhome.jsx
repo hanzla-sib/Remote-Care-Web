@@ -17,7 +17,7 @@ import Patient_data from "./PatientsData";
 
 function Adminhome() {
   const [num, setNum] = useState(0);
-const [selected_user,setselected]=React.useState("");
+  const [selected_user, setselected] = React.useState("");
 
   const [check, setcheck] = React.useState(false);
   const [check1, setcheck1] = React.useState(false);
@@ -80,7 +80,7 @@ const [selected_user,setselected]=React.useState("");
     if (query === '') {
 
       setNum(randomNumberInRange(1, 10000000))
-      
+
     }
     else {
       var updatedList = [...patietns];
@@ -112,7 +112,7 @@ const [selected_user,setselected]=React.useState("");
   };
 
 
-  const   filterBySearch_past = (event) => {
+  const filterBySearch_past = (event) => {
     // Access input value
 
     const query = event.target.value;
@@ -130,7 +130,7 @@ const [selected_user,setselected]=React.useState("");
 
   };
 
-  
+
   const filterBySearch_curr = (event) => {
     // Access input value
 
@@ -150,12 +150,12 @@ const [selected_user,setselected]=React.useState("");
   };
 
 
-  
-  const   filterBySearch_past_pat = (event) => {
+
+  const filterBySearch_past_pat = (event) => {
     // Access input value
 
     const query = event.target.value;
-// alert(query);
+    // alert(query);
     if (query === '') {
       fetchinformation_pastrecord_pat(selected_user);
     }
@@ -169,7 +169,7 @@ const [selected_user,setselected]=React.useState("");
 
   };
 
-  
+
   const filterBySearch_curr_pat = (event) => {
     // Access input value
 
@@ -187,7 +187,7 @@ const [selected_user,setselected]=React.useState("");
     }
 
   };
-  
+
 
   function show_doc(emailaddress) {
     setselected(emailaddress);
@@ -212,15 +212,15 @@ const [selected_user,setselected]=React.useState("");
       var array1 = [{}];
       const baseURL = "http://localhost:5000/mysql/get_appointment_history_admin_doc/" + emailll;
       await axios.get(`${baseURL}`).then((response) => {
-       
+
         for (var i = 0; i < response.data.length; i++) {
-            array1[i] = response.data[i];
+          array1[i] = response.data[i];
 
 
         }
-        getallpastapppointdoc.length=0;
+        getallpastapppointdoc.length = 0;
         fetallpastappointdoc(array1);
-       setcheck1(false);
+        setcheck1(false);
         setcheck(true);
       }).catch(error => {
         setError(error);
@@ -237,15 +237,15 @@ const [selected_user,setselected]=React.useState("");
       var array1 = [{}];
       const baseURL = "http://localhost:5000/mysql/get_appointment_current_admin_doc/" + emailll;
       await axios.get(`${baseURL}`).then((response) => {
-    
+
         for (var i = 0; i < response.data.length; i++) {
-            array1[i] = response.data[i];
+          array1[i] = response.data[i];
 
 
         }
-        fetchcurrentdoc.length=0;
+        fetchcurrentdoc.length = 0;
         fetch_curr_doc_appoint(array1);
-       
+
       }).catch(error => {
         setError(error);
       });
@@ -266,15 +266,15 @@ const [selected_user,setselected]=React.useState("");
       var array1 = [{}];
       const baseURL = "http://localhost:5000/mysql/get_appointment_history_admin_pat/" + emailll;
       await axios.get(`${baseURL}`).then((response) => {
-       
+
         for (var i = 0; i < response.data.length; i++) {
-            array1[i] = response.data[i];
+          array1[i] = response.data[i];
 
 
         }
-        getallapppointpatient_past.length=0;
+        getallapppointpatient_past.length = 0;
         fetallappointpatient_past(array1);
-       setcheck(false);
+        setcheck(false);
         setcheck1(true);
       }).catch(error => {
         setError(error);
@@ -291,13 +291,13 @@ const [selected_user,setselected]=React.useState("");
       var array1 = [{}];
       const baseURL = "http://localhost:5000/mysql/get_appointment_current_admin_pat/" + emailll;
       await axios.get(`${baseURL}`).then((response) => {
-        
+
         for (var i = 0; i < response.data.length; i++) {
-            array1[i] = response.data[i];
+          array1[i] = response.data[i];
         }
-        fetchcurrent_patient_current.length=0;
+        fetchcurrent_patient_current.length = 0;
         fetch_curr_patient_appoint_current(array1);
-       
+
       }).catch(error => {
         setError(error);
       });
@@ -310,7 +310,7 @@ const [selected_user,setselected]=React.useState("");
   };
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
-      <Box sx={{  backgroundColor: "#293148", minWidth: "200px", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
+      <Box sx={{ backgroundColor: "#293148", minWidth: "200px", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
         <Sidebaradmin />
       </Box>
       {/* HOMEPAGE STARTING */}
@@ -340,13 +340,14 @@ const [selected_user,setselected]=React.useState("");
 
 
 
+            {/* Doctors List */}
 
             <Grid justifyContent="center" alignItems="center" container item xs={12} sm={12} md={12} lg={12}>
               <Grid justifyContent="center" alignItems="center" item xs={12} sm={12} md={12} lg={6}>
-                <Typography marginTop="20px" variant="h5" component="div">
+                <Typography align="center" marginTop="20px" variant="h5" component="div">
                   Doctors List
                 </Typography>
-                <Card sx={{ minHeight: "400px", maxHeight: "200px", maxWidth: "600px", minHeight: "350px", overflow: "auto" }}>
+                <Card sx={{ minHeight: "400px", maxHeight: "200px", maxWidth: "600px", minHeight: "350px", overflow: "auto", border: "0px solid black", borderRadius: "30px", boxShadow: 20 }} elevation={2}>
                   <Grid sx={{ marginTop: "10px" }} container item lg={12} textAlign="center" justifyContent="center">
                     <input placeholder="Search Doctor" id="search-box" onChange={filterBySearchdoc} />
                   </Grid>
@@ -357,15 +358,19 @@ const [selected_user,setselected]=React.useState("");
                       <Grid>
                         <Grid container>
                           <Grid lg={6} >
-                            <Typography textAlign="center" marginTop="10px" variant="body1" component="div">
-                              {emaill.name1}
-                            </Typography>
-                            <Typography textAlign="center" sx={{ mb: 1.5 }} color="text.secondary">
-                              {emaill.email}
-                            </Typography>
+                            <Card style={{ color: '#4AA54E', fontWeight: "bold", border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }} elevation={2}>
+                              <CardContent sx={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
+                                <Typography textAlign="center" marginTop="10px" variant="body1" component="div">
+                                  {emaill.name1}
+                                </Typography>
+                                <Typography textAlign="center" sx={{ mb: 1.5 }} color="text.secondary">
+                                  {emaill.email}
+                                </Typography>
+                              </CardContent>
+                            </Card>
                           </Grid>
                           <Grid lg={6}>
-                            <CardActions sx={{ marginTop: "10px" }} >
+                            <CardActions sx={{ marginTop: "25px" }} >
                               <Button onClick={() => show_doc(emaill.email)} variant="outlined" size="small">View More</Button>
                             </CardActions>
                           </Grid>
@@ -376,11 +381,17 @@ const [selected_user,setselected]=React.useState("");
 
                 </Card>
               </Grid>
+
+              {/* ---------------------------------------------------------------------------------- */}
+
+
+              {/* Patients List */}
+
               <Grid justifyContent="center" alignItems="center" item xs={12} sm={12} md={12} lg={6}>
-                <Typography marginTop="20px" variant="h5" component="div">
+                <Typography align="center" marginTop="20px" variant="h5" component="div">
                   Patients List
                 </Typography>
-                <Card sx={{ minHeight: "400px", maxHeight: "200px", maxWidth: "600px", minHeight: "350px", overflow: "auto" }}>
+                <Card sx={{ minHeight: "400px", maxHeight: "200px", maxWidth: "600px", minHeight: "350px", overflow: "auto", border: "0px solid black", borderRadius: "30px", boxShadow: 20 }} elevation={2} >
                   <Grid sx={{ marginTop: "10px" }} container lg={12} textAlign="center" justifyContent="center">
                     <input placeholder="Search Patient" id="search-box" onChange={filterBySearchpat} />
                   </Grid>
@@ -389,15 +400,19 @@ const [selected_user,setselected]=React.useState("");
                       <Grid >
                         <Grid container >
                           <Grid lg={6} >
-                            <Typography textAlign="center" marginTop="10px" variant="body1" component="div">
-                              {dat.name1}
-                            </Typography>
-                            <Typography textAlign="center" sx={{ mb: 1.5 }} color="text.secondary">
-                              {dat.email}
-                            </Typography>
+                            <Card style={{ color: '#4AA54E', fontWeight: "bold", border: "none", boxShadow: "none" }} sx={{ maxWidth: 400 }} elevation={2}>
+                              <CardContent sx={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
+                                <Typography textAlign="center" marginTop="10px" variant="body1" component="div">
+                                  {dat.name1}
+                                </Typography>
+                                <Typography textAlign="center" sx={{ mb: 1.5 }} color="text.secondary">
+                                  {dat.email}
+                                </Typography>
+                              </CardContent>
+                            </Card>
                           </Grid>
                           <Grid lg={6}>
-                            <CardActions sx={{ marginTop: "10px" }} >
+                            <CardActions sx={{ marginTop: "25px" }} >
                               <Button onClick={() => show_pat(dat.email)} variant="outlined" size="small">View More</Button>
                             </CardActions>
                           </Grid>
@@ -409,9 +424,13 @@ const [selected_user,setselected]=React.useState("");
               </Grid>
             </Grid>
 
+            {/* ---------------------------------------------------------------------------------- */}
+
+
 
 
             {/* ============================================== */}
+
 
             {check ? <React.Fragment>
               <Grid justifyContent="center" alignItems="center" container item xs={12} sm={12} md={12} lg={12}>
@@ -419,27 +438,27 @@ const [selected_user,setselected]=React.useState("");
               </Grid>
               <Grid justifyContent="center" alignItems="center" container item xs={12} sm={12} md={12} lg={12}>
                 <Grid justifyContent="center" alignItems="center" item xs={12} sm={12} md={12} lg={6}>
-                  <Typography marginTop="20px" variant="h5" component="div">
+                  <Typography align="center" marginTop="20px" variant="h5" component="div">
                     Current Appointment Record
                   </Typography>
-                  <Card sx={{ minHeight: "400px", maxHeight: "200px", maxWidth: "600px", minHeight: "350px", overflow: "auto" }}>
+                  <Card style={{ color: '#4AA54E', fontWeight: "bold", border: "none", boxShadow: "none" }} sx={{ minHeight: "400px", maxHeight: "200px", maxWidth: "600px", minHeight: "350px", overflow: "auto", border: "0px solid black", borderRadius: "30px", boxShadow: 20 }} elevation={2}>
                     <Grid sx={{ marginTop: "10px" }} container item lg={12} textAlign="center" justifyContent="center">
-                      <input placeholder="Search Doctor" id="search-box" onChange={filterBySearch_curr} />
+                      <input placeholder="Search Patient" id="search-box" onChange={filterBySearch_curr} />
                     </Grid>
 
                     <CardContent>
                       {fetchcurrentdoc.map((emaill) => (
                         <Grid sx={{ marginTop: "10px" }} container lg={12} textAlign="center" justifyContent="center" >
-                          
-                            <Grid lg={6} >
-                              <Typography textAlign="center" marginTop="10px" variant="body1" component="div">
-                                {emaill.p_name}
-                              </Typography>
-                              {emaill.appoint_status?<Typography textAlign="center" sx={{ mb: 1.5 }} color="text.secondary">
-                                {" status "+ emaill.appoint_status}
-                              </Typography>:""}
-                            </Grid>
-                          
+
+                          <Grid lg={6} >
+                            <Typography textAlign="center" marginTop="10px" variant="body1" component="div">
+                              {emaill.p_name}
+                            </Typography>
+                            {emaill.appoint_status ? <Typography textAlign="center" sx={{ mb: 1.5 }} color="text.secondary">
+                              {" status " + emaill.appoint_status}
+                            </Typography> : ""}
+                          </Grid>
+
                         </Grid>
                       ))}
                     </CardContent>
@@ -447,25 +466,25 @@ const [selected_user,setselected]=React.useState("");
                 </Grid>
 
                 <Grid justifyContent="center" alignItems="center" item xs={12} sm={12} md={12} lg={6}>
-                  <Typography marginTop="20px" variant="h5" component="div">
+                  <Typography align="center" marginTop="20px" variant="h5" component="div">
                     Past Appointments Record
                   </Typography>
-                  <Card sx={{ minHeight: "400px", maxHeight: "200px", maxWidth: "600px", minHeight: "350px", overflow: "auto" }}>
+                  <Card style={{ color: '#4AA54E', fontWeight: "bold", border: "none", boxShadow: "none" }} sx={{ minHeight: "400px", maxHeight: "200px", maxWidth: "600px", minHeight: "350px", overflow: "auto" , border: "0px solid black", borderRadius: "30px", boxShadow: 20 }} elevation={2}>
                     <Grid sx={{ marginTop: "10px" }} container lg={12} textAlign="center" justifyContent="center">
                       <input placeholder="Search Patient" id="search-box" onChange={filterBySearch_past} />
                     </Grid>
                     <CardContent>
                       {getallpastapppointdoc.map((dat) => (
                         <Grid sx={{ marginTop: "10px" }} container lg={12} textAlign="center" justifyContent="center" >
-                          
-                            <Grid lg={6} >
-                              <Typography textAlign="center" marginTop="10px" variant="body1" component="div">
-                                {dat.p_name}
-                              </Typography>
-                              <Typography textAlign="center" sx={{ mb: 1.5 }} color="text.secondary">
-                                {dat.Date1}
-                              </Typography>
-                        
+
+                          <Grid lg={6} >
+                            <Typography textAlign="center" marginTop="10px" variant="body1" component="div">
+                              {dat.p_name}
+                            </Typography>
+                            <Typography textAlign="center" sx={{ mb: 1.5 }} color="text.secondary">
+                              {dat.Date1}
+                            </Typography>
+
                           </Grid>
                         </Grid>
                       ))}
@@ -474,17 +493,17 @@ const [selected_user,setselected]=React.useState("");
                 </Grid>
               </Grid></React.Fragment> : ""}
 
-              
+
             {check1 ? <React.Fragment>
               <Grid justifyContent="center" alignItems="center" container item xs={12} sm={12} md={12} lg={12}>
                 <Typography variant="h5">Results From Search</Typography>
               </Grid>
               <Grid justifyContent="center" alignItems="center" container item xs={12} sm={12} md={12} lg={12}>
-                <Grid justifyContent="center" alignItems="center" item xs={12} sm={12} md={12} lg={6}>
+                <Grid justifyContent="center" alignItems="center" item xs={12} sm={12} md={12} lg={6} textAlign="center">
                   <Typography marginTop="20px" variant="h5" component="div">
                     Current Appointment Record
                   </Typography>
-                  <Card sx={{ minHeight: "400px", maxHeight: "200px", maxWidth: "600px", minHeight: "350px", overflow: "auto" }}>
+                  <Card style={{ color: '#4AA54E', fontWeight: "bold", border: "none", boxShadow: "none" }} sx={{ minHeight: "400px", maxHeight: "200px", maxWidth: "600px", minHeight: "350px", overflow: "auto", border: "0px solid black", borderRadius: "30px", boxShadow: 20  }}>
                     <Grid sx={{ marginTop: "10px" }} container item lg={12} textAlign="center" justifyContent="center">
                       <input placeholder="Search Doctor" id="search-box" onChange={filterBySearch_curr_pat} />
                     </Grid>
@@ -492,16 +511,16 @@ const [selected_user,setselected]=React.useState("");
                     <CardContent>
                       {fetchcurrent_patient_current.map((emaill) => (
                         <Grid sx={{ marginTop: "10px" }} container lg={12} textAlign="center" justifyContent="center" >
-                          
-                            <Grid lg={6} >
-                              <Typography textAlign="center" marginTop="10px" variant="body1" component="div">
-                                {emaill.d_name}
-                              </Typography>
-                              {emaill.appoint_status?<Typography textAlign="center" sx={{ mb: 1.5 }} color="text.secondary">
-                                {" status "+ emaill.appoint_status}
-                              </Typography>:""}
-                            </Grid>
-                          
+
+                          <Grid lg={6} >
+                            <Typography textAlign="center" marginTop="10px" variant="body1" component="div">
+                              {"Dr. "+emaill.d_name}
+                            </Typography>
+                            {emaill.appoint_status ? <Typography textAlign="center" sx={{ mb: 1.5 }} color="text.secondary">
+                              {" status " + emaill.appoint_status}
+                            </Typography> : ""}
+                          </Grid>
+
                         </Grid>
                       ))}
                     </CardContent>
@@ -509,25 +528,25 @@ const [selected_user,setselected]=React.useState("");
                 </Grid>
 
                 <Grid justifyContent="center" alignItems="center" item xs={12} sm={12} md={12} lg={6}>
-                  <Typography marginTop="20px" variant="h5" component="div">
+                  <Typography marginTop="20px" variant="h5" component="div" textAlign="center">
                     Past Appointments Record
                   </Typography>
-                  <Card sx={{ minHeight: "400px", maxHeight: "200px", maxWidth: "600px", minHeight: "350px", overflow: "auto" }}>
+                  <Card style={{ color: '#4AA54E', fontWeight: "bold", border: "none", boxShadow: "none" }} sx={{ minHeight: "400px", maxHeight: "200px", maxWidth: "600px", minHeight: "350px", overflow: "auto" , border: "0px solid black", borderRadius: "30px", boxShadow: 20  }}>
                     <Grid sx={{ marginTop: "10px" }} container lg={12} textAlign="center" justifyContent="center">
-                      <input placeholder="Search Patient" id="search-box" onChange={filterBySearch_past_pat} />
+                      <input placeholder="Search Doctor" id="search-box" onChange={filterBySearch_past_pat} />
                     </Grid>
                     <CardContent>
                       {getallapppointpatient_past.map((dat) => (
                         <Grid sx={{ marginTop: "10px" }} container lg={12} textAlign="center" justifyContent="center" >
-                          
-                            <Grid lg={6} >
-                              <Typography textAlign="center" marginTop="10px" variant="body1" component="div">
-                                {"Dr. "+dat.d_name}
-                              </Typography>
-                              <Typography textAlign="center" sx={{ mb: 1.5 }} color="text.secondary">
-                                {dat.Date1}
-                              </Typography>
-                        
+
+                          <Grid lg={6} >
+                            <Typography textAlign="center" marginTop="10px" variant="body1" component="div">
+                              {"Dr. " + dat.d_name}
+                            </Typography>
+                            <Typography textAlign="center" sx={{ mb: 1.5 }} color="text.secondary">
+                              {dat.Date1}
+                            </Typography>
+
                           </Grid>
                         </Grid>
                       ))}
@@ -535,7 +554,7 @@ const [selected_user,setselected]=React.useState("");
                   </Card>
                 </Grid>
               </Grid></React.Fragment> : ""}
-              <Patient_data />
+            <Patient_data />
           </Grid>
         </Container>
       </Box>
