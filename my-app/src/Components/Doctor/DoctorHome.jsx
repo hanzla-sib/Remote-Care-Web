@@ -130,7 +130,7 @@ function DoctorHome() {
 
 
             <Grid maxWidth={"600px"} justifyContent="center" justifyItems="center" alignItems="center" container item sm={5} md={5} lg={5}>
-              <Typography style={{ color: "black" }} align="center" variant="h6">Pending Appointments</Typography>
+              <Typography style={{ color: "black" }} align="center" variant="h6">Current Appointments Status</Typography>
               <AppointmentsRequest setreloader={reloder} />
             </Grid>
 

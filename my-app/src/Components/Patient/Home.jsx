@@ -207,11 +207,13 @@ function Home() {
             <Grid justifyContent="space-evenly" alignItems="center" container item xs={12} sm={12} md={12} lg={12}>
               <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={4}>
                 <Typography variant="h5">Test Records</Typography>
+                {/* <Typography variant="h6" textAlign="center">click to open</Typography> */}
                 {/* <SetAppoint setreloderappoint={setreloderappoint} /> */}
                 <Tests />
               </Grid>
               <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={4}>
                 <Typography variant="h5">Appointment History</Typography>
+                
                 {/* <SetAppoint setreloderappoint={setreloderappoint} /> */}
                 <Show_old_appointment setreloderappoint={reloderappoint} />
               </Grid>
@@ -220,7 +222,7 @@ function Home() {
             <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={10}>
               <Typography variant="h5">Range Records</Typography>
             </Grid>
-            <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={10}>
+            <Grid margin="20px" justifyContent="center" alignItems="center" item sm={5} md={5} lg={10}>
               <Grid>
                 <Typography>FROM</Typography>
                 <input
@@ -234,11 +236,12 @@ function Home() {
                   onChange={handleChange1}
                   ref={dateInputRef}
                 />
-                <Button variant="contained" onClick={generategraph}>generate Graph</Button>
+                <Button sx={{marginTop:"20px"}} variant="contained" onClick={generategraph}>generate Graph</Button>
               </Grid>
 
             </Grid>
-            {check1 == true ? <Grid columnSpacing={{ lg: 0, sm: 1, md: 3, xs: 2 }} columnGap={{ lg: 2, md: 2, sm: 1, xs: 1 }} sx={{ margin: "auto" }} rowSpacing={4} container alignItems="center"
+            
+            {check1 == true ? <Grid  columnSpacing={{ lg: 0, sm: 1, md: 3, xs: 2 }} columnGap={{ lg: 2, md: 2, sm: 1, xs: 1 }} sx={{ margin: "auto" }} rowSpacing={4} container alignItems="center"
               justifyContent="center" direction={"row"}>
               <Range_weekly_steps dat={{ dat1: date1, dat2: date2 }} />
               <Range_weekly_burnt_cal dat={{ dat1: date1, dat2: date2 }} />

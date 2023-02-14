@@ -30,8 +30,8 @@ function Navbar() {
             // await delay(1000);
             const baseURL = "http://localhost:5000/mysql/get_user_type/" + curruser.email;
             await axios.get(`${baseURL}`).then((response) => {
-              console.log("userrrrr");
-              console.log(response.data);
+              // console.log("userrrrr");
+              // console.log(response.data);
               setPost(response.data);
               settrue(true);
             }).catch(error => {
@@ -42,7 +42,7 @@ function Navbar() {
           }
         };
         fetchData();
-        setNum(randomNumberInRange(1, 10000));
+        // setNum(randomNumberInRange(1, 10000));
       }, [num]);
 
     const logout = async () => {
@@ -53,7 +53,7 @@ function Navbar() {
         <AppBar p={2} sx={{ position: "sticky", backgroundColor: "#293148" }}>
             <Toolbar variant="dense" >
             <Typography
-            variant="h6"
+            variant="h5"
             noWrap
             component="div"
             sx={{ flexGrow: 0.1 }}
@@ -65,7 +65,7 @@ function Navbar() {
                 <Typography 
             variant="h5"
             sx={{ flexGrow: 1,fontStyle:"italic"}}> {post.name}</Typography> 
-                <Button  sx={{  display: { xs: 'none', sm: 'block' } }} variant="contained" onClick={logout}>logout</Button>
+                <Button className="butnav"  sx={{  display: { xs: 'none', sm: 'block' } }} variant="outlined" onClick={logout}>logout</Button>
             </Toolbar>
         </AppBar>
 

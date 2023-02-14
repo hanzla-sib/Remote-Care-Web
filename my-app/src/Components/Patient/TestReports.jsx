@@ -8,9 +8,9 @@ import { makeStyles, styled } from '@mui/material/styles';
 const Hover_style = styled(List)({
   // hover states
   '& .MuiListItemButton-root:hover': {
-    backgroundColor: 'orange',
+    backgroundColor: 'lightgrey',
     '&, & .MuiListItemIcon-root': {
-      color: 'yellow',
+      color: 'green',
     },
   },
 });
@@ -59,7 +59,7 @@ function Tests() {
 
   return (
     <Card style={{ border: "none" }} sx={{ maxWidth: 400, maxHeight: 365, minHeight: 365, overflow: "auto", borderRadius: "30px", boxShadow: "10", backgroundColor: "#EEEEEE", marginBottom: "20px", marginTop: "10px" }}>
-      <Typography variant="body2" textAlign="center">click to open</Typography>
+      {/* <Typography variant="body2" textAlign="center">click to open</Typography> */}
       <CardContent >
       <Hover_style>
         <List sx={{ width: '100%', maxWidth: 360, bgcolor: '#EEEEEE', backgroundColor: "#EEEEEE", marginBottom: "10px" }}>

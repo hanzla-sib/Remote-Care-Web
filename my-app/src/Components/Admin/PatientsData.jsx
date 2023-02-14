@@ -90,15 +90,15 @@ function Patient_data() {
 
             {check ? <Grid columnSpacing={{ lg: 0, sm: 1, md: 3, xs: 2 }} columnGap={{ lg: 2, md: 2, sm: 1, xs: 1 }} sx={{ margin: "auto" }} rowSpacing={4} container alignItems="center"
                 justifyContent="center" direction={"row"} >
-                <Grid container item xs={12} sm={12} md={12} lg={12}>
-                    <Typography textAlign="center">Monthly</Typography>
+                <Grid xs={12} sm={12} md={12} lg={12}>
+                    <Typography marginLeft="80px"  variant='overline' textAlign="center" fontSize="30px">Monthly</Typography>
                 </Grid>
                 <Monthly_Calories_consumed name={patient} />
                 <Monthly_calories_Burnt name={patient} />
                 <Monthly_calories_Burnt name={patient} />
                 <Monthly_Steps name={patient} />
-                <Grid container item xs={12} sm={12} md={12} lg={12}>
-                    <Typography textAlign="center">Weekly</Typography>
+                <Grid xs={12} sm={12} md={12} lg={12}>
+                    <Typography marginLeft="80px" variant='overline' justifyContent="center" fontSize="30px" textAlign="center">Weekly</Typography>
                 </Grid>
                 <Calorie_Burnt name={patient} />
                 <Calorie_consumed name={patient} />

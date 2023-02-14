@@ -56,7 +56,7 @@ function AppointmentsRequest({ setreloader }) {
                       variant="body2"
                       color="text.primary"
                     >
-                  Status : Pending
+                  Status : {value.appoint_status}
 
                     </Typography>
                     <Divider  color="green" sx={{ height: 3,width:"300px",marginLeft:"70px",marginTop:"5px" }} />

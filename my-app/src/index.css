@@ -110,3 +110,7 @@ input,
 input::placeholder {
   font: 18px sans-serif;
 }
+
+.butnav :hover{
+background-color: bisque;
+}

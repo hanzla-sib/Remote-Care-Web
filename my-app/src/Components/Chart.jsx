@@ -93,8 +93,8 @@ const SimpleAreaChart = ({arr}) => {
           y2="100%"
           spreadMethod="reflect"
         >
-          <stop offset="0" stopColor="#ffa600" />
-          <stop offset="1" stopColor="#003f5c" />
+          <stop offset="0" stopColor="#D2653D" />
+          <stop offset="1" stopColor="#293148" />
         </linearGradient>
       </defs>
       

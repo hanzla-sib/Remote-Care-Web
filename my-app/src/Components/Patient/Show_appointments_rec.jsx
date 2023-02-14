@@ -16,18 +16,18 @@ function Show_appointments_rec({setreloderappoint}) {
     async function fetchData() {
         try {
             // await delay(1000);
-            var array1 = [{}];
+            var array1 = [];
             const baseURL = "http://localhost:5000/mysql/get_pending_and_confirmed_appoint/" + curruser.email;
             await axios.get(`${baseURL}`).then((response) => {
-                // console.log(response.data);
+                console.log("paaaa");
+                console.log(response.data);
                 for (var i = 0; i < response.data.length; i++) {
                     array1[i] = response.data[i];
                    
 
                 }
                 fetallappoint(array1);
-                // console.log("array1");
-                // console.log(array1);
+               
 
             }).catch(error => {
                 setError(error);

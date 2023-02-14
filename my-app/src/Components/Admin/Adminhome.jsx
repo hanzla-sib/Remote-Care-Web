@@ -49,11 +49,11 @@ function Adminhome() {
 
             if (response.data[i].user_type === '1') {
 
-              patietns.push({ name1: response.data[i].name, email: response.data[i].email });
+              patietns.push({ name1: response.data[i].name, email: response.data[i].email});
 
             }
             else if (response.data[i].user_type === '2') {
-              doctor.push({ name1: response.data[i].name, email: response.data[i].email })
+              doctor.push({ name1: response.data[i].name, email: response.data[i].email,type:response.data[i].doc_type });
             }
           }
           settrue(true);
@@ -209,7 +209,7 @@ function Adminhome() {
 
     try {
       // await delay(1000);
-      var array1 = [{}];
+      var array1 = [];
       const baseURL = "http://localhost:5000/mysql/get_appointment_history_admin_doc/" + emailll;
       await axios.get(`${baseURL}`).then((response) => {
 
@@ -234,7 +234,7 @@ function Adminhome() {
 
     try {
       // await delay(1000);
-      var array1 = [{}];
+      var array1 = [];
       const baseURL = "http://localhost:5000/mysql/get_appointment_current_admin_doc/" + emailll;
       await axios.get(`${baseURL}`).then((response) => {
 
@@ -263,7 +263,7 @@ function Adminhome() {
 
     try {
       // await delay(1000);
-      var array1 = [{}];
+      var array1 = [];
       const baseURL = "http://localhost:5000/mysql/get_appointment_history_admin_pat/" + emailll;
       await axios.get(`${baseURL}`).then((response) => {
 
@@ -288,7 +288,7 @@ function Adminhome() {
 
     try {
       // await delay(1000);
-      var array1 = [{}];
+      var array1 = [];
       const baseURL = "http://localhost:5000/mysql/get_appointment_current_admin_pat/" + emailll;
       await axios.get(`${baseURL}`).then((response) => {
 
@@ -364,7 +364,7 @@ function Adminhome() {
                                   {emaill.name1}
                                 </Typography>
                                 <Typography textAlign="center" sx={{ mb: 1.5 }} color="text.secondary">
-                                  {emaill.email}
+                                  {emaill.type}
                                 </Typography>
                               </CardContent>
                             </Card>

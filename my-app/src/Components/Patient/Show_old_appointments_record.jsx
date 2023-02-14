@@ -16,7 +16,7 @@ function Show_old_appointment({setreloderappoint}) {
     async function fetchData() {
         try {
             // await delay(1000);
-            var array1 = [{}];
+            var array1 = [];
             const baseURL = "http://localhost:5000/mysql/get_appointment_history/" + curruser.email;
             await axios.get(`${baseURL}`).then((response) => {
                 // console.log(response.data);
