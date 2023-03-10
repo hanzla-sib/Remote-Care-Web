@@ -39,7 +39,9 @@ function StepCard(){
   
   }, [toggle]);
 
-    return( <Card style={{ color: '#ffff', backgroundColor: '#E73E3B' }} sx={{  border: "0px solid black", borderRadius: "30px", boxShadow: 20 }} elevation={2}>
+    return( 
+    <React.Fragment>
+    <Card style={{ color: '#ffff', backgroundColor: '#E73E3B' }} sx={{  border: "0px solid black", borderRadius: "30px", boxShadow: 20 }} elevation={2}>
     <CardMedia
       component="img"
       height="250px"
@@ -58,6 +60,9 @@ function StepCard(){
         
       </Typography>
     </CardContent>
-  </Card>)
+  </Card>
+
+  
+  </React.Fragment>)
 }
 export default StepCard;
