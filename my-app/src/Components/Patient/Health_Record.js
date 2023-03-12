@@ -13,7 +13,7 @@ import axios from 'axios';
 import Steps_Monthly from './monthly_graphs/Monthly_steps';
 import Monthly_calories_Consumed from './monthly_graphs/Monthly_caloriesConsumed';
 import Monthly_calories_Burnt from './monthly_graphs/Monthly_Calories_Burnt';
-
+import HR_Monthly from './monthly_graphs/Monthly_heartbeat';
 
 
 function Health_record() {
@@ -60,7 +60,7 @@ function Health_record() {
           <Monthly_calories_Burnt />
 
           {/* Graph of the Heart beat */}
-          <Monthly_calories_Burnt />
+          <HR_Monthly />
 
           {/* Graph of the steps */}
           <Steps_Monthly />

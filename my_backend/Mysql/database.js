@@ -517,4 +517,49 @@ router.route('/get_all_patients_fordoc/:id').get(async (req, res) => {
 
   });
 });
+
+
+
+router.route('/getheartbeat_weekly/:id').get(async (req, res) => {
+  var pateintemail = req.params.id;
+  var sql = 'select date_log,avg(HeartBeat_daily) as HR FROM heartbeat where Demail = ? GROUP BY date_log';
+
+ await pool.query(sql, [pateintemail], function (err, result) {
+    if (err) throw err;
+    res.send(result);
+    // console.log(result);
+  });
+});
+
+
+router.route('/getheartbeat_weekly_range/:id/:from/:to').get(async (req, res) => {
+  var pateintemail = req.params.id;
+  var from = req.params.from;
+  var to = req.params.to;
+  const query = 'SELECT date_log,avg(HeartBeat_daily) as HR FROM `heartbeat` ' +
+    'WHERE `Demail`=? AND date_log BETWEEN ? AND ? GROUP BY date_log';
+
+  const values = [pateintemail, from + "T19:00:00.000Z", to + "T19:00:00.000Z"];                                // id >= 2 AND id <= 4
+
+  await pool.query(query, values, (error, result) => {  // sends queries
+
+    if (error) throw error;
+    res.send(result);
+  });
+
+});
+
+
+
+router.route('/getHRgraph_Monthly/:id').get(async (req, res) => {
+  var pateintemail = req.params.id;
+  var sql = 'select extract(MONTH from date_log) as month,AVG(HeartBeat_daily) as HR from heartbeat where Demail = ?  group by month';
+
+  await pool.query(sql, [pateintemail], function (err, result) {
+    if (err) throw err;
+    res.send(result);
+    // console.log(result);
+  });
+});
+
 module.exports = router;

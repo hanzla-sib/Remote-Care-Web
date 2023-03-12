@@ -12,8 +12,8 @@ function HeartbeatCard(){
 
   React.useEffect(() => {
    
-      setTimeout(() => {
-        setToggle((prevToggle) => !prevToggle)
+     
+        
      async function fetchData() {
       try {
      
@@ -32,11 +32,39 @@ function HeartbeatCard(){
      
     };
     fetchData();
-      },
-      10000);
+   
      
   
-  }, [toggle]);
+  }, []);
+
+
+  React.useEffect(() => {
+   
+    setTimeout(() => {
+      setToggle((prevToggle) => !prevToggle)
+   async function fetchData() {
+    try {
+   
+      // await delay(1000);
+      const baseURL = "http://localhost:5000/mysql/getSteps/" + curruser.email;
+      await axios.get(`${baseURL}`).then((response) => {
+      
+        setPost({HR:response.data[0].heartbeat});
+        settrue(true);
+      }).catch(error => {
+        setError(error);
+      });
+    } catch (e) {
+      console.error(e);
+    }
+   
+  };
+  fetchData();
+    },
+    10000);
+   
+
+}, [toggle]);
 
 
     return(  <Card style={{ color: '#ffff', backgroundColor: '#00ACC1' }} sx={{  border: "0px solid black", borderRadius: "30px", boxShadow: 20 }}>

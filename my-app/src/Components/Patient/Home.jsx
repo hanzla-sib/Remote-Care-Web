@@ -18,6 +18,8 @@ import HeartbeatCard from "./Cards/Heartbeat";
 import Steps_weekly from "./weekly_graphs/Steps_weekly";
 import CalorieBurnt_graph from "./weekly_graphs/Weekly_calories_burnt";
 import CalorieConsumed_graph from "./weekly_graphs/Weekly_calories_consumed";
+import HR_range from "./Range_graphs/weekly_heartbear_range";
+import HR_weekly from "./weekly_graphs/weekly_heartbear";
 import Health_record from "./Health_Record";
 import Show_old_appointment from "./Show_old_appointments_record";
 import Range_weekly_steps from "./Range_graphs/Steps_weekly_range";
@@ -187,7 +189,7 @@ function Home() {
               <CalorieBurnt_graph />
 
               {/* Graph of the Heart beat */}
-              <CalorieBurnt_graph />
+              <HR_weekly />
 
 
               {/* Graph of the steps */}
@@ -246,6 +248,8 @@ function Home() {
               <Range_weekly_steps dat={{ dat1: date1, dat2: date2 }} />
               <Range_weekly_burnt_cal dat={{ dat1: date1, dat2: date2 }} />
               <Range_weekly_Intake_cal dat={{ dat1: date1, dat2: date2 }} />
+              <HR_range dat={{ dat1: date1, dat2: date2 }} />
+           
             </Grid> : ""}
 
 
