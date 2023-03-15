@@ -41,7 +41,7 @@ function HR_Monthly(){
 return (
     <React.Fragment>
             <Grid justifyContent="flex-start" alignItems="flex-start" item sm={12} md={6} lg={5} sx={{ borderRadius: "30px", boxShadow: 20, marginBottom: "10px" }}>
-            <Container sx={{ border: "1px  black", backgroundColor: "white" }} maxWidth={false} >
+            <Container sx={{ border: "1px  black", backgroundColor: "white",borderRadius: "30px", boxShadow: 20, marginBottom: "10px" }} maxWidth={false} >
               <Typography variant="h6">Heart Beat</Typography>
               <SimpleAreaChart arr={post} />
             </Container>

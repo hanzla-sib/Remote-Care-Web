@@ -5,7 +5,7 @@ import { AuthContext } from "../../../Context/AuthContext";
 import SimpleAreaChart from "../../Chart";
 
 
-function CalorieBurnt_graph_admin({name}) {
+function Weekly_Hr_ADmin({name}) {
 
     const { curruser } = useContext(AuthContext);
     const [checktrue, settrue] = React.useState(false);
@@ -17,7 +17,7 @@ function CalorieBurnt_graph_admin({name}) {
         async function fetchData() {
             try {
                 // await delay(1000);
-                const baseURL = "http://localhost:5000/mysql/getStepsgraph_weekly/" + name;
+                const baseURL = "http://localhost:5000/mysql/getheartbeat_weekly/" + name;
                 await axios.get(`${baseURL}`).then((response) => {
                     
                     post.length=0;
@@ -34,7 +34,7 @@ function CalorieBurnt_graph_admin({name}) {
                         smalldate+=date_val[7];
                         smalldate+=date_val[8];
                         smalldate+=date_val[9];
-                        post.push({name:smalldate,uv:response.data[i].Burnt_Calories});
+                        post.push({name:smalldate,uv:response.data[i].HR});
                        
                     } 
                    
@@ -50,9 +50,9 @@ function CalorieBurnt_graph_admin({name}) {
 
     return (
         <React.Fragment>
-        <Grid justifyContent="flex-start" alignItems="flex-start" item sm={12} md={6} lg={5.5} sx={{ borderRadius: "30px", boxShadow: 20 , marginBottom:"30px" }}>
+        <Grid justifyContent="flex-start" alignItems="flex-start" item sm={12} md={6} lg={5} sx={{ borderRadius: "30px", boxShadow: 20 , marginBottom:"30px" }}>
                     <Container sx={{ border: "1px  black", backgroundColor: "white",borderRadius: "30px", boxShadow: 20, marginBottom: "10px" }} maxWidth={false} >
-                      <Typography variant="h6">Burnt Calories</Typography>
+                      <Typography variant="h6">Heart Beat Grpah</Typography>
                       <SimpleAreaChart arr={post} />
                     </Container>
                   </Grid>
@@ -60,4 +60,4 @@ function CalorieBurnt_graph_admin({name}) {
     )
 }
 
-export default CalorieBurnt_graph_admin;
+export default Weekly_Hr_ADmin;

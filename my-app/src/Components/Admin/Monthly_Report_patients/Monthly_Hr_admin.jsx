@@ -5,7 +5,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../../Context/AuthContext";
 import SimpleAreaChart from "../../Chart";
 
-function Monthly_calories_Consumed_Admin({name}){
+function Monthly_HR_admin({name}){
     const { curruser } = useContext(AuthContext);
     const [checktrue, settrue] = React.useState(false);
     const [post, setPost] = React.useState([]);
@@ -17,7 +17,7 @@ function Monthly_calories_Consumed_Admin({name}){
         async function fetchData() {
             try {
                 // await delay(1000);
-                const baseURL = "http://localhost:5000/mysql/getCaloriesConsumedgraph_Monthly/" + name;
+                const baseURL = "http://localhost:5000/mysql/getHRgraph_Monthly/" + name;
                 await axios.get(`${baseURL}`).then((response) => {
                     
                    post.length=0;
@@ -26,7 +26,7 @@ function Monthly_calories_Consumed_Admin({name}){
                     
                     for(var i=countdig;i<response.data.length;i++){
                        
-                        post.push({name:response.data[i].month,uv:response.data[i].totalConsumedCalories});
+                        post.push({name:response.data[i].month,uv:response.data[i].HR});
                        
                     } 
                     
@@ -41,13 +41,13 @@ function Monthly_calories_Consumed_Admin({name}){
     }, [name]);
     return (
         <React.Fragment>
-     <Grid justifyContent="flex-start" alignItems="flex-start" item sm={12} md={6} lg={5.5} sx={{ borderRadius: "30px", boxShadow: 20, marginBottom: "10px" }}>
+     <Grid justifyContent="flex-start" alignItems="flex-start" item sm={12} md={6} lg={5} sx={{ borderRadius: "30px", boxShadow: 20, marginBottom: "10px" }}>
             <Container sx={{ border: "1px  black", backgroundColor: "white",borderRadius: "30px", boxShadow: 20, marginBottom: "10px" }} maxWidth={false} >
-              <Typography variant="h6">Calories intake</Typography>
+              <Typography variant="h6">Heart Rate Graph </Typography>
               <SimpleAreaChart arr={post} />
             </Container>
           </Grid>
   </React.Fragment>)
 }
 
-export default Monthly_calories_Consumed_Admin;
+export default Monthly_HR_admin;

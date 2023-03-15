@@ -562,4 +562,10 @@ router.route('/getHRgraph_Monthly/:id').get(async (req, res) => {
   });
 });
 
+
+
+
+
+
+
 module.exports = router;

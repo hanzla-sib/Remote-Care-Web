@@ -14,8 +14,8 @@ import { Box, Stack } from '@mui/system';
 import Calorie_Burnt from "./Weekly_Report_Patient/CalorieBurnt_graph_admin";
 import Calorie_consumed from "./Weekly_Report_Patient/CalorieConsumed_graph_admin";
 import Steps_graph from "./Weekly_Report_Patient/Steps_weekly_admin";
-
-
+import Weekly_Hr_ADmin from './Weekly_Report_Patient/Weekly_Hr_admin';
+import Monthly_HR_admin from './Monthly_Report_patients/Monthly_Hr_admin';
 
 function Patient_data() {
 
@@ -95,14 +95,14 @@ function Patient_data() {
                 </Grid>
                 <Monthly_Calories_consumed name={patient} />
                 <Monthly_calories_Burnt name={patient} />
-                <Monthly_calories_Burnt name={patient} />
+                <Monthly_HR_admin name={patient} />
                 <Monthly_Steps name={patient} />
                 <Grid xs={12} sm={12} md={12} lg={12}>
                     <Typography marginLeft="80px" variant='overline' justifyContent="center" fontSize="30px" textAlign="center">Weekly</Typography>
                 </Grid>
                 <Calorie_Burnt name={patient} />
                 <Calorie_consumed name={patient} />
-                <Calorie_consumed name={patient} />
+                <Weekly_Hr_ADmin name={patient} />
                 <Steps_graph name={patient} />
 
             </Grid> : ""}

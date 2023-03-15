@@ -9,14 +9,14 @@ import AppointmentsRequest from "./AppointmentsRequests";
 import RejectAppoint from "./Rejectorappoint";
 import Appointmnet_History from "./AppointmentHistory";
 import axios from "axios";
-
+import Monthly_HR_doc from "./Monthly_Report_patients_for_doc/Monthly_heartbeat_doc";
 import Monthly_calories_Burnt_Admin from "./Monthly_Report_patients_for_doc/Monthly_Calories_Burnt_doc";
 import Monthly_calories_Consumed_Admin from "./Monthly_Report_patients_for_doc/Monthly_caloriesConsumed_doc";
 import Steps_Monthly_Admin from "./Monthly_Report_patients_for_doc/Monthly_steps_doc";
 import CalorieBurnt_graph_admin from "./Weekly_Report_Patient_for_doc/CalorieBurnt_graph_doc";
 import CalorieConsumed_graph_admin from "./Weekly_Report_Patient_for_doc/CalorieConsumed_graph_doc";
 import Steps_weekly_admin from "./Weekly_Report_Patient_for_doc/Steps_weekly_doc";
-
+import Weekly_Hr_doc from "./Weekly_Report_Patient_for_doc/Weekly_HR_Doc";
 
 
 
@@ -187,14 +187,14 @@ function DoctorHome() {
                 </Grid>
                 <Monthly_calories_Consumed_Admin name={patient} />
                 <Monthly_calories_Burnt_Admin name={patient} />
-                <Monthly_calories_Burnt_Admin name={patient} />
+                <Monthly_HR_doc name={patient} />
                 <Steps_Monthly_Admin name={patient} />
                 <Grid container item xs={12} sm={12} md={12} lg={12}>
                   <Typography textAlign="center">Weekly</Typography>
                 </Grid>
                 <CalorieConsumed_graph_admin name={patient} />
                 <CalorieBurnt_graph_admin name={patient} />
-                <CalorieBurnt_graph_admin name={patient} />
+                <Weekly_Hr_doc name={patient} />
                 <Steps_weekly_admin name={patient} />
 
               </Grid> : ""}
