@@ -76,10 +76,10 @@ function HeartbeatCard(){
       alt="heartbeat"
     />
     <CardContent>
-      <Typography gutterBottom variant="h5" component="div">
+      <Typography gutterBottom variant="h5" component="div" sx={{textAlign:"center"}}>
         heart beat
       </Typography>
-      <Typography variant="h5">
+      <Typography variant="h5" sx={{textAlign:"center"}}>
 
        {post.HR}
       </Typography>

@@ -51,12 +51,12 @@ function StepCard(){
       alt="Steps"
     />
     <CardContent>
-      <Typography gutterBottom variant="h5" component="div">
+      <Typography gutterBottom variant="h5" component="div" sx={{textAlign:"center"}}>
         Step Counts
       </Typography>
-      <Typography variant="h5" >
+      <Typography variant="h5" sx={{textAlign:"center"}} >
       
-        {post.daily_steps}   {post.status}
+        {post.daily_steps}   
         
       </Typography>
     </CardContent>

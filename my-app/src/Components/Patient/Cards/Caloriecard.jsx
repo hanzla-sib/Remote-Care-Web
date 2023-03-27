@@ -29,7 +29,7 @@ function CalorieCard({setreloader}){
     fetchData();
   }, [setreloader]);
     return(
-        <Card sx={{  border: "0px solid black", borderRadius: "30px", boxShadow: 20 }}>
+        <Card Card  sx={{  border: "0px solid black", borderRadius: "30px", boxShadow: 20 }}>
        
         <CardMedia
           component="img"
@@ -43,10 +43,10 @@ function CalorieCard({setreloader}){
         {setreloader}
           </Typography>
         
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h5" component="div" sx={{textAlign:"center"}}>
             Calories Intake
           </Typography>
-          <Typography variant="h5" color="text.secondary">
+          <Typography variant="h5" color="text.secondary" sx={{textAlign:"center"}}>
             {checktrue?post:"0"}
           </Typography>
         </CardContent>
