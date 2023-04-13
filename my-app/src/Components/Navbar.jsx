@@ -65,7 +65,7 @@ function Navbar() {
                 <Typography 
             variant="h5"
             sx={{ flexGrow: 1,fontStyle:"italic"}}> {post.name}</Typography> 
-                <Button className="butnav"  sx={{  display: { xs: 'none', sm: 'block' } }} variant="outlined" onClick={logout}>logout</Button>
+                {/* <Button className="butnav"  sx={{  display: { xs: 'none', sm: 'block' } }} variant="outlined" onClick={logout}>logout</Button> */}
             </Toolbar>
         </AppBar>
 
