@@ -53,7 +53,7 @@ function Home() {
   const handleChange = (e) => {
     setDate1(e.target.value);
   };
-
+  // Function to generate the graph based on selected dates
   const generategraph = () => {
     setcombine({ from: date1, to: date2 });
     setcheck(true);
@@ -63,6 +63,7 @@ function Home() {
   const handleChange1 = (e) => {
     setDate2(e.target.value);
   };
+  // Accessing the authentication context
   const { curruser } = useContext(AuthContext);
 
 
@@ -71,6 +72,7 @@ function Home() {
   const [error, setError] = React.useState({});
   const [reloder, setreloader] = React.useState(0);
   const [reloderappoint, setreloderappoint] = React.useState(0);
+  // Fetching user data from the API using axios and updating state
   React.useEffect(() => {
     async function fetchData() {
       try {
@@ -91,7 +93,7 @@ function Home() {
 
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
-      <Box sx={{  backgroundColor: "#293148", minWidth: "200px", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
+      <Box sx={{ backgroundColor: "#293148", minWidth: "200px", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
         <Sidebar />
       </Box>
       {/* HOMEPAGE STARTING */}
@@ -215,7 +217,7 @@ function Home() {
               </Grid>
               <Grid justifyContent="center" alignItems="center" item sm={5} md={5} lg={4}>
                 <Typography variant="h5">Appointment History</Typography>
-                
+
                 {/* <SetAppoint setreloderappoint={setreloderappoint} /> */}
                 <Show_old_appointment setreloderappoint={reloderappoint} />
               </Grid>
@@ -238,18 +240,18 @@ function Home() {
                   onChange={handleChange1}
                   ref={dateInputRef}
                 />
-                <Button sx={{marginTop:"20px"}} variant="contained" onClick={generategraph}>generate Graph</Button>
+                <Button sx={{ marginTop: "20px" }} variant="contained" onClick={generategraph}>generate Graph</Button>
               </Grid>
 
             </Grid>
-            
-            {check1 == true ? <Grid  columnSpacing={{ lg: 0, sm: 1, md: 3, xs: 2 }} columnGap={{ lg: 2, md: 2, sm: 1, xs: 1 }} sx={{ margin: "auto" }} rowSpacing={4} container alignItems="center"
+
+            {check1 == true ? <Grid columnSpacing={{ lg: 0, sm: 1, md: 3, xs: 2 }} columnGap={{ lg: 2, md: 2, sm: 1, xs: 1 }} sx={{ margin: "auto" }} rowSpacing={4} container alignItems="center"
               justifyContent="center" direction={"row"}>
               <Range_weekly_steps dat={{ dat1: date1, dat2: date2 }} />
               <Range_weekly_burnt_cal dat={{ dat1: date1, dat2: date2 }} />
               <Range_weekly_Intake_cal dat={{ dat1: date1, dat2: date2 }} />
               <HR_range dat={{ dat1: date1, dat2: date2 }} />
-           
+
             </Grid> : ""}
 
 

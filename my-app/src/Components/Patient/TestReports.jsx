@@ -61,20 +61,20 @@ function Tests() {
     <Card style={{ border: "none" }} sx={{ maxWidth: 400, maxHeight: 365, minHeight: 365, overflow: "auto", borderRadius: "30px", boxShadow: "10", backgroundColor: "#EEEEEE", marginBottom: "20px", marginTop: "10px" }}>
       {/* <Typography variant="body2" textAlign="center">click to open</Typography> */}
       <CardContent >
-      <Hover_style>
-        <List sx={{ width: '100%', maxWidth: 360, bgcolor: '#EEEEEE', backgroundColor: "#EEEEEE", marginBottom: "10px" }}>
-          {/* <Typography style={{ color: "white" }} variant="h6">TEST RECORDS</Typography> */}
-          {post.map((value) => (
-            
-            <ListItemButton onClick={() => openme(value.img)} sx={{ backgroundColor: "lightsteelblue", border: "0px solid black", boxShadow: 8, borderRadius: "50px", marginBottom: "20px" }}   >
+        <Hover_style>
+          <List sx={{ width: '100%', maxWidth: 360, bgcolor: '#EEEEEE', backgroundColor: "#EEEEEE", marginBottom: "10px" }}>
+            {/* <Typography style={{ color: "white" }} variant="h6">TEST RECORDS</Typography> */}
+            {post.map((value) => (
 
-              <ListItemText style={{ color: "black", textAlign: "center" }} sx={{ border: "0px solid black", boxShadow: 5, borderRadius: "20px", margin: "10px" }}
-                primary=<Typography variant="h6">{value.det}</Typography>
+              <ListItemButton onClick={() => openme(value.img)} sx={{ backgroundColor: "lightsteelblue", border: "0px solid black", boxShadow: 8, borderRadius: "50px", marginBottom: "20px" }}   >
 
-              />
-            </ListItemButton>
-          ))}
-        </List>
+                <ListItemText style={{ color: "black", textAlign: "center" }} sx={{ border: "0px solid black", boxShadow: 5, borderRadius: "20px", margin: "10px" }}
+                  primary=<Typography variant="h6">{value.det}</Typography>
+
+                />
+              </ListItemButton>
+            ))}
+          </List>
         </Hover_style>
 
       </CardContent>

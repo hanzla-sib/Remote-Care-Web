@@ -59,14 +59,6 @@ function Patient_data() {
     }, [num]);
 
     return (
-
-        // <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
-        //     <Box sx={{ background: "linear-gradient(#16222A, #3A6073);", minWidth: "150px", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
-        //         <Sidebaradmin />
-        //     </Box>
-        // <Box pl={"20px"} sx={{ overflowY: "auto", height: "93.5vh", flex: 1, backgroundColor: "#EEEEEE" }}>
-
-        //     <Container disableGutters maxWidth >
         <Grid container justifyContent="center" alignItems="center" item xs={12} sm={12} md={12} lg={12}>
             <Grid marginTop="30px" marginBottom="30px" >
                 <Box maxWidth="700px" textAlign="center" sx={{ minWidth: 620 }} >
@@ -91,7 +83,7 @@ function Patient_data() {
             {check ? <Grid columnSpacing={{ lg: 0, sm: 1, md: 3, xs: 2 }} columnGap={{ lg: 2, md: 2, sm: 1, xs: 1 }} sx={{ margin: "auto" }} rowSpacing={4} container alignItems="center"
                 justifyContent="center" direction={"row"} >
                 <Grid xs={12} sm={12} md={12} lg={12}>
-                    <Typography marginLeft="80px"  variant='overline' textAlign="center" fontSize="30px">Monthly</Typography>
+                    <Typography marginLeft="80px" variant='overline' textAlign="center" fontSize="30px">Monthly</Typography>
                 </Grid>
                 <Monthly_Calories_consumed name={patient} />
                 <Monthly_calories_Burnt name={patient} />
@@ -108,9 +100,7 @@ function Patient_data() {
             </Grid> : ""}
 
         </Grid>
-        //     </Container>
-        // </Box>
-        // </Stack>
+
 
     );
 }

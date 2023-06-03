@@ -18,10 +18,10 @@ const Img = styled('img')({
 
 
   maxWidth: '100%',
- 
+
   Height: '20%',
-  
- 
+
+
 });
 
 // const delay = ms => new Promise(
@@ -47,11 +47,11 @@ function Profile() {
         const baseURL = "http://localhost:5000/mysql/get_user_type/" + curruser.email;
 
         await axios.get(`${baseURL}`).then((response) => {
-       
+
           setPost(response.data.imageurl);
           setname(response.data.name);
           setemail(response.data.email);
-         
+
           settrue(true);
 
         }).catch(error => {
@@ -72,34 +72,10 @@ function Profile() {
       <Box sx={{ background: "linear-gradient(#304352, #3498db);", height: { sx: "auto", md: "93.5vh", lg: "93.5vh" }, borderRight: "1px solid #3d3d3d", px: { sx: 0, md: 2 } }}>
         <Sidebar />
       </Box>
-      <Box  sx={{ overflowY: "auto", height: "93.5vh", flex: 2 }}>
+      <Box sx={{ overflowY: "auto", height: "93.5vh", flex: 2 }}>
         <Container maxWidth={false}  >
-          {/* <Paper
-            sx={{
-              margin: 'auto',
-              marginTop: "55px",
-              marginBottom: "40px",
-              borderRadius: "30px",
-              maxWidth: 200,
-              backgroundColor: (theme) =>
-                theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-            }}
-          >
-            <Grid>
-                <Img alt="complex" src={'http://localhost/smd_project/'+post} />
-              <Grid item xs={12} textAlign="center" direction={"column"}>
-                <Typography gutterBottom variant="h5" component="div">
-                  Hi, MR {checktrue == true ? name : "null"}
-                </Typography>
-                <Typography gutterBottom variant="h5" component="div">
-                  {checktrue == true ? email : "null"}
-                </Typography>
-              </Grid>
-            </Grid>
-          </Paper> */}
-
           <Grid container justifyContent={"flex-start"} alignItems="center" spacing={2} direction={"column"} sx={{ boxShadow: 20, borderRadius: "30px" }}>
-          <h3>TEST RECORDS</h3>
+            <h3>TEST RECORDS</h3>
             <Grid item xs={12} container sm={12} md={6} lg={12} justifyContent={"flex-start"} >
               <Tests />
             </Grid>

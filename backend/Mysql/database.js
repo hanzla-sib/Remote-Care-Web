@@ -1,30 +1,39 @@
-const {
-  createPool
-} = require('mysql');
+// Import the 'createPool' function from the 'mysql' module
+const { createPool } = require('mysql');
 
+// Create a connection pool using the 'createPool' function
+// The connection pool allows reusing and managing multiple database connections
 const pool = createPool({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'remote_care',
-  connectionLimit: 10
-})
+  host: 'localhost',     // The hostname or IP address of the MySQL database server
+  user: 'root',          // The username to authenticate with the MySQL server
+  password: '',          // The password to authenticate with the MySQL server
+  database: 'remote_care', // The name of the database to connect to
+  connectionLimit: 10    // The maximum number of connections allowed in the pool
+});
 
+// Import the 'express' module
 express = require('express'),
   router = express.Router();
 
+// More code can follow after this point
+// The 'pool' variable can be used to execute database queries using the connection pool
 
-
+// Define a route for GET requests to '/get_test_record/:id'
 router.route('/get_test_record/:id').get(async (req, res) => {
+  // Extract the value of 'id' parameter from the request URL
   var email = req.params.id;
-  var sql = 'select * FROM test_record where Temail = ?';
- await pool.query(sql, [email], function (err, result) {
+
+  // Define the SQL query to select all records from the 'test_record' table where 'Temail' column matches the provided email
+  var sql = 'SELECT * FROM test_record WHERE Temail = ?';
+
+  // Execute the SQL query using the connection pool's 'query' method
+  await pool.query(sql, [email], function (err, result) {
     if (err) throw err;
-    // console.log(result);
+
+    // Send the result of the query as the response
     res.send(result);
   });
 });
-
 
 
 router.route('/get_user_type/:id').get(async (req, res) => {
@@ -210,94 +219,13 @@ router.route('/RequestAppoint').post(async (req, res, next) => {
 
 
 
-// router.route('/queryfood').post((req, res) => {
-//   // console.log(req.body);
-//   try {
-//     const id = req.body.Email;
-//     const userJson = {
-//       Namefood: req.body.Namefood
-//     };
-//     // console.log("asdasd   ", userJson);
-//     const request = require('request');
-//     var query = userJson.Namefood;
-
-//     request.get({
-//       url: 'https://api.calorieninjas.com/v1/nutrition?query=' + query,
-//       headers: {
-//         'X-Api-Key': 'tss9OJ5+zRf9qtV6t8HILA==Gq0oiP3o3a2KBq5B'
-//       },
-//     }, function (error, response, body) {
-//       if (error) return console.error('Request failed:', error);
-//       else if (response.statusCode != 200) return console.error('Error:', response.statusCode, body.toString('utf8'));
-//       else {
-//         // console.log("-------------");
-//         // console.log(body);
-//         var obj = JSON.parse(body);
-
-//         // console.log(obj.items[0].calories);
-//         const foodcalorieobj = {
-//           foodname: userJson.Namefood,
-//           calorie: obj.items[0].calories
-//         };
-
-//         var date_time = new Date();
-//         var day = ("0" + date_time.getDate()).slice(-2);
-//         var month = ("0" + (date_time.getMonth() + 1)).slice(-2);
-//         var year = date_time.getFullYear();
-
-//         var date = year + "-" + month + "-" + day;
-//         //===============
-
-//         var check = false;
-//         var caloriecountsum = 0;
-//         var sql = 'SELECT * FROM consumed_calories WHERE p_email = ? and date_log = ?';
-//         pool.query(sql, [id, date], function (err, result) {
-//           if (err) throw err;
-
-//           console.log(result.length);
-//           console.log(date);
-
-//           if (result.length === 1) {
-//             caloriecountsum = result[0].Calories;
-//             caloriecountsum = caloriecountsum + foodcalorieobj.calorie;
-//             var sql = "UPDATE consumed_calories SET Calories = ? WHERE p_email = ? AND date_log = ?";
-//             pool.query(sql, [caloriecountsum, id, date], function (err, result) {
-//               if (err) throw err;
-//               console.log(result.affectedRows + " record(s) updated");
-//             });
-//           }
-//           else {
-//             var sql1 = "INSERT INTO consumed_calories (p_email,date_log,Calories) VALUES ?";
-//             var values = [
-//               [id, date, foodcalorieobj.calorie]
-//             ];
-//             pool.query(sql1, [values], function (err, result) {
-//               if (err) throw err;
-//               console.log("1 record inserted in pateint");
-//             });
-//             res.send(req.body);
-//           }
-
-
-//         });
-//         console.log(check);
-
-
-//       }
-//     });
-
-//   }
-//   catch {
-//     res.send("eroor write");
-//   }
-// });
 
 
 router.route('/getCaloriegraph/:id').get(async (req, res) => {
   var pateintemail = req.params.id;
   var sql = 'select * FROM consumed_calories where p_email = ?';
 
- await pool.query(sql, [pateintemail], function (err, result) {
+  await pool.query(sql, [pateintemail], function (err, result) {
     if (err) throw err;
     res.send(result);
     // console.log(result);
@@ -310,7 +238,7 @@ router.route('/getSteps/:id').get(async (req, res) => {
   // console.log(pateintemail);
   var sql = 'select * FROM daily_steps where Demail = ?';
 
- await pool.query(sql, [pateintemail], function (err, result) {
+  await pool.query(sql, [pateintemail], function (err, result) {
     if (err) throw err;
     res.send(result);
   });
@@ -321,7 +249,7 @@ router.route('/getStepsgraph_weekly/:id').get(async (req, res) => {
   var pateintemail = req.params.id;
   var sql = 'select * FROM weekly_steps where Demail = ?';
 
- await pool.query(sql, [pateintemail], function (err, result) {
+  await pool.query(sql, [pateintemail], function (err, result) {
     if (err) throw err;
     res.send(result);
     // console.log(result);
@@ -424,7 +352,7 @@ router.route('/get_appointment_history/:id').get(async (req, res) => {
 
 router.route('/get_all_patients').get(async (req, res) => {
 
-var usertype="1";
+  var usertype = "1";
   var sql = 'select * FROM user where user_type = ?';
   await pool.query(sql, [usertype], function (err, result) {
     if (err) throw err;
@@ -436,29 +364,29 @@ var usertype="1";
 
 router.route('/get_all_users_admin').get(async (req, res) => {
 
-  var usertype1="1";
-  var usertype2="2";
-    var sql = 'select * FROM user';
-    await pool.query(sql,function (err, result) {
-      if (err) throw err;
-      // console.log(result);
-      res.send(result);
-    });
+  var usertype1 = "1";
+  var usertype2 = "2";
+  var sql = 'select * FROM user';
+  await pool.query(sql, function (err, result) {
+    if (err) throw err;
+    // console.log(result);
+    res.send(result);
   });
-  
-  router.route('/get_appointment_history_admin_doc/:id').get(async (req, res) => {
-    var pateintemail = req.params.id;
-  
-    var sql = 'SELECT * FROM appointment_history WHERE d_email = ?';
-    await pool.query(sql, [pateintemail], function (err, result) {
-      if (err) throw err;
-      console.log(result);
-      res.send(result);
-  
-    });
-  });
+});
 
-  
+router.route('/get_appointment_history_admin_doc/:id').get(async (req, res) => {
+  var pateintemail = req.params.id;
+
+  var sql = 'SELECT * FROM appointment_history WHERE d_email = ?';
+  await pool.query(sql, [pateintemail], function (err, result) {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+
+  });
+});
+
+
 router.route('/get_appointment_current_admin_doc/:id').get(async (req, res) => {
   var Doctoremail = req.params.id;
 
@@ -524,7 +452,7 @@ router.route('/getheartbeat_weekly/:id').get(async (req, res) => {
   var pateintemail = req.params.id;
   var sql = 'select date_log,avg(HeartBeat_daily) as HR FROM heartbeat where Demail = ? GROUP BY date_log';
 
- await pool.query(sql, [pateintemail], function (err, result) {
+  await pool.query(sql, [pateintemail], function (err, result) {
     if (err) throw err;
     res.send(result);
     // console.log(result);
